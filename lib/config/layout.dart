@@ -15,21 +15,18 @@ import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
 import 'widgets/footer.dart';
 
 enum PageLayout {
-  header,
-  header2,
-  headerTabbar,
-  headerSider,
+  home,
 }
 
 class AppLayout extends LayoutDelegate {
   @override
   LayoutInfo buildLayouts(splits) {
     return {
-      PageLayout.header: DynamicRouteLayout.override(
+      PageLayout.home: DynamicRouteLayout.override(
         splits,
         defaultLayout: RouteLayout(
           appBarLayout: AppBarLayout(
-            layout: AppBarLayoutConfig.fixedAbove,
+            layout: AppBarLayoutConfig.body,
             aligment: AppBarLayoutType.TiMeAc,
             showTabbar: false,
           ),
@@ -40,71 +37,6 @@ class AppLayout extends LayoutDelegate {
             type: MenuDrawerLayoutType.drawerRight,
           ),
         ),
-        overrides: {
-          splits.first: RouteLayoutOverride(
-            bottomBarLayout: BottomBarLayoutOverride(
-              selectionType: BottomBarSelectionType.whole,
-            ),
-            appBarLayout: AppBarLayoutOverride(
-              layout: AppBarLayoutConfig.body,
-              aligment: AppBarLayoutType.TiMeAc,
-              showTabbar: false,
-            ),
-            footerLayout: NoFooterLayoutOverride(),
-          ),
-        },
-      ),
-      PageLayout.headerTabbar: DynamicRouteLayout.override(
-        splits,
-        defaultLayout: RouteLayout(
-          appBarLayout: AppBarLayout(
-            layout: AppBarLayoutConfig.fixedAbove,
-            aligment: AppBarLayoutType.TiMeAc,
-            showTabbar: true,
-          ),
-          footerLayout: FooterLayout(),
-          siderLayout: NoSiderLayout(),
-          bottomBarLayout: NoBottomBarLayout(),
-          menuDrawerLayout: NoMenuDrawerLayout(),
-        ),
-        overrides: {
-          splits.first: RouteLayoutOverride(
-            bottomBarLayout: BottomBarLayoutOverride(
-              selectionType: BottomBarSelectionType.icon,
-            ),
-            menuDrawerLayout: MenuDrawerLayoutOverride(
-              type: MenuDrawerLayoutType.beneathAppBar,
-            ),
-          ),
-        },
-      ),
-      PageLayout.headerSider: DynamicRouteLayout.override(
-        splits,
-        defaultLayout: RouteLayout(
-          appBarLayout: AppBarLayout(
-            layout: AppBarLayoutConfig.fixedAbove,
-            aligment: AppBarLayoutType.TiMeAc,
-            showTabbar: false,
-          ),
-          footerLayout: FooterLayout(),
-          siderLayout: SiderLayout(
-            left: true,
-          ),
-          bottomBarLayout: NoBottomBarLayout(),
-          menuDrawerLayout: NoMenuDrawerLayout(),
-        ),
-        overrides: {
-          splits.first: RouteLayoutOverride(
-            bottomBarLayout: BottomBarLayoutOverride(
-              selectionType: BottomBarSelectionType.icon,
-            ),
-            siderLayout: NoSiderLayoutOverride(),
-            footerLayout: NoFooterLayoutOverride(),
-          ),
-          splits[1]: RouteLayoutOverride(
-            siderLayout: NoSiderLayoutOverride(),
-          ),
-        },
       ),
     };
   }
@@ -114,7 +46,7 @@ class AppLayout extends LayoutDelegate {
     return ScaffoldConfig(
       whether: ScaffoldWhether(
         showBackButton: false,
-        showAppBarMenu: true,
+        showAppBarMenu: false,
         shareParentSiderMenu: false,
         showSiderChildMenu: false,
         showSiderMenu: false,

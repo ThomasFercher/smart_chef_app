@@ -47,7 +47,7 @@ class AppSizing extends SizingDelegate {
           footerSizing: FooterSizing(
             height: 80,
             maxWidth: 1000,
-            padding: const EdgeInsets.all(24),
+            padding: EdgeInsets.zero,
           ),
           siderSizing: SiderSizing(
             width: 200,

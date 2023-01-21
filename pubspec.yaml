@@ -1,4 +1,4 @@
-name: legend_design_template
+name: smart_chef_app
 description: A Template for new Projects using Legend Design
 
 publish_to: 'none' 
@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.17
+  flutter_svg: ^1.1.6
   legend_design_widgets:
     git:
       url: https://github.com/ThomasFercher/legend-widgets
