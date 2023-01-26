@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:legend_design_core/layout/appBar.dart/appbar_config.dart';
 import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
@@ -8,8 +7,6 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:legend_design_widgets/input/text/legendInputDecoration.dart';
-import 'package:legend_design_widgets/input/text/legendTextField.dart';
 import 'package:legend_utils/legend_utils.dart';
 import 'package:smart_chef_app/widgets/selectable_grid.dart';
 
@@ -107,7 +104,12 @@ class HomePage extends LegendWidget {
               ),
             ),
           ),
-        )
+        ),
+        SliverFillRemaining(
+          child: Container(
+            color: Colors.amber,
+          ),
+        ),
       ],
     );
   }

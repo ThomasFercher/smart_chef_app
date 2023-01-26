@@ -21,6 +21,7 @@ class AppRoutes extends RoutesDelegate {
         title: "Home",
         icon: Icons.home,
         config: ScaffoldRouteConfig(
+          whether: ScaffoldWhetherOverride(),
           layout: layouts.get((PageLayout.home)),
         ),
         page: const HomePage(),
