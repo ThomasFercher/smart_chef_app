@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.17
+  hooks_riverpod: ^2.1.3
   flutter_svg: ^1.1.6
   legend_design_widgets:
     git:

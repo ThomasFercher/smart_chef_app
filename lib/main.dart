@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/interfaces/legend_config.dart';
 import 'package:legend_design_core/legend_app.dart';
 import 'package:legend_design_core/state/legend_state.dart';
@@ -25,29 +26,31 @@ void main() async {
   Logger.log("Inital Color Theme: ${initalColorTheme.key}", 'main');
 
   runApp(
-    LegendApp(
-      config: LegendConfig(
-        colorsDelegate: AppColors(),
-        sizingDelegate: AppSizing(),
-        typographyDelegate: AppTypography(),
-        layoutDelegate: AppLayout(),
-        routesDelegate: AppRoutes(),
-        initalColors: initalColorTheme,
-      ),
-      logoBuilder: (_) => SizedBox(
-        width: 64,
-        height: 64,
-        child: SvgPicture.asset(
-          "assets/logo.svg",
-          color: LegendTheme.of(_).colors.onPrimary,
+    ProviderScope(
+      child: LegendApp(
+        config: LegendConfig(
+          colorsDelegate: AppColors(),
+          sizingDelegate: AppSizing(),
+          typographyDelegate: AppTypography(),
+          layoutDelegate: AppLayout(),
+          routesDelegate: AppRoutes(),
+          initalColors: initalColorTheme,
         ),
+        logoBuilder: (_) => SizedBox(
+          width: 64,
+          height: 64,
+          child: SvgPicture.asset(
+            "assets/logo.svg",
+            color: LegendTheme.of(_).colors.onPrimary,
+          ),
+        ),
+        title: "Legend Template",
+        buildSplashscreen: (context, theme) {
+          return Container(
+            color: theme.colors.primary,
+          );
+        },
       ),
-      title: "Legend Template",
-      buildSplashscreen: (context, theme) {
-        return Container(
-          color: theme.colors.primary,
-        );
-      },
     ),
   );
 }

@@ -57,3 +57,6 @@ pubspec.lock
 
 # Dependency
 pubspec.lock
+
+# Flutter Version Management
+./fvm

@@ -11,6 +11,7 @@ import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/text/legendInputDecoration.dart';
 import 'package:legend_design_widgets/input/text/legendTextField.dart';
 import 'package:legend_utils/legend_utils.dart';
+import 'package:smart_chef_app/widgets/selectable_grid.dart';
 
 class HomePage extends LegendWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +21,10 @@ class HomePage extends LegendWidget {
     final appBarActions =
         ScaffoldInfo.of(context)!.scaffold.builders.appBarActions;
     final sizeInfo = SizeInfo.of(context);
+
+    final inputSectionHeight = sizeInfo.height -
+        theme.sizing.footerSizing.height -
+        theme.appBarSizing.appBarHeight;
     return LegendRouteBody(
       sliverAppBar: LegendSliverBar(
         config: LegendAppBarConfig(
@@ -31,28 +36,73 @@ class HomePage extends LegendWidget {
       ),
       slivers: [
         SliverToBoxAdapter(
-          child: Center(
-            child: ElevatedCard(
-              elevation: 1,
-              borderRadius: theme.sizing.radius2.asRadius(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: inputSectionHeight,
+            ),
+            child: Center(
               child: Container(
-                width: sizeInfo.width / 2,
-                color: theme.colors.background2,
-                padding: EdgeInsets.all(theme.sizing.spacing2),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LegendText(
-                      "Recipe Generator",
-                      style: theme.typography.h4,
+                constraints: BoxConstraints(
+                  maxWidth: 600,
+                ),
+                padding: EdgeInsets.all(
+                  theme.sizing.spacing1,
+                ),
+                child: ElevatedCard(
+                  elevation: 1,
+                  borderRadius: theme.sizing.radius2.asRadius(),
+                  child: Container(
+                    color: theme.colors.background2,
+                    padding: EdgeInsets.all(theme.sizing.spacing2),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        LegendText(
+                          "Recipe Generator",
+                          style: theme.typography.h4,
+                        ),
+                        SizedBox(height: theme.sizing.spacing3),
+                        SizedBox(
+                          height: 400,
+                          child: SelectableGrid(
+                            children: [
+                              Container(
+                                color: Colors.red,
+                              ),
+                              Container(
+                                color: Colors.black,
+                              ),
+                              Container(
+                                color: Colors.yellow,
+                              ),
+                              Container(
+                                color: Colors.red,
+                              ),
+                              Container(
+                                color: Colors.black,
+                              ),
+                              Container(
+                                color: Colors.yellow,
+                              ),
+                              Container(
+                                color: Colors.black,
+                              ),
+                              Container(
+                                color: Colors.yellow,
+                              ),
+                              Container(
+                                color: Colors.black,
+                              ),
+                              Container(
+                                color: Colors.yellow,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 100),
-                    LegendTextField(
-                      decoration: LegendInputDecoration.rounded(),
-                    ),
-                    const SizedBox(height: 100),
-                  ],
+                  ),
                 ),
               ),
             ),
