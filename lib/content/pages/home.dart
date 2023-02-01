@@ -9,6 +9,7 @@ import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_utils/legend_utils.dart';
 import 'package:smart_chef_app/widgets/selectable_grid.dart';
+import 'package:smart_chef_app/widgets/selectable_list.dart';
 
 class HomePage extends LegendWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,22 +34,46 @@ class HomePage extends LegendWidget {
       ),
       slivers: [
         SliverToBoxAdapter(
-          child: Container(
-            height: 140,
-            color: theme.colors.background1,
-            child: ElevatedCard(
-              elevation: theme.sizing.elevation2,
-              child: Container(
-                padding: EdgeInsets.all(theme.sizing.spacing2),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LegendText(
-                      "Categories",
-                      style: theme.typography.h4,
-                    ),
-                  ],
-                ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: 150,
+            ),
+            child: Container(
+              color: theme.colors.background2,
+              padding: EdgeInsets.all(theme.sizing.spacing2),
+              child: SelectableList(
+                children: [
+                  Container(
+                    color: Colors.red,
+                  ),
+                  Container(
+                    color: Colors.black,
+                  ),
+                  Container(
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    color: Colors.red,
+                  ),
+                  Container(
+                    color: Colors.black,
+                  ),
+                  Container(
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    color: Colors.black,
+                  ),
+                  Container(
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    color: Colors.black,
+                  ),
+                  Container(
+                    color: Colors.yellow,
+                  ),
+                ],
               ),
             ),
           ),
@@ -60,7 +85,7 @@ class HomePage extends LegendWidget {
             ),
             child: Center(
               child: Container(
-                constraints: const BoxConstraints(
+                constraints: BoxConstraints(
                   maxWidth: 600,
                 ),
                 padding: EdgeInsets.all(
