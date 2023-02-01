@@ -33,13 +33,34 @@ class HomePage extends LegendWidget {
       ),
       slivers: [
         SliverToBoxAdapter(
+          child: Container(
+            height: 140,
+            color: theme.colors.background1,
+            child: ElevatedCard(
+              elevation: theme.sizing.elevation2,
+              child: Container(
+                padding: EdgeInsets.all(theme.sizing.spacing2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LegendText(
+                      "Categories",
+                      style: theme.typography.h4,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
           child: ConstrainedBox(
             constraints: BoxConstraints(
               minHeight: inputSectionHeight,
             ),
             child: Center(
               child: Container(
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 600,
                 ),
                 padding: EdgeInsets.all(
