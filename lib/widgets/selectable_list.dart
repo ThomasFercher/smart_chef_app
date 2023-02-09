@@ -11,11 +11,15 @@ class SelectableList extends ConsumerWidget {
     return SizedBox(
       height: 150,
       child: ListView.builder(
+        padding: EdgeInsets.all(20),
         scrollDirection: Axis.horizontal,
         itemCount: children.length,
         itemBuilder: (context, index) {
-          return CategoryItem(
-            child: children[index],
+          return Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: CategoryItem(
+              child: children[index],
+            ),
           );
         },
       ),

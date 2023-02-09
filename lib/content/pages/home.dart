@@ -8,6 +8,7 @@ import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_utils/legend_utils.dart';
+import 'package:smart_chef_app/content/pages/ingredient_page.dart';
 import 'package:smart_chef_app/widgets/selectable_grid.dart';
 import 'package:smart_chef_app/widgets/selectable_list.dart';
 
@@ -39,39 +40,26 @@ class HomePage extends LegendWidget {
               maxHeight: 150,
             ),
             child: Container(
+              height: 150,
+              width: 400,
               color: theme.colors.background2,
               padding: EdgeInsets.all(theme.sizing.spacing2),
               child: SelectableList(
                 children: [
                   Container(
-                    color: Colors.red,
-                  ),
-                  Container(
+                    width: 60,
+                    height: 30,
                     color: Colors.black,
                   ),
-                  Container(
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    color: Colors.red,
-                  ),
-                  Container(
-                    color: Colors.black,
-                  ),
-                  Container(
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    color: Colors.black,
-                  ),
-                  Container(
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    color: Colors.black,
-                  ),
-                  Container(
-                    color: Colors.yellow,
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const IngredientPage(),
+                          ));
+                    },
+                    child: Text('Post'),
                   ),
                 ],
               ),
