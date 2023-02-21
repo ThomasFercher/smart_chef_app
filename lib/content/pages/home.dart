@@ -8,7 +8,7 @@ import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_utils/legend_utils.dart';
-import 'package:smart_chef_app/content/pages/ingredient_page.dart';
+import 'package:smart_chef_app/widgets/ingredient_widget.dart';
 import 'package:smart_chef_app/widgets/selectable_grid.dart';
 import 'package:smart_chef_app/widgets/selectable_list.dart';
 
@@ -37,44 +37,12 @@ class HomePage extends LegendWidget {
         SliverToBoxAdapter(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight: 150,
-            ),
-            child: Container(
-              height: 150,
-              width: 400,
-              color: theme.colors.background2,
-              padding: EdgeInsets.all(theme.sizing.spacing2),
-              child: SelectableList(
-                children: [
-                  Container(
-                    width: 60,
-                    height: 30,
-                    color: Colors.black,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const IngredientPage(),
-                          ));
-                    },
-                    child: Text('Post'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
               minHeight: inputSectionHeight,
             ),
             child: Center(
               child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: 600,
+                constraints: const BoxConstraints(
+                  maxWidth: 800,
                 ),
                 padding: EdgeInsets.all(
                   theme.sizing.spacing1,
@@ -94,42 +62,9 @@ class HomePage extends LegendWidget {
                           style: theme.typography.h4,
                         ),
                         SizedBox(height: theme.sizing.spacing3),
-                        SizedBox(
-                          height: 400,
-                          child: SelectableGrid(
-                            children: [
-                              Container(
-                                color: Colors.red,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                              Container(
-                                color: Colors.red,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                            ],
-                          ),
+                        const SizedBox(
+                          height: 600,
+                          child: IngredientWidget(),
                         ),
                       ],
                     ),
