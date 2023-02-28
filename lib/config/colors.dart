@@ -18,17 +18,17 @@ class AppColors extends ColorsDelegate {
   @override
   LegendPalette get darkTheme {
     return LegendPalette(
-      primary: Colors.indigo[900]!,
+      primary: const Color(0xFF406343),
       secondary: Colors.tealAccent,
       tertiary: Colors.blueGrey,
-      foreground1: Colors.white,
-      foreground2: Colors.blueGrey[50]!,
+      foreground1: const Color(0xFFECE7B4),
+      foreground2: const Color(0xFFF3EFCC),
       foreground3: Colors.blueGrey[50]!,
       foreground4: Colors.blueGrey[50]!,
       foreground5: Colors.blueGrey[100]!,
-      background1: Colors.grey[850]!,
-      background2: Colors.grey[800]!,
-      background3: Colors.grey[700]!,
+      background1: Colors.white,
+      background2: const Color(0xFF32502E),
+      background3: const Color(0xFF406343),
       background4: Colors.grey[600]!,
       background5: Colors.grey[500]!,
       error: Colors.red[400]!,
@@ -38,6 +38,7 @@ class AppColors extends ColorsDelegate {
       onSecondary: Colors.teal[200]!,
       onTertiary: Colors.blueGrey[200]!,
       custom: {
+        "category": const Color(0xFF32502E),
         "custom": Colors.blue,
       },
       subcolors: (colors) {
@@ -71,7 +72,7 @@ class AppColors extends ColorsDelegate {
             },
           ),
           footer: FooterColorsOverride(
-            background: colors.background1,
+            background: Colors.yellow,
           ),
           bottomBar: BottomBarColorsOverride(
             backgroundColor: colors.background1,

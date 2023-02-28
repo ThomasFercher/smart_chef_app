@@ -13,7 +13,6 @@ class SelectableGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
-        const CategoryWidget(),
         LegendTextField(decoration: LegendInputDecoration.rounded()),
         const SizedBox(height: 16),
         Expanded(

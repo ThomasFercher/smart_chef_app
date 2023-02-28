@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:legend_design_core/layout/appBar.dart/appbar_config.dart';
 import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
+import 'package:legend_design_core/layout/scaffold/routebody/route_body_info.dart';
 import 'package:legend_design_core/layout/scaffold/scaffold_info.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
@@ -18,12 +19,13 @@ class HomePage extends LegendWidget {
   @override
   Widget build(BuildContext context, LegendTheme theme) {
     final appBarActions =
-        ScaffoldInfo.of(context)!.scaffold.builders.appBarActions;
+        ScaffoldInfo.of(context).scaffold.builders.appBarActions;
     final sizeInfo = SizeInfo.of(context);
 
     final inputSectionHeight = sizeInfo.height -
         theme.sizing.footerSizing.height -
         theme.appBarSizing.appBarHeight;
+
     return LegendRouteBody(
       sliverAppBar: LegendSliverBar(
         config: LegendAppBarConfig(
@@ -33,53 +35,54 @@ class HomePage extends LegendWidget {
         showMenu: false,
         actions: appBarActions,
       ),
-      slivers: [
-        SliverToBoxAdapter(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: inputSectionHeight,
-            ),
-            child: Center(
-              child: Container(
-                constraints: const BoxConstraints(
-                  maxWidth: 800,
-                ),
-                padding: EdgeInsets.all(
-                  theme.sizing.spacing1,
-                ),
-                child: ElevatedCard(
-                  elevation: 1,
-                  borderRadius: theme.sizing.radius2.asRadius(),
-                  child: Container(
-                    color: theme.colors.background2,
-                    padding: EdgeInsets.all(theme.sizing.spacing2),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        LegendText(
-                          "Recipe Generator",
-                          style: theme.typography.h4,
-                        ),
-                        SizedBox(height: theme.sizing.spacing3),
-                        const SizedBox(
-                          height: 600,
-                          child: IngredientWidget(),
-                        ),
-                      ],
+      slivers: (scrollcontroller) {
+        return [
+          SliverFillRemaining(
+            hasScrollBody: true,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: inputSectionHeight,
+              ),
+              child: Center(
+                child: Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: 800,
+                  ),
+                  padding: EdgeInsets.all(
+                    theme.sizing.spacing1,
+                  ),
+                  child: ElevatedCard(
+                    elevation: 1,
+                    borderRadius: theme.sizing.radius2.asRadius(),
+                    child: Container(
+                      color: theme.colors.background1,
+                      padding: EdgeInsets.all(theme.sizing.spacing2),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LegendText(
+                            "Recipe Generator",
+                            style: theme.typography.h4,
+                          ),
+                          SizedBox(height: theme.sizing.spacing3),
+                          const Expanded(
+                            child: IngredientWidget(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        SliverFillRemaining(
-          child: Container(
-            color: Colors.amber,
+          SliverFillRemaining(
+            child: Container(
+              color: Colors.amber,
+            ),
           ),
-        ),
-      ],
+        ];
+      },
     );
   }
 }
