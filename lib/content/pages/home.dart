@@ -27,6 +27,7 @@ class HomePage extends LegendWidget {
         theme.appBarSizing.appBarHeight;
 
     return LegendRouteBody(
+      singlePage: true,
       sliverAppBar: LegendSliverBar(
         config: LegendAppBarConfig(
           appBarHeight: theme.appBarSizing.appBarHeight,
@@ -39,46 +40,28 @@ class HomePage extends LegendWidget {
         return [
           SliverFillRemaining(
             hasScrollBody: true,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: inputSectionHeight,
+            child: Container(
+              width: SizeInfo.of(context).width,
+              padding: EdgeInsets.all(
+                theme.sizing.spacing1,
               ),
-              child: Center(
-                child: Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: 800,
-                  ),
-                  padding: EdgeInsets.all(
-                    theme.sizing.spacing1,
-                  ),
-                  child: ElevatedCard(
-                    elevation: 1,
-                    borderRadius: theme.sizing.radius2.asRadius(),
-                    child: Container(
-                      color: theme.colors.background1,
-                      padding: EdgeInsets.all(theme.sizing.spacing2),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          LegendText(
-                            "Recipe Generator",
-                            style: theme.typography.h4,
-                          ),
-                          SizedBox(height: theme.sizing.spacing3),
-                          const Expanded(
-                            child: IngredientWidget(),
-                          ),
-                        ],
-                      ),
+              child: Container(
+                color: theme.colors.background1,
+                padding: EdgeInsets.all(theme.sizing.spacing2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LegendText(
+                      "Select your ingredients",
+                      style: theme.typography.h4,
                     ),
-                  ),
+                    SizedBox(height: theme.sizing.spacing3),
+                    const Expanded(
+                      child: IngredientWidget(),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ),
-          SliverFillRemaining(
-            child: Container(
-              color: Colors.amber,
             ),
           ),
         ];
