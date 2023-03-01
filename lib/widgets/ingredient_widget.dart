@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
+import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/widgets/category_widget.dart';
+import 'package:smart_chef_app/widgets/ingredient_info.dart';
 import '../content/model/ingredient.dart';
 import '../content/providers/ingredient_provider.dart';
 
@@ -24,7 +26,9 @@ class IngredientWidget extends ConsumerWidget {
           children: [
             CategoryWidget(sorted),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const IngredientSeperator(),
                 itemCount: ingredients.length,
                 itemBuilder: (context, index) {
                   return IngredientTile(ingredient: ingredients[index]);
@@ -47,26 +51,31 @@ class IngredientTile extends LegendWidget {
   const IngredientTile({super.key, required this.ingredient});
   @override
   Widget build(BuildContext context, LegendTheme theme) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      height: 48,
-      child: Card(
-        color: theme.colors.foreground1,
-        elevation: 2,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            LegendText(ingredient.name),
-            LegendText("calories: ${ingredient.calories}"),
-            LegendText("joules:   ${ingredient.joules}"),
-            LegendText("fat:      ${ingredient.fat}"),
-            LegendText("protein:  ${ingredient.protein}"),
-            LegendText("carbs:    ${ingredient.carbohydrates}"),
-          ],
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 100,
+          child: LegendText(
+            ingredient.name,
+            color: theme.colors.foreground1,
+          ),
         ),
-      ),
+        IngredienInfo(
+          ingredient: ingredient,
+        ),
+      ],
+    );
+  }
+}
+
+class IngredientSeperator extends LegendWidget {
+  const IngredientSeperator({super.key});
+  @override
+  Widget build(BuildContext context, LegendTheme theme) {
+    return Divider(
+      height: 2,
+      color: theme.colors.background2,
     );
   }
 }

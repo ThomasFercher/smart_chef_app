@@ -56,6 +56,10 @@ class HomePage extends LegendWidget {
                       style: theme.typography.h4,
                     ),
                     SizedBox(height: theme.sizing.spacing3),
+                    LegendText(
+                      "Categories",
+                      style: theme.typography.h2,
+                    ),
                     const Expanded(
                       child: IngredientWidget(),
                     ),

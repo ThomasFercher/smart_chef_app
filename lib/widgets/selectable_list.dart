@@ -12,7 +12,7 @@ class SelectableList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-      height: 150,
+      height: 100,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(
           dragDevices: {
@@ -21,7 +21,6 @@ class SelectableList extends ConsumerWidget {
           },
         ),
         child: ListView.builder(
-          padding: const EdgeInsets.all(20),
           scrollDirection: Axis.horizontal,
           itemCount: children.length,
           itemBuilder: (context, index) {
