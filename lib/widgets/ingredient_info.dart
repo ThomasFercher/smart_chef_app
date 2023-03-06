@@ -6,13 +6,13 @@ import 'package:smart_chef_app/content/model/ingredient.dart';
 import 'package:smart_chef_app/widgets/nutritional_value_chart.dart';
 
 class IngredienInfo extends LegendWidget {
-  Ingredient ingredient;
-  IngredienInfo({Key? key, required this.ingredient}) : super(key: key);
+  final Ingredient ingredient;
+  const IngredienInfo({Key? key, required this.ingredient}) : super(key: key);
 
   @override
   Widget build(BuildContext context, LegendTheme theme) {
     return IconButton(
-      icon: Icon(Icons.info_outline),
+      icon: const Icon(Icons.info_outline),
       color: theme.colors.background2,
       onPressed: () => showDialog(
         context: context,

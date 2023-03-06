@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_widgets/input/text/legendInputDecoration.dart';
 import 'package:legend_design_widgets/input/text/legendTextField.dart';
-import 'package:smart_chef_app/widgets/category_widget.dart';
 import 'package:smart_chef_app/widgets/grid_item.dart';
 
 class SelectableGrid extends ConsumerWidget {
