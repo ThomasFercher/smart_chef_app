@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/widgets/category_widget.dart';
 import 'package:smart_chef_app/widgets/ingredient_info.dart';
 import '../content/model/ingredient.dart';
