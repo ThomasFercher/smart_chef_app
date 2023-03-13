@@ -8,9 +8,6 @@ class CategoryItem extends LegendWidget {
 
   @override
   Widget build(BuildContext context, LegendTheme theme) {
-    return SizedBox(
-      width: 120,
-      child: child,
-    );
+    return child;
   }
 }

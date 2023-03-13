@@ -11,8 +11,7 @@ class SelectableList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-      height: 100,
+    return Expanded(
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(
           dragDevices: {
@@ -25,7 +24,7 @@ class SelectableList extends ConsumerWidget {
           itemCount: children.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: CategoryItem(
                 child: children[index],
               ),

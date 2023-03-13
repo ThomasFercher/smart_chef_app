@@ -13,6 +13,30 @@ class CategoryWidget extends LegendWidget {
     return SelectableList(
       children: [
         for (final category in sorted)
+          Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Image.asset(
+                  'assets/images/$category.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                flex: 1,
+                child: LegendText(
+                  category,
+                  style: theme.typography.h1,
+                  fontSize: 16,
+                  color: theme.colors.foreground1,
+                ),
+              ),
+            ],
+          ),
+        /*
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -28,6 +52,7 @@ class CategoryWidget extends LegendWidget {
               ),
             ),
           ),
+          */
       ],
     );
   }

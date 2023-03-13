@@ -23,8 +23,12 @@ class IngredientWidget extends ConsumerWidget {
         final sorted = SplayTreeSet.from(categories);
         return Column(
           children: [
-            CategoryWidget(sorted),
             Expanded(
+              flex: 1,
+              child: CategoryWidget(sorted),
+            ),
+            Expanded(
+              flex: 4,
               child: ListView.separated(
                 separatorBuilder: (context, index) =>
                     const IngredientSeperator(),
