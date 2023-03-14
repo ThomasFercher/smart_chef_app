@@ -50,7 +50,6 @@ pubspec.lock
 # Flutter Directories
 /ios
 /linux
-/macos 
 /windows
 /android
 
