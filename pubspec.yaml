@@ -30,6 +30,7 @@ dependencies:
       url: https://github.com/ThomasFercher/legend_utils
   json_serializable: ^6.6.1
   pie_chart: ^5.3.2
+  json_annotation: ^4.8.0
 
 
 
