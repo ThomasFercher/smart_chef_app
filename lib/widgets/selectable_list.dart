@@ -11,26 +11,24 @@ class SelectableList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Expanded(
-      child: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          },
-        ),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: children.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: CategoryItem(
-                child: children[index],
-              ),
-            );
-          },
-        ),
+    return ScrollConfiguration(
+      behavior: ScrollConfiguration.of(context).copyWith(
+        dragDevices: {
+          PointerDeviceKind.touch,
+          PointerDeviceKind.mouse,
+        },
+      ),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: children.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: CategoryItem(
+              child: children[index],
+            ),
+          );
+        },
       ),
     );
   }

@@ -12,7 +12,7 @@ import 'package:legend_design_core/layout/sider/sider_layout.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
 
-import 'widgets/footer.dart';
+import '../features/footer/footer.dart';
 
 enum PageLayout {
   home,

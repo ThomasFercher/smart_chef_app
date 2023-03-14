@@ -32,15 +32,19 @@ class ApiService {
   }
 
   Future<List<Category>> fetchCategory() async {
-    final response = await http.get(Uri.https(endpoint, category), headers: {
+    final uri = Uri.parse('$endpoint$category');
+    final response = await http.get(uri, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     });
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      final List result = jsonDecode(response.body);
-      return result.map((e) => Category.fromJson(e)).toList();
+      final result = jsonDecode(response.body);
+
+      if (result is! List<dynamic>) throw Exception('Failed to load category');
+
+      return result.map((category) => Category(title: category)).toList();
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
