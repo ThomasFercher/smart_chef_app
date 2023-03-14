@@ -12,12 +12,10 @@ import '../providers/ingredient_provider.dart';
 
 class SelectableList extends ConsumerWidget {
   final List<Widget> children;
-  final SplayTreeSet<dynamic> categories;
 
   const SelectableList({
     Key? key,
     required this.children,
-    required this.categories,
   }) : super(key: key);
 
   @override
@@ -35,11 +33,8 @@ class SelectableList extends ConsumerWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: InkWell(
-              onTap: () {},
-              child: CategoryItem(
-                child: children[index],
-              ),
+            child: CategoryItem(
+              child: children[index],
             ),
           );
         },
