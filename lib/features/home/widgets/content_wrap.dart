@@ -27,7 +27,6 @@ class ContentWrap extends ConsumerWidget {
     final height = sizeInfo.height;
     final RouteBodyInfo routeBodyInfo = RouteBodyInfo.of(context);
     final theme = LegendTheme.of(context);
-
     ref.listen<int>(indexProvider, (index, nextIndex) {
       routeBodyInfo.scrollController.animateTo(
         height * nextIndex,
