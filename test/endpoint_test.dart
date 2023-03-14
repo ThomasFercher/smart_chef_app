@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:smart_chef_app/content/model/category.dart';
-import 'package:smart_chef_app/content/model/ingredient.dart';
-import 'package:smart_chef_app/content/services/api_service.dart';
+
+import 'package:smart_chef_app/services/api_service.dart';
+import 'package:smart_chef_app/services/model/category.dart';
+import 'package:smart_chef_app/services/model/ingredient.dart';
 
 void main() {
   test(

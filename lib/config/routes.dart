@@ -6,7 +6,7 @@ import 'package:legend_design_core/layout/scaffold/config/scaffold_config.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/router/scaffold_route_info.dart';
 import 'package:legend_utils/extensions/maps.dart';
-import 'package:smart_chef_app/content/pages/home.dart';
+import 'package:smart_chef_app/pages/home.dart';
 import '../content/modals/settings.dart';
 import 'layout.dart';
 

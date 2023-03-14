@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'package:smart_chef_app/content/model/ingredient.dart';
+import 'package:smart_chef_app/services/model/ingredient.dart';
 
 class NutritionChart extends LegendWidget {
   Ingredient ingredient;
