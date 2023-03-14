@@ -19,7 +19,6 @@ class SelectableGrid extends ConsumerWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               crossAxisSpacing: 16,
-              childAspectRatio: 2,
               mainAxisSpacing: 16,
             ),
             itemCount: children.length,

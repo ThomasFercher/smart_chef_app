@@ -5,10 +5,8 @@ import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.d
 import 'package:legend_design_core/layout/scaffold/scaffold_info.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:legend_utils/legend_utils.dart';
-import 'package:smart_chef_app/widgets/selectable_grid.dart';
+import 'package:smart_chef_app/widgets/ingredient_widget.dart';
 
 class HomePage extends LegendWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,13 +14,15 @@ class HomePage extends LegendWidget {
   @override
   Widget build(BuildContext context, LegendTheme theme) {
     final appBarActions =
-        ScaffoldInfo.of(context)!.scaffold.builders.appBarActions;
+        ScaffoldInfo.of(context).scaffold.builders.appBarActions;
     final sizeInfo = SizeInfo.of(context);
 
     final inputSectionHeight = sizeInfo.height -
         theme.sizing.footerSizing.height -
         theme.appBarSizing.appBarHeight;
+
     return LegendRouteBody(
+      singlePage: true,
       sliverAppBar: LegendSliverBar(
         config: LegendAppBarConfig(
           appBarHeight: theme.appBarSizing.appBarHeight,
@@ -31,86 +31,40 @@ class HomePage extends LegendWidget {
         showMenu: false,
         actions: appBarActions,
       ),
-      slivers: [
-        SliverToBoxAdapter(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: inputSectionHeight,
-            ),
-            child: Center(
+      slivers: (scrollcontroller) {
+        return [
+          SliverFillRemaining(
+            hasScrollBody: true,
+            child: Container(
+              width: SizeInfo.of(context).width,
+              padding: EdgeInsets.all(
+                theme.sizing.spacing1,
+              ),
               child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: 600,
-                ),
-                padding: EdgeInsets.all(
-                  theme.sizing.spacing1,
-                ),
-                child: ElevatedCard(
-                  elevation: 1,
-                  borderRadius: theme.sizing.radius2.asRadius(),
-                  child: Container(
-                    color: theme.colors.background2,
-                    padding: EdgeInsets.all(theme.sizing.spacing2),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        LegendText(
-                          "Recipe Generator",
-                          style: theme.typography.h4,
-                        ),
-                        SizedBox(height: theme.sizing.spacing3),
-                        SizedBox(
-                          height: 400,
-                          child: SelectableGrid(
-                            children: [
-                              Container(
-                                color: Colors.red,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                              Container(
-                                color: Colors.red,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                              Container(
-                                color: Colors.black,
-                              ),
-                              Container(
-                                color: Colors.yellow,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                color: theme.colors.background1,
+                padding: EdgeInsets.all(theme.sizing.spacing2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LegendText(
+                      "Select your ingredients",
+                      style: theme.typography.h4,
                     ),
-                  ),
+                    SizedBox(height: theme.sizing.spacing3),
+                    LegendText(
+                      "Categories",
+                      style: theme.typography.h2,
+                    ),
+                    const Expanded(
+                      child: IngredientWidget(),
+                    ),
+                  ],
                 ),
               ),
             ),
           ),
-        ),
-        SliverFillRemaining(
-          child: Container(
-            color: Colors.amber,
-          ),
-        ),
-      ],
+        ];
+      },
     );
   }
 }

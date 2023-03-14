@@ -11,11 +11,11 @@ class Footer extends StatelessWidget {
     return LegendRichText(
       text: [
         RichTextItem(
-          style: theme.typography.h5.copyWith(color: theme.colors.background1),
+          style: theme.typography.h5.copyWith(color: theme.colors.foreground1),
           text: "Smart Chef",
         ),
         RichTextItem(
-          style: theme.typography.h0.copyWith(color: theme.colors.background1),
+          style: theme.typography.h0.copyWith(color: theme.colors.foreground1),
           text: "powered by OpenAI",
         ),
       ],
