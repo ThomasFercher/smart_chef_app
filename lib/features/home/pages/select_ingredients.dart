@@ -3,6 +3,7 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/widgets/category_widget.dart';
+import 'package:smart_chef_app/widgets/ingredient_search.dart';
 import 'package:smart_chef_app/widgets/ingredient_widget.dart';
 
 class SelectIngredientsSection extends LegendWidget {
@@ -29,6 +30,8 @@ class SelectIngredientsSection extends LegendWidget {
               "Categories",
               style: theme.typography.h2,
             ),
+            IngredientSearch(),
+            SizedBox(height: theme.sizing.spacing2),
             const CategoryWidget(),
             const Expanded(
               child: IngredientWidget(),

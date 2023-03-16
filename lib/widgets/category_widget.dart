@@ -24,9 +24,15 @@ class CategoryWidget extends ConsumerWidget {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: Image.asset(
-                        'assets/images/${category.title}.png',
-                        fit: BoxFit.fill,
+                      child: InkWell(
+                        onTap: () {
+                          ref.read(categoryProvider.notifier).state =
+                              category.title;
+                        },
+                        child: Image.asset(
+                          'assets/images/${category.title}.png',
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -43,23 +49,6 @@ class CategoryWidget extends ConsumerWidget {
                     ),
                   ],
                 ),
-              /*
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              elevation: 2,
-              color: theme.colors.background2,
-              child: Center(
-                child: LegendText(
-                  category,
-                  style: theme.typography.h1,
-                  fontSize: 18,
-                  color: theme.colors.foreground1,
-                ),
-              ),
-            ),
-            */
             ],
           ),
         );

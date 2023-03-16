@@ -1,5 +1,7 @@
 import 'dart:collection';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
@@ -15,18 +17,34 @@ class IngredientWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(ingredientDataProvider);
+    final category = ref.watch(categoryProvider);
     final theme = LegendTheme.of(context);
     return data.when(
       data: (ingredients) {
-        return ListView.separated(
-          separatorBuilder: (context, index) => Divider(
-            height: 2,
-            color: theme.colors.background2,
+        if (category != 'Meat') {
+          ingredients = ingredients
+              .where((element) => element.category == category)
+              .toList();
+        }
+        return ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            physics: const ClampingScrollPhysics(),
+            dragDevices: {
+              PointerDeviceKind.trackpad,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            },
           ),
-          itemCount: ingredients.length,
-          itemBuilder: (context, index) {
-            return IngredientTile(ingredient: ingredients[index]);
-          },
+          child: ListView.separated(
+            separatorBuilder: (context, index) => Divider(
+              height: 2,
+              color: theme.colors.background2,
+            ),
+            itemCount: ingredients.length,
+            itemBuilder: (context, index) {
+              return IngredientTile(ingredient: ingredients[index]);
+            },
+          ),
         );
       },
       error: (err, s) => Text(err.toString()),

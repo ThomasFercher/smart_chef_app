@@ -24,6 +24,7 @@ class SelectableList extends ConsumerWidget {
       behavior: ScrollConfiguration.of(context).copyWith(
         physics: ClampingScrollPhysics(),
         dragDevices: {
+          PointerDeviceKind.trackpad,
           PointerDeviceKind.touch,
           PointerDeviceKind.mouse,
         },

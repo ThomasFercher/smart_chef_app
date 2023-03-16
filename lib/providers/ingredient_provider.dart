@@ -11,7 +11,6 @@ final categoryDataProvider = FutureProvider<List<Category>>((ref) async {
   final apiProvider = Provider<ApiService>((ref) => ApiService());
   return ref.read(apiProvider).fetchCategory();
 });
-
-final categoryProvider = Provider<String>(
+final categoryProvider = StateProvider<String>(
   (ref) => "Meats",
 );
