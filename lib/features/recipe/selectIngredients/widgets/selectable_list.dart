@@ -1,14 +1,8 @@
-import 'dart:collection';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:smart_chef_app/services/model/category.dart';
-import 'package:smart_chef_app/services/model/ingredient.dart';
-import 'package:smart_chef_app/widgets/category_item.dart';
-
-import '../providers/ingredient_provider.dart';
+import 'package:smart_chef_app/features/recipe/widgets/category_item.dart';
 
 class SelectableList extends ConsumerWidget {
   final List<Widget> children;

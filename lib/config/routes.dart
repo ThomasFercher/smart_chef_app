@@ -7,6 +7,7 @@ import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/router/scaffold_route_info.dart';
 import 'package:legend_utils/extensions/maps.dart';
 import 'package:smart_chef_app/features/home/home.dart';
+import 'package:smart_chef_app/features/recipe/recipe.dart';
 import 'package:smart_chef_app/features/settings/settings.dart';
 
 import 'layout.dart';
@@ -23,9 +24,19 @@ class AppRoutes extends RoutesDelegate {
         icon: Icons.home,
         config: ScaffoldRouteConfig(
           whether: ScaffoldWhetherOverride(),
-          layout: layouts.get((PageLayout.home)),
+          layout: layouts.get(PageLayout.home),
         ),
         page: const HomePage(),
+      ),
+      PageInfo(
+        name: "/recipe",
+        title: "Recipe",
+        icon: Icons.generating_tokens,
+        config: ScaffoldRouteConfig(
+          whether: ScaffoldWhetherOverride(),
+          layout: layouts.get(PageLayout.home),
+        ),
+        page: const RecipePage(),
       ),
       const ModalRouteInfo(
         name: "/settings",

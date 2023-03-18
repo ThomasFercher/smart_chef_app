@@ -6,11 +6,14 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
-import 'package:smart_chef_app/features/home/home.dart';
 import 'dart:math' as math;
 
 const kDur = Duration(milliseconds: 300);
 const kCurve = Curves.easeInOut;
+
+final indexProvider = StateProvider<int>((ref) {
+  return 0;
+});
 
 class ContentWrap extends ConsumerWidget {
   final Widget child;
