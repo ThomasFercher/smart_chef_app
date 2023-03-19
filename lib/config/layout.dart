@@ -15,6 +15,7 @@ import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
 import '../features/footer/footer.dart';
 
 enum PageLayout {
+  recipe,
   home,
 }
 
@@ -22,11 +23,27 @@ class AppLayout extends LayoutDelegate {
   @override
   LayoutInfo buildLayouts(splits) {
     return {
-      PageLayout.home: DynamicRouteLayout.override(
+      PageLayout.recipe: DynamicRouteLayout.override(
         splits,
         defaultLayout: RouteLayout(
           appBarLayout: AppBarLayout(
             layout: AppBarLayoutConfig.body,
+            aligment: AppBarLayoutType.TiMeAc,
+            showTabbar: false,
+          ),
+          bottomBarLayout: NoBottomBarLayout(),
+          footerLayout: FooterLayout(),
+          siderLayout: NoSiderLayout(),
+          menuDrawerLayout: MenuDrawerLayout(
+            type: MenuDrawerLayoutType.drawerRight,
+          ),
+        ),
+      ),
+      PageLayout.home: DynamicRouteLayout.override(
+        splits,
+        defaultLayout: RouteLayout(
+          appBarLayout: AppBarLayout(
+            layout: AppBarLayoutConfig.fixedAbove,
             aligment: AppBarLayoutType.TiMeAc,
             showTabbar: false,
           ),
@@ -46,7 +63,7 @@ class AppLayout extends LayoutDelegate {
     return ScaffoldConfig(
       whether: ScaffoldWhether(
         showBackButton: false,
-        showAppBarMenu: false,
+        showAppBarMenu: true,
         shareParentSiderMenu: false,
         showSiderChildMenu: false,
         showSiderMenu: false,

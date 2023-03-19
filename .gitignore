@@ -59,3 +59,4 @@ pubspec.lock
 # Flutter Version Management
 ./fvm
 macos/Runner.xcodeproj/project.pbxproj
+project.pbxproj

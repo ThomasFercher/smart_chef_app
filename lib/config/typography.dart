@@ -7,8 +7,8 @@ class AppTypography extends TypographyDelegate {
   @override
   LegendTypography get typography {
     return LegendTypography(
-      h5: GoogleFonts.lobsterTwo(),
-      h4: TextStyle(),
+      h5: GoogleFonts.inter(fontWeight: FontWeight.bold),
+      h4: GoogleFonts.inter(fontWeight: FontWeight.bold),
       h3: TextStyle(),
       h2: TextStyle(),
       h1: TextStyle(),

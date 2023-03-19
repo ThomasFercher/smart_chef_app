@@ -33,8 +33,11 @@ class AppRoutes extends RoutesDelegate {
         title: "Recipe",
         icon: Icons.generating_tokens,
         config: ScaffoldRouteConfig(
-          whether: ScaffoldWhetherOverride(),
-          layout: layouts.get(PageLayout.home),
+          whether: ScaffoldWhetherOverride(
+            showAppBarMenu: false,
+            showBackButton: false,
+          ),
+          layout: layouts.get(PageLayout.recipe),
         ),
         page: const RecipePage(),
       ),

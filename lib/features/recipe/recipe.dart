@@ -30,9 +30,11 @@ class RecipePage extends ConsumerWidget {
         config: LegendAppBarConfig(
           appBarHeight: theme.appBarSizing.appBarHeight,
           elevation: 1,
-          pinned: true,
+          //  pinned: true,
+          floating: true,
         ),
-        showMenu: false,
+        showBackButton: false,
+        showMenu: true,
         actions: appBarActions,
       ),
       listWrapper: (listView, _, __) {

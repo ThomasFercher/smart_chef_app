@@ -50,16 +50,11 @@ class AppColors extends ColorsDelegate {
             h1: colors.foreground2,
           ),
           appBar: AppBarColorsOverride(
-            background: colors.primary,
+            background: colors.background1,
             foreground: colors.onPrimary,
             buildComponents: (appBar) {
               return AppBarColorsComponentsOverride(
-                menuColors: MenuColorsOverride(
-                  foreground: appBar.foreground,
-                  //   activeBackground: appBar.foreground,
-                  menuBackground: appBar.background,
-                  background: appBar.background,
-                ),
+                menuColors: MenuColorsOverride(),
                 subMenuColors: SideMenuColorsOverride(
                   foreground: appBar.foreground,
                   background: appBar.background,
@@ -72,7 +67,8 @@ class AppColors extends ColorsDelegate {
             },
           ),
           footer: FooterColorsOverride(
-            background: colors.primary,
+            background: colors.background2,
+            foreground: colors.foreground2,
           ),
           bottomBar: BottomBarColorsOverride(
             backgroundColor: colors.background1,
@@ -119,35 +115,54 @@ class AppColors extends ColorsDelegate {
     );
   }
 
+// 1. primary: #00857D (Greenish Teal)
+// 2. secondary: #40A9A6 (Light Greenish Teal)
+// 3. tertiary: #FF9F40 (Warm Orange)
+// 4. onPrimary: #FFFFFF (White)
+// 5. onSecondary: #FFFFFF (White)
+// 6. onTertiary: #FFFFFF (White)
+// 7. error: #D32F2F (Red)
+// 8. disabled: #BDBDBD (Light Grey)
+// 9. selection: #C8E6C9 (Mint Green)
+// 10. foreground1: #2B2B2B (Charcoal Grey)
+// 11. foreground2: #616161 (Medium Grey)
+// 12. foreground3: #757575 (Light Charcoal Grey)
+// 13. foreground4: #9E9E9E (Grey)
+// 14. foreground5: #E0E0E0 (Very Light Grey)
+// 15. background1: #FAFAFA (Off-White)
+// 16. background2: #F5F5F5 (Light Grey)
+// 17. background3: #EEEEEE (Lighter Grey)
+// 18. background4: #E8E8E8 (Even Lighter Grey)
+// 19. background5: #E0E0E0 (Very Light Grey)
   @override
   LegendPalette get lightTheme {
     return LegendPalette(
-      primary: const Color(0xFF39b54a),
-      secondary: Colors.tealAccent,
-      tertiary: Colors.blueGrey,
-      foreground1: Colors.blueGrey[900]!,
-      foreground2: Colors.blueGrey[800]!,
-      foreground3: Colors.green[600]!,
-      foreground4: Colors.green[100]!,
-      foreground5: Colors.green[50]!,
-      background1: Colors.green[50]!,
-      background2: Colors.green[100]!,
-      background3: Colors.green[200]!,
-      background4: Colors.green[600]!,
-      background5: Colors.blueGrey[800]!,
-      error: Colors.red[400]!,
-      disabled: LegendColors.gray7,
-      selection: Colors.tealAccent[400]!,
-      onPrimary: Colors.greenAccent[100]!,
-      onSecondary: Colors.teal[200]!,
-      onTertiary: Colors.blueGrey[200]!,
+      primary: const Color(0xFF00857D),
+      secondary: const Color(0xFF40A9A6),
+      tertiary: const Color(0xFFFF9F40),
+      foreground1: Color(0xFF2B2B2B),
+      foreground2: Color(0xFF616161),
+      foreground3: Color(0xFF757575),
+      foreground4: Color(0xFF9E9E9E),
+      foreground5: Color(0xFFF0F0F0),
+      background1: Color(0xFFF9F9F9),
+      background2: Color(0xFFE0F3F3),
+      background3: Color(0xFFD0ECEC),
+      background4: Color(0xFFC0E5E5),
+      background5: Color(0xFF2B2B2B),
+      error: const Color(0xFFD32F2F),
+      disabled: Color(0xFFBDBDBD),
+      selection: Color(0xFFFF1493),
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onTertiary: Colors.white,
       custom: {
         "custom": Colors.blue,
       },
       subcolors: (colors) {
         return LegendSubColors(
           typography: TypographyColorsOverride(
-            h5: colors.foreground1,
+            h5: colors.primary,
             h4: colors.foreground1,
             h3: colors.foreground1,
             h1: colors.foreground2,
@@ -161,6 +176,8 @@ class AppColors extends ColorsDelegate {
                   foreground: appBar.foreground,
                   menuBackground: appBar.background,
                   background: appBar.background,
+                  activeForeground: colors.selection,
+                  activeBackground: colors.background1,
                 ),
                 subMenuColors: SideMenuColorsOverride(
                   foreground: appBar.foreground,
