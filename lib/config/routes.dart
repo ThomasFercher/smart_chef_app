@@ -25,58 +25,59 @@ class AppRoutes extends RoutesDelegate {
         title: "Home",
         icon: Icons.home,
         config: ScaffoldRouteConfig(
-            whether: ScaffoldWhetherOverride(),
-            layout: layouts.get(PageLayout.home),
-            builders: ScaffoldBuildersOverride(
-              appBarActions: (c, theme) {
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const ThemeSwitcher(),
-                    const SizedBox(width: 8),
-                    LegendButton(
-                      background: theme.appBarColors.background,
-                      height: 56,
-                      width: 96,
-                      selBackground: theme.colors.secondary,
-                      borderRadius: theme.sizing.radius1.asRadius(),
-                      onTap: () {},
-                      text: Text(
-                        "Sign In",
-                        style: theme.typography.h1.copyWith(
-                          color: theme.colors.onSecondary,
-                        ),
+          whether: ScaffoldWhetherOverride(),
+          layout: layouts.get(PageLayout.home),
+          builders: ScaffoldBuildersOverride(
+            appBarActions: (c, theme) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const ThemeSwitcher(),
+                  const SizedBox(width: 8),
+                  LegendButton(
+                    background: theme.appBarColors.background,
+                    height: 56,
+                    width: 96,
+                    selBackground: theme.colors.secondary,
+                    borderRadius: theme.sizing.radius1.asRadius(),
+                    onTap: () {},
+                    text: Text(
+                      "Sign In",
+                      style: theme.typography.h1.copyWith(
+                        color: theme.colors.onSecondary,
                       ),
                     ),
-                    LegendButton(
-                      background: theme.colors.secondary,
-                      height: 56,
-                      width: 128,
-                      borderRadius: theme.sizing.radius1.asRadius(),
-                      selElevation: 2,
-                      onTap: () {},
-                      selBackground: theme.colors.selection,
-                      text: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Sign Up",
-                            style: theme.typography.h1.copyWith(
-                              color: theme.colors.onSecondary,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Icon(
-                            Icons.arrow_forward,
+                  ),
+                  LegendButton(
+                    background: theme.colors.secondary,
+                    height: 56,
+                    width: 128,
+                    borderRadius: theme.sizing.radius1.asRadius(),
+                    selElevation: 2,
+                    onTap: () {},
+                    selBackground: theme.colors.selection,
+                    text: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Sign Up",
+                          style: theme.typography.h1.copyWith(
                             color: theme.colors.onSecondary,
                           ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(width: 8),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: theme.colors.onSecondary,
+                        ),
+                      ],
                     ),
-                  ],
-                );
-              },
-            )),
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
         page: const HomePage(),
       ),
       PageInfo(

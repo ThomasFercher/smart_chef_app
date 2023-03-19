@@ -25,25 +25,31 @@ class HomePage extends LegendWidget {
           LegendSection(
             color: theme.colors.background2,
             borderRadius: const BorderRadius.vertical(
-              bottom: Radius.circular(48),
+              bottom: Radius.circular(32),
             ),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                spacer2,
                 LegendText(
-                  "Discover AI-Generated Recipes",
+                  "Introducing Smartchef",
                   style: theme.typography.h5,
+                  textAlign: TextAlign.center,
                 ),
                 spacer,
                 LegendText(
-                  "Tailored just for you",
+                  "Your Ultimate AI-Powered Cooking Companion",
                   style: theme.typography.h4,
                   color: theme.colors.foreground2,
+                  textAlign: TextAlign.center,
                 ),
                 spacer2,
-                const LegendText(
-                  "Find new and personalized recipes based on your preferences and dietary needs",
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 720),
+                  child: const LegendText(
+                    "Welcome to Smartchef, the ultimate AI-powered cooking assistant designed to make your culinary journey seamless and enjoyable. Whether you're a cooking novice or a seasoned chef, our platform offers a range of innovative features that cater to all your kitchen needs. From generating personalized recipes and meal plans to answering your cooking queries, Smartchef is here to help you save time, reduce stress, and elevate your home dining experience. Embrace the future of cooking with Smartchef – your one-stop destination for all things culinary.",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 spacer2,
                 LegendButton(
@@ -73,8 +79,6 @@ class HomePage extends LegendWidget {
                     ],
                   ),
                 ),
-                spacer2,
-                spacer2,
               ],
             ),
           ),
@@ -89,58 +93,31 @@ class HomePage extends LegendWidget {
             ),
           ),
           LegendSection(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(48),
-            ),
-            padding: EdgeInsets.all(32),
-            title: LegendText("Recipe Generator", style: theme.typography.h3),
+            padding: const EdgeInsets.all(32),
+            title: LegendText("Recipe Generation", style: theme.typography.h3),
             titleAligment: Alignment.center,
-            color: theme.colors.background2,
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedCard(
-                    height: 240,
-                    elevation: 1,
-                    background: theme.colors.background1,
-                    borderRadius: 16.0.asRadius(),
-                    margin: EdgeInsets.all(4),
-                    child: Column(
-                      children: [
-                        LegendText("Ingredients"),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ElevatedCard(
-                    height: 240,
-                    elevation: 1,
-                    background: theme.colors.background1,
-                    borderRadius: 16.0.asRadius(),
-                    margin: EdgeInsets.all(4),
-                    child: Column(
-                      children: [
-                        LegendText("Difficulty"),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ElevatedCard(
-                    height: 240,
-                    elevation: 1,
-                    background: theme.colors.background1,
-                    borderRadius: 16.0.asRadius(),
-                    margin: EdgeInsets.all(4),
-                    child: Column(
-                      children: [
-                        LegendText("Stats"),
-                      ],
-                    ),
-                  ),
-                ),
+            child: Column(
+              children: const [
+                LegendText(
+                  "Are you tired of cooking the same old dishes? With Smartchef's AI-powered Recipe Generator, you can instantly create unique and delicious recipes tailored to your tastes and preferences. Just enter the ingredients you have on hand or select a specific cuisine, and let our AI work its magic! Explore a world of gastronomic delights and surprise yourself with new, mouth-watering dishes every day.",
+                )
               ],
+            ),
+          ),
+          LegendSection(
+            padding: const EdgeInsets.all(32),
+            title: LegendText("Meal Planner", style: theme.typography.h3),
+            titleAligment: Alignment.center,
+            child: const LegendText(
+              "Struggling to plan your meals for the week? Say goodbye to last-minute grocery runs and food-related stress! Smartchef's AI-powered Mealplan Generator is here to make your life easier. Based on your dietary preferences, allergies, and time constraints, our AI will craft a comprehensive meal plan tailored to your needs. Save time, eat healthily, and enjoy a variety of delicious meals throughout the week.",
+            ),
+          ),
+          LegendSection(
+            padding: const EdgeInsets.all(32),
+            title: LegendText("Assistant", style: theme.typography.h3),
+            titleAligment: Alignment.center,
+            child: const LegendText(
+              "Have a cooking question? Need advice on ingredient substitutions or cooking techniques? Smartchef's AI-powered Cooking Assistant is here",
             ),
           ),
         ];

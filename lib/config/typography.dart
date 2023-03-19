@@ -9,7 +9,7 @@ class AppTypography extends TypographyDelegate {
     return LegendTypography(
       h5: GoogleFonts.inter(fontWeight: FontWeight.bold),
       h4: GoogleFonts.inter(fontWeight: FontWeight.bold),
-      h3: TextStyle(),
+      h3: GoogleFonts.inter(fontWeight: FontWeight.bold),
       h2: TextStyle(),
       h1: TextStyle(),
       h0: TextStyle(),
