@@ -139,7 +139,7 @@ class AppColors extends ColorsDelegate {
     return LegendPalette(
       primary: const Color(0xFF00857D),
       secondary: const Color(0xFF40A9A6),
-      tertiary: const Color(0xFFFF9F40),
+      tertiary: const Color(0xFF03C988),
       foreground1: Color(0xFF2B2B2B),
       foreground2: Color(0xFF616161),
       foreground3: Color(0xFF757575),
@@ -152,7 +152,7 @@ class AppColors extends ColorsDelegate {
       background5: Color(0xFF2B2B2B),
       error: const Color(0xFFD32F2F),
       disabled: Color(0xFFBDBDBD),
-      selection: Color(0xFFFF1493),
+      selection: Color(0xFF03C988),
       onPrimary: Colors.white,
       onSecondary: Colors.white,
       onTertiary: Colors.white,
