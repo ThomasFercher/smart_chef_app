@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
+import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/services/model/ingredient.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/category_widget.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_info.dart';
@@ -26,24 +27,38 @@ class IngredientWidget extends ConsumerWidget {
               .where((element) => element.category == category)
               .toList();
         }
-        return ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(
-            physics: const ClampingScrollPhysics(),
-            dragDevices: {
-              PointerDeviceKind.trackpad,
-              PointerDeviceKind.touch,
-              PointerDeviceKind.mouse,
-            },
-          ),
-          child: ListView.separated(
-            separatorBuilder: (context, index) => Divider(
-              height: 2,
-              color: theme.colors.background2,
+        return SizedBox(
+          width: SizeInfo.of(context).width * 0.5,
+          child: Card(
+            elevation: 3.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
             ),
-            itemCount: ingredients.length,
-            itemBuilder: (context, index) {
-              return IngredientTile(ingredient: ingredients[index]);
-            },
+            color: theme.colors.background2,
+            child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                physics: const ClampingScrollPhysics(),
+                dragDevices: {
+                  PointerDeviceKind.trackpad,
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                },
+              ),
+              child: ListView.separated(
+                separatorBuilder: (context, index) => Divider(
+                  height: 2,
+                  color: theme.colors.foreground1,
+                ),
+                itemCount: ingredients.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: theme.sizing.spacing1),
+                    child: IngredientTile(ingredient: ingredients[index]),
+                  );
+                },
+              ),
+            ),
           ),
         );
       },
@@ -55,11 +70,13 @@ class IngredientWidget extends ConsumerWidget {
   }
 }
 
-class IngredientTile extends LegendWidget {
+class IngredientTile extends ConsumerWidget {
   final Ingredient ingredient;
   const IngredientTile({super.key, required this.ingredient});
   @override
-  Widget build(BuildContext context, LegendTheme theme) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = LegendTheme.of(context);
+    final selectedIngredients = ref.watch(selectedIngredientsProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -73,6 +90,16 @@ class IngredientTile extends LegendWidget {
         IngredienInfo(
           ingredient: ingredient,
         ),
+        IconButton(
+          onPressed: () {
+            selectedIngredients.add(ingredient.name!);
+            print(selectedIngredients);
+          },
+          icon: Icon(
+            Icons.add,
+            color: theme.colors.foreground1,
+          ),
+        )
       ],
     );
   }

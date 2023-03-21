@@ -13,6 +13,7 @@ class SelectIngredientsSection extends LegendWidget {
   Widget build(BuildContext context, theme) {
     return Container(
       width: SizeInfo.of(context).width,
+      height: SizeInfo.of(context).height,
       padding: EdgeInsets.all(
         theme.sizing.spacing1,
       ),

@@ -13,7 +13,10 @@ class IngredienInfo extends LegendWidget {
   @override
   Widget build(BuildContext context, LegendTheme theme) {
     return IconButton(
-      icon: const Icon(Icons.info_outline),
+      icon: Icon(
+        Icons.info_outline,
+        color: theme.colors.foreground1,
+      ),
       color: theme.colors.background2,
       onPressed: () => showDialog(
         context: context,

@@ -14,3 +14,6 @@ final categoryDataProvider = FutureProvider<List<Category>>((ref) async {
 final categoryProvider = StateProvider<String>(
   (ref) => "Meats",
 );
+final selectedIngredientsProvider = StateProvider<Set<String>>(
+  (ref) => {},
+);
