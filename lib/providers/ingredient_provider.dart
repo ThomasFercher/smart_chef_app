@@ -14,6 +14,18 @@ final categoryDataProvider = FutureProvider<List<Category>>((ref) async {
 final categoryProvider = StateProvider<String>(
   (ref) => "Meats",
 );
-final selectedIngredientsProvider = StateProvider<Set<String>>(
-  (ref) => {},
-);
+
+class SelectedIngredientNotifier extends StateNotifier<List<Ingredient>> {
+  SelectedIngredientNotifier() : super([]);
+
+  void removeIngredient(Ingredient ingredientRemove) => state = [
+        for (final ingredient in state)
+          if (ingredient != ingredientRemove) ingredient,
+      ];
+
+  void addIngredient(Ingredient ingredient) => state = [...state, ingredient];
+}
+
+final StateNotifierProvider<SelectedIngredientNotifier, List<Ingredient>>
+    selectedIngredient =
+    StateNotifierProvider((ref) => SelectedIngredientNotifier());

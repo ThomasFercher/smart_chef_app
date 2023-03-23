@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
+import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/selectable_list.dart';
 
@@ -16,7 +17,7 @@ class CategoryWidget extends ConsumerWidget {
     return sorted.when(
       data: (sorted) {
         return SizedBox(
-          height: 120,
+          height: SizeInfo.of(context).height * 0.1,
           child: SelectableList(
             children: [
               for (final category in sorted)
@@ -43,7 +44,7 @@ class CategoryWidget extends ConsumerWidget {
                       child: LegendText(
                         category.title,
                         style: theme.typography.h1,
-                        fontSize: 16,
+                        fontSize: 12,
                         color: theme.colors.foreground1,
                       ),
                     ),

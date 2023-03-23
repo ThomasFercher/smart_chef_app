@@ -3,6 +3,7 @@ import 'package:legend_design_core/legend_design_core.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_chef_app/services/model/category.dart';
 import 'package:smart_chef_app/services/model/ingredient.dart';
+import 'package:smart_chef_app/services/model/recipe.dart';
 
 class ApiService {
   String endpoint = "https://info.smartchef.ai";
@@ -49,6 +50,24 @@ class ApiService {
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw Exception('Failed to load category');
+    }
+  }
+
+  Future<Map<String, dynamic>> postRecipe(Recipe recipe) async {
+    final uri = Uri.parse('$endpoint/recipe');
+    final response = await http.post(
+      uri,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode(recipe.toJson()),
+    );
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body);
+      return result;
+    } else {
+      throw Exception("Unable to post recipe");
     }
   }
 

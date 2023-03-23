@@ -1,14 +1,12 @@
-import 'dart:collection';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/services/model/ingredient.dart';
-import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/category_widget.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_info.dart';
+import 'package:state_notifier/state_notifier.dart';
 
 import '../../../../providers/ingredient_provider.dart';
 
@@ -28,7 +26,7 @@ class IngredientWidget extends ConsumerWidget {
               .toList();
         }
         return SizedBox(
-          width: SizeInfo.of(context).width * 0.5,
+          width: SizeInfo.of(context).width * 0.3,
           child: Card(
             elevation: 3.0,
             shape: RoundedRectangleBorder(
@@ -54,7 +52,9 @@ class IngredientWidget extends ConsumerWidget {
                   return Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: theme.sizing.spacing1),
-                    child: IngredientTile(ingredient: ingredients[index]),
+                    child: IngredientTile(
+                      ingredient: ingredients[index],
+                    ),
                   );
                 },
               ),
@@ -75,8 +75,9 @@ class IngredientTile extends ConsumerWidget {
   const IngredientTile({super.key, required this.ingredient});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final SelectedIngredientNotifier ingredientNotifier =
+        ref.watch(selectedIngredient.notifier);
     final theme = LegendTheme.of(context);
-    final selectedIngredients = ref.watch(selectedIngredientsProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -90,14 +91,18 @@ class IngredientTile extends ConsumerWidget {
         IngredienInfo(
           ingredient: ingredient,
         ),
-        IconButton(
-          onPressed: () {
-            selectedIngredients.add(ingredient.name!);
-            print(selectedIngredients);
-          },
-          icon: Icon(
-            Icons.add,
-            color: theme.colors.foreground1,
+        Expanded(
+          child: Container(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              onPressed: () {
+                ingredientNotifier.addIngredient(ingredient);
+              },
+              icon: Icon(
+                Icons.add,
+                color: theme.colors.foreground1,
+              ),
+            ),
           ),
         )
       ],

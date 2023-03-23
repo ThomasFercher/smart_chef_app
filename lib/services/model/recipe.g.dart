@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recepie.dart';
+part of 'recipe.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Recepie _$RecepieFromJson(Map<String, dynamic> json) => Recepie(
+Recipe _$RecipeFromJson(Map<String, dynamic> json) => Recipe(
       (json['ingredients'] as List<dynamic>).map((e) => e as String).toList(),
       (json['tools'] as List<dynamic>).map((e) => e as String).toList(),
       json['servingAmount'] as int,
@@ -15,7 +15,7 @@ Recepie _$RecepieFromJson(Map<String, dynamic> json) => Recepie(
       json['kitchen'] as String?,
     );
 
-Map<String, dynamic> _$RecepieToJson(Recepie instance) => <String, dynamic>{
+Map<String, dynamic> _$RecipeToJson(Recipe instance) => <String, dynamic>{
       'ingredients': instance.ingredients,
       'tools': instance.tools,
       'servingAmount': instance.servingAmount,
