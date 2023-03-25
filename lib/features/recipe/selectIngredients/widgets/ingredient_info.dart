@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:smart_chef_app/services/model/ingredient.dart';
+import 'package:smart_chef_app/services/models/ingredient.dart';
 
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/nutritional_value_chart.dart';
 

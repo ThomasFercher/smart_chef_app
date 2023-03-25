@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:smart_chef_app/services/api_service.dart';
-import 'package:smart_chef_app/services/model/category.dart';
-import 'package:smart_chef_app/services/model/ingredient.dart';
-import 'package:smart_chef_app/services/model/recipe.dart';
-import 'package:smart_chef_app/services/model/recipe_response.dart';
+import 'package:smart_chef_app/services/models/category.dart';
+import 'package:smart_chef_app/services/models/ingredient.dart';
+import 'package:smart_chef_app/services/models/recipe.dart';
+import 'package:smart_chef_app/services/models/recipe_response.dart';
 
 void main() {
   test(

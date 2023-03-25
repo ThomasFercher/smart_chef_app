@@ -15,6 +15,7 @@ import '../features/footer/footer.dart';
 enum PageLayout {
   recipe,
   home,
+  blank,
 }
 
 class AppLayout extends LayoutDelegate {
@@ -51,6 +52,16 @@ class AppLayout extends LayoutDelegate {
           menuDrawerLayout: MenuDrawerLayout(
             type: MenuDrawerLayoutType.drawerRight,
           ),
+        ),
+      ),
+      PageLayout.blank: DynamicRouteLayout.override(
+        splits,
+        defaultLayout: RouteLayout(
+          appBarLayout: NoAppBarLayout(),
+          bottomBarLayout: NoBottomBarLayout(),
+          footerLayout: NoFooterLayout(),
+          siderLayout: NoSiderLayout(),
+          menuDrawerLayout: NoMenuDrawerLayout(),
         ),
       ),
     };

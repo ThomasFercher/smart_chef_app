@@ -13,6 +13,7 @@ import 'package:legend_design_widgets/input/button/legendButton/legend_button.da
 import 'package:legend_utils/legend_utils.dart';
 
 class HomePage extends LegendWidget {
+  static String route = "/";
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -100,6 +101,7 @@ class HomePage extends LegendWidget {
               children: const [
                 LegendText(
                   "Are you tired of cooking the same old dishes? With Smartchef's AI-powered Recipe Generator, you can instantly create unique and delicious recipes tailored to your tastes and preferences. Just enter the ingredients you have on hand or select a specific cuisine, and let our AI work its magic! Explore a world of gastronomic delights and surprise yourself with new, mouth-watering dishes every day.",
+                  textAlign: TextAlign.center,
                 )
               ],
             ),
@@ -110,6 +112,7 @@ class HomePage extends LegendWidget {
             titleAligment: Alignment.center,
             child: const LegendText(
               "Struggling to plan your meals for the week? Say goodbye to last-minute grocery runs and food-related stress! Smartchef's AI-powered Mealplan Generator is here to make your life easier. Based on your dietary preferences, allergies, and time constraints, our AI will craft a comprehensive meal plan tailored to your needs. Save time, eat healthily, and enjoy a variety of delicious meals throughout the week.",
+              textAlign: TextAlign.center,
             ),
           ),
           LegendSection(
@@ -118,6 +121,7 @@ class HomePage extends LegendWidget {
             titleAligment: Alignment.center,
             child: const LegendText(
               "Have a cooking question? Need advice on ingredient substitutions or cooking techniques? Smartchef's AI-powered Cooking Assistant is here",
+              textAlign: TextAlign.center,
             ),
           ),
         ];

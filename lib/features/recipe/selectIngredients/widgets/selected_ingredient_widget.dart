@@ -10,10 +10,9 @@ import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredi
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_widget.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 import 'package:smart_chef_app/services/api_service.dart';
-import 'package:smart_chef_app/services/model/recipe.dart';
-import 'package:smart_chef_app/services/model/recipe_response.dart';
-
-import '../../../../services/model/ingredient.dart';
+import 'package:smart_chef_app/services/models/ingredient.dart';
+import 'package:smart_chef_app/services/models/recipe.dart';
+import 'package:smart_chef_app/services/models/recipe_response.dart';
 
 class SelectedIngredientWidget extends ConsumerWidget {
   const SelectedIngredientWidget({super.key});
