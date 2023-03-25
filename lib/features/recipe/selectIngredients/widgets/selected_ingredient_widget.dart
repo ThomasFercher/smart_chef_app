@@ -7,7 +7,6 @@ import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_info.dart';
-import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_widget.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 import 'package:smart_chef_app/services/api_service.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
