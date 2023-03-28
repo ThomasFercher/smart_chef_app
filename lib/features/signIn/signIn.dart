@@ -181,6 +181,7 @@ class SignInScreen extends HookConsumerWidget {
               children: [
                 if (!collapsed)
                   Expanded(
+                    flex: 6,
                     child: Container(
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
@@ -195,6 +196,7 @@ class SignInScreen extends HookConsumerWidget {
                     ),
                   ),
                 Expanded(
+                  flex: 8,
                   child: SingleChildScrollView(
                     controller: scrollController,
                     child: Column(
