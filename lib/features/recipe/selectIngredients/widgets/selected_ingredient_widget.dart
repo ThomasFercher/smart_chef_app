@@ -11,6 +11,7 @@ import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredi
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 import 'package:smart_chef_app/services/api_service.dart';
 import 'package:smart_chef_app/services/model/recipe.dart';
+import 'package:smart_chef_app/services/model/recipe_response.dart';
 
 import '../../../../services/model/ingredient.dart';
 
@@ -66,12 +67,58 @@ class SelectedIngredientWidget extends ConsumerWidget {
                           future: apiService.postRecipe(recipe),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
+                              RecipeResponse response =
+                                  snapshot.data as RecipeResponse;
+
+                              List processedItems =
+                                  response.ingredients.map((item) {
+                                return item.values.map((part) {
+                                  return part.replaceAll(RegExp('[{}"]+'), '');
+                                }).toList();
+                              }).toList();
+
                               return AlertDialog(
-                                title: Text("Recipe"),
-                                content: Text(snapshot.data.toString()),
+                                title: Text(response.name),
+                                content: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    LegendText(
+                                      "Ingredients: ",
+                                      style: theme.typography.h2,
+                                    ),
+                                    ...processedItems
+                                        .map((item) => Text("- $item"))
+                                        .toList(),
+                                    LegendText(
+                                      "Tools: ",
+                                      style: theme.typography.h2,
+                                    ),
+                                    ...response.tools
+                                        .map((item) => Text("- $item"))
+                                        .toList(),
+                                    LegendText(
+                                      "Steps: ",
+                                      style: theme.typography.h2,
+                                    ),
+                                    ...response.steps
+                                        .map((item) => Text("- $item"))
+                                        .toList(),
+                                    LegendText(
+                                      "Tips: ",
+                                      style: theme.typography.h2,
+                                    ),
+                                    ...response.tips
+                                        .map((item) => Text("- $item"))
+                                        .toList(),
+                                  ],
+                                ),
                               );
                             }
-                            return CircularProgressIndicator();
+                            return Center(
+                                child: SizedBox(
+                                    width: 80,
+                                    height: 80,
+                                    child: CircularProgressIndicator()));
                           },
                         ),
                       );
@@ -98,7 +145,6 @@ class SelectedIngredientWidget extends ConsumerWidget {
         ),
       ),
     );
-    ;
   }
 }
 
