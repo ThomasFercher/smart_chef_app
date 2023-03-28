@@ -10,6 +10,7 @@ import 'package:smart_chef_app/features/recipe/selectIngredients/select_ingredie
 import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
 
 class RecipePage extends ConsumerWidget {
+  static String route = "/recipe";
   const RecipePage({Key? key}) : super(key: key);
 
   final List<Widget> sections = const [

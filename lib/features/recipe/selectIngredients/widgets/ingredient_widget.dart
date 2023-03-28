@@ -4,9 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:smart_chef_app/services/model/ingredient.dart';
+import 'package:smart_chef_app/services/models/ingredient.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_info.dart';
-import 'package:state_notifier/state_notifier.dart';
 
 import '../../../../providers/ingredient_provider.dart';
 

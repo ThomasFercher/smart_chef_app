@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:http/http.dart' as http;
-import 'package:smart_chef_app/services/model/category.dart';
-import 'package:smart_chef_app/services/model/ingredient.dart';
-import 'package:smart_chef_app/services/model/recipe.dart';
-
-import 'model/recipe_response.dart';
+import 'package:smart_chef_app/services/models/category.dart';
+import 'package:smart_chef_app/services/models/ingredient.dart';
+import 'package:smart_chef_app/services/models/recipe.dart';
+import 'package:smart_chef_app/services/models/recipe_response.dart';
 
 class ApiService {
   String endpoint = "https://info.smartchef.ai";
