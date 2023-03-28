@@ -5,6 +5,17 @@ import 'package:smart_chef_app/services/models/user.dart';
 
 const baseUrl = "http://127.0.0.1:5000/auth";
 
+class AuthException implements Exception {
+  final String message;
+
+  AuthException(this.message);
+
+  @override
+  String toString() {
+    return message;
+  }
+}
+
 class AuthService {
   static Future<String> login(String email, String password) async {
     final response = await http.post(
@@ -23,11 +34,11 @@ class AuthService {
         if (token is! String) throw Exception('Failed to login');
         return token;
       case 401:
-        throw Exception('Invalid credentials');
+        throw AuthException('Invalid credentials');
       case 404:
-        throw Exception('User not found');
+        throw AuthException('User not found');
       default:
-        throw Exception('Failed to login');
+        throw AuthException('Failed to login');
     }
   }
 
@@ -45,7 +56,7 @@ class AuthService {
         return true;
       default:
         final msg = jsonDecode(response.body)['msg'];
-        throw Exception(msg);
+        throw AuthException(msg);
     }
   }
 

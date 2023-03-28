@@ -108,7 +108,7 @@ class AppRoutes extends RoutesDelegate {
         config: ScaffoldRouteConfig(
           whether: ScaffoldWhetherOverride(
             showAppBarMenu: false,
-            showBackButton: false,
+            showBackButton: true,
           ),
           layout: layouts.get(PageLayout.blank),
         ),
