@@ -27,9 +27,10 @@ class ContentWrap extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final sizeInfo = SizeInfo.of(context);
-    final height = sizeInfo.height;
-    final RouteBodyInfo routeBodyInfo = RouteBodyInfo.of(context);
     final theme = LegendTheme.of(context);
+    final height = sizeInfo.height + theme.appBarSizing.appBarHeight / 2;
+    final RouteBodyInfo routeBodyInfo = RouteBodyInfo.of(context);
+
     ref.listen<int>(indexProvider, (index, nextIndex) {
       routeBodyInfo.scrollController.animateTo(
         height * nextIndex,
@@ -41,6 +42,7 @@ class ContentWrap extends ConsumerWidget {
     final showBack = index > 0;
     final showNext = index < sectionLength - 1;
     return Stack(
+      fit: StackFit.expand,
       children: [
         child,
         Positioned(

@@ -52,6 +52,7 @@ class AppRoutes extends RoutesDelegate {
                       ),
                     ),
                   ),
+                  const SizedBox(width: 8),
                   LegendButton(
                     background: theme.colors.secondary,
                     height: 56,
