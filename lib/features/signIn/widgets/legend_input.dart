@@ -40,7 +40,7 @@ class LegendInput extends StatelessWidget {
     return TextField(
       controller: ctrl,
       decoration: decoration,
-      cursorColor: decoration.cursorColor,
+      cursorColor: decoration.cursorColor ?? theme.colors.primary,
       textAlignVertical: TextAlignVertical.top,
       textAlign: textAlign,
       inputFormatters: formatter,

@@ -79,7 +79,7 @@ class AppSizing extends SizingDelegate {
             ),
             iconSize: 22,
             spacing: 4,
-            logoSize: 64,
+            logoSize: 72,
             buildComponents: (AppBarSizingInfo appBar) {
               return AppBarSizingComponents(
                 menuSizing: MenuSizing(
