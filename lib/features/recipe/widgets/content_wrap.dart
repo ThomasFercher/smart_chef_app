@@ -65,7 +65,6 @@ class ContentWrap extends ConsumerWidget {
     final showNext = index < sectionLength - 1;
     return Stack(
       fit: StackFit.expand,
-      fit: StackFit.expand,
       children: [
         child,
         Positioned(
