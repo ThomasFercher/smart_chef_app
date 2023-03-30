@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
@@ -8,10 +7,10 @@ import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_info.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
+import 'package:smart_chef_app/providers/recipe/recipe_provider.dart';
 import 'package:smart_chef_app/services/api_service.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
 import 'package:smart_chef_app/services/models/recipe.dart';
-import 'package:smart_chef_app/services/models/recipe_response.dart';
 
 class SelectedIngredientWidget extends ConsumerWidget {
   const SelectedIngredientWidget({super.key});
@@ -51,18 +50,17 @@ class SelectedIngredientWidget extends ConsumerWidget {
                         color: theme.colors.onSecondary, fontSize: 16),
                     background: theme.colors.primary,
                     onTap: () {
-                      print("Generate Recipe");
-                      ApiService apiService = ApiService();
                       List<String> ingedients = [];
-                      for (var element in selectedIngredients) {
-                        ingedients.add(element.name!);
-                      }
+                      selectedIngredients
+                          .map((e) => ingedients.add(e.name!))
+                          .toList();
                       Recipe recipe =
-                          Recipe(ingedients, [], 2, "Hard", "Selected", null);
-                      showDialog(
+                          Recipe([], [], 2, "Hard", "Selected", null);
+                      ref.read(recipeProvider.notifier).getRecipe(recipe);
+                      /*    showDialog(
                         context: context,
                         builder: (context) => FutureBuilder(
-                          future: apiService.postRecipe(recipe),
+                          future: ApiService.postRecipe(recipe),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               RecipeResponse response =
@@ -119,7 +117,7 @@ class SelectedIngredientWidget extends ConsumerWidget {
                                     child: CircularProgressIndicator()));
                           },
                         ),
-                      );
+                      );*/
                     }),
               ),
               Expanded(

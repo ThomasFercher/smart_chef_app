@@ -8,6 +8,8 @@ import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
 import 'dart:math' as math;
 
+import 'continue_button.dart';
+
 const kDur = Duration(milliseconds: 300);
 const kCurve = Curves.easeInOut;
 
@@ -24,15 +26,36 @@ class ContentWrap extends ConsumerWidget {
     required this.child,
     required this.sectionLength,
   });
+  Widget getButtons(int index) {
+    switch (index) {
+      case 0:
+        return ContinueButton(sectionLength);
+      case 1:
+        return Row(
+          children: [
+            BackButton(),
+            ContinueButton(sectionLength),
+          ],
+        );
+      case 2:
+    }
+    return SizedBox.shrink();
+  }
+
   @override
   Widget build(BuildContext context, ref) {
     final sizeInfo = SizeInfo.of(context);
+    final theme = LegendTheme.of(context);
     final height = sizeInfo.height;
     final RouteBodyInfo routeBodyInfo = RouteBodyInfo.of(context);
-    final theme = LegendTheme.of(context);
+
     ref.listen<int>(indexProvider, (index, nextIndex) {
+      var position = height;
+      if ((index == 0 && nextIndex == 1) || (index == 2 && nextIndex == 1)) {
+        position += theme.appBarSizing.appBarHeight / 2;
+      }
       routeBodyInfo.scrollController.animateTo(
-        height * nextIndex,
+        position * nextIndex,
         duration: const Duration(milliseconds: 600),
         curve: Curves.easeInOut,
       );
@@ -41,6 +64,7 @@ class ContentWrap extends ConsumerWidget {
     final showBack = index > 0;
     final showNext = index < sectionLength - 1;
     return Stack(
+      fit: StackFit.expand,
       children: [
         child,
         Positioned(

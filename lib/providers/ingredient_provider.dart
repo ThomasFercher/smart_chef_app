@@ -4,12 +4,10 @@ import 'package:smart_chef_app/services/models/category.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
 
 final ingredientDataProvider = FutureProvider<List<Ingredient>>((ref) async {
-  final apiProvider = Provider<ApiService>((ref) => ApiService());
-  return ref.read(apiProvider).fetchIngredient();
+  return ApiService.fetchIngredient();
 });
 final categoryDataProvider = FutureProvider<List<Category>>((ref) async {
-  final apiProvider = Provider<ApiService>((ref) => ApiService());
-  return ref.read(apiProvider).fetchCategory();
+  return ApiService.fetchCategory();
 });
 final categoryProvider = StateProvider<String>(
   (ref) => "Meats",

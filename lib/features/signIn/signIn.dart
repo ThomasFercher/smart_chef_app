@@ -193,6 +193,13 @@ class SignInScreen extends HookConsumerWidget {
                           end: Alignment.bottomLeft,
                         ),
                       ),
+                      padding: const EdgeInsets.all(32),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          "assets/illustrations/sign_in.svg",
+                          width: 400,
+                        ),
+                      ),
                     ),
                   ),
                 Expanded(
@@ -211,7 +218,7 @@ class SignInScreen extends HookConsumerWidget {
                         //     const SizedBox(height: 12),
                         Container(
                           width: 380,
-                          margin: const EdgeInsets.all(16),
+                          margin: const EdgeInsets.only(left: 16, right: 16),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -224,11 +231,11 @@ class SignInScreen extends HookConsumerWidget {
                               ),
                               const SizedBox(height: 32),
                               LegendText(
-                                "Email",
+                                "Email Address",
                                 style: theme.typography.h1,
                                 color: theme.colors.foreground2,
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 6),
                               LegendInput(
                                 ctrl: emailController,
                                 decoration: geLoginDecoration(
@@ -245,7 +252,7 @@ class SignInScreen extends HookConsumerWidget {
                                 style: theme.typography.h1,
                                 color: theme.colors.foreground2,
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 6),
                               LegendInput(
                                 ctrl: passwordController,
                                 decoration: geLoginDecoration(
@@ -284,7 +291,7 @@ class SignInScreen extends HookConsumerWidget {
                               ),
                               Container(
                                 alignment: Alignment.center,
-                                height: 64,
+                                height: 48,
                                 child: AnimatedOpacity(
                                   duration: const Duration(milliseconds: 200),
                                   curve: Curves.easeOutExpo,
@@ -298,16 +305,18 @@ class SignInScreen extends HookConsumerWidget {
                               ),
                               LegendButton(
                                 background: theme.colors.primary,
-                                borderRadius: theme.sizing.radius2.asRadius(),
-                                height: 64,
+                                borderRadius: theme.sizing.radius1.asRadius(),
+                                height: 56,
+                                selBackground: theme.colors.selection,
                                 onTap: () => _submit(
                                   ref,
                                   emailController,
                                   passwordController,
                                   context,
                                 ).then((success) {
-                                  if (success)
+                                  if (success) {
                                     LegendRouter.of(context).popPage();
+                                  }
                                 }),
                                 text: LegendText(
                                   "Login",
@@ -357,25 +366,33 @@ LegendInputDecoration geLoginDecoration(
         LegendTheme theme, String? errorMessage) =>
     LegendInputDecoration(
       errorText: errorMessage,
+      cursorColor: theme.colors.selection,
       errorStyle: theme.typography.h0.copyWith(
         color: theme.colors.error,
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: theme.sizing.radius2.asRadius(),
+        borderRadius: theme.sizing.radius1.asRadius(),
         borderSide: BorderSide(
           color: theme.colors.error,
           width: 1,
         ),
       ),
       border: OutlineInputBorder(
-        borderRadius: theme.sizing.radius2.asRadius(),
+        borderRadius: theme.sizing.radius1.asRadius(),
         borderSide: BorderSide(
-          color: theme.colors.foreground2,
+          color: theme.colors.foreground4,
+          width: 1,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: theme.sizing.radius1.asRadius(),
+        borderSide: BorderSide(
+          color: theme.colors.foreground4,
           width: 1,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: theme.sizing.radius2.asRadius(),
+        borderRadius: theme.sizing.radius1.asRadius(),
         borderSide: BorderSide(
           color: theme.colors.selection,
           width: 2,

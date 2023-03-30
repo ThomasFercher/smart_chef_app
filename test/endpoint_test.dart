@@ -10,8 +10,7 @@ void main() {
   test(
     'fetchIngredient',
     () async {
-      final apiService = ApiService();
-      final result = await apiService.fetchIngredient();
+      final result = await ApiService.fetchIngredient();
       expect(result, isA<List<Ingredient>>());
     },
   );
@@ -19,22 +18,15 @@ void main() {
   test(
     'fetchCategory',
     () async {
-      final apiService = ApiService();
-      final result = await apiService.fetchCategory();
+      final result = await ApiService.fetchCategory();
       expect(result, isA<List<Category>>());
     },
   );
   test(
     'postRecipe',
     () async {
-      final apiService = ApiService();
-      final result = await apiService.postRecipe(new Recipe(
-          ["Pasta, raw", "Parmesan", "Tomato"],
-          [],
-          1,
-          "Hard",
-          "Selected",
-          null));
+      final result = await ApiService.postRecipe(
+          new Recipe([], [], 1, "Hard", "Selected", null));
 
       expect(result, isA<RecipeResponse>());
     },

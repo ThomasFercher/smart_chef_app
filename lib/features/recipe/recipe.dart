@@ -5,6 +5,7 @@ import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
 import 'package:legend_design_core/layout/scaffold/scaffold_info.dart';
 import 'package:legend_design_core/state/legend_state.dart';
+import 'package:smart_chef_app/features/recipe/output.dart';
 import 'package:smart_chef_app/features/recipe/selectInfo/select_info.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/select_ingredients.dart';
 import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
@@ -16,7 +17,7 @@ class RecipePage extends ConsumerWidget {
   final List<Widget> sections = const [
     SelectInfoSection(),
     SelectIngredientsSection(),
-    SelectInfoSection(),
+    OutputSection(),
   ];
 
   @override
@@ -31,8 +32,7 @@ class RecipePage extends ConsumerWidget {
         config: LegendAppBarConfig(
           appBarHeight: theme.appBarSizing.appBarHeight,
           elevation: 1,
-          //  pinned: true,
-          floating: true,
+          pinned: true,
         ),
         showBackButton: false,
         showMenu: true,

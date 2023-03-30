@@ -36,13 +36,10 @@ void main() async {
           routesDelegate: AppRoutes(),
           initalColors: initalColorTheme,
         ),
-        logoBuilder: (_) => SizedBox(
-          width: 64,
-          height: 64,
-          child: SvgPicture.asset(
-            "assets/logo.svg",
-            color: LegendTheme.of(_).colors.onPrimary,
-          ),
+        logoBuilder: (_) => SvgPicture.asset(
+          "assets/logo.svg",
+          color: LegendTheme.of(_).colors.onPrimary,
+          height: LegendTheme.of(_).appBarSizing.appBarHeight,
         ),
         title: "Legend Template",
         buildSplashscreen: (context, theme) {

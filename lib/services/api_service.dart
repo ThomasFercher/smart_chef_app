@@ -6,13 +6,13 @@ import 'package:smart_chef_app/services/models/ingredient.dart';
 import 'package:smart_chef_app/services/models/recipe.dart';
 import 'package:smart_chef_app/services/models/recipe_response.dart';
 
-class ApiService {
-  String endpoint = "https://info.smartchef.ai";
-  String ingredient = "/ingredients";
-  String category = "/categories";
-  String getRecipe = "/recipe";
+const String endpoint = "https://info.smartchef.ai";
+const String ingredient = "/ingredients";
+const String category = "/categories";
+const String getRecipe = "/recipe";
 
-  Future<List<Ingredient>> fetchIngredient() async {
+abstract class ApiService {
+  static Future<List<Ingredient>> fetchIngredient() async {
     final uri = Uri.parse('$endpoint$ingredient');
     try {
       final response = await http.get(
@@ -33,7 +33,7 @@ class ApiService {
     }
   }
 
-  Future<List<Category>> fetchCategory() async {
+  static Future<List<Category>> fetchCategory() async {
     final uri = Uri.parse('$endpoint$category');
     final response = await http.get(uri, headers: {
       'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ class ApiService {
     }
   }
 
-  Future<RecipeResponse> postRecipe(Recipe recipe) async {
+  static Future<RecipeResponse> postRecipe(Recipe recipe) async {
     final uri = Uri.parse('$endpoint$getRecipe');
     final response = await http.post(
       uri,
@@ -71,6 +71,4 @@ class ApiService {
       throw Exception("Unable to post recipe");
     }
   }
-
-  final apiProvider = Provider<ApiService>(create: (ref) => ApiService());
 }

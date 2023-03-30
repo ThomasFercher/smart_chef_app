@@ -7,7 +7,9 @@ part of 'recipe.dart';
 // **************************************************************************
 
 Recipe _$RecipeFromJson(Map<String, dynamic> json) => Recipe(
-      (json['ingredients'] as List<dynamic>).map((e) => e as String).toList(),
+      (json['ingredients'] as List<dynamic>)
+          .map((e) => ApiIngredient.fromJson(e as Map<String, dynamic>))
+          .toList(),
       (json['tools'] as List<dynamic>).map((e) => e as String).toList(),
       json['servingAmount'] as int,
       json['difficulty'] as String,

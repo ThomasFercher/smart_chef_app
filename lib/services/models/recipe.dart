@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:smart_chef_app/services/models/api_ingredient.dart';
 
 part 'recipe.g.dart';
 
 @JsonSerializable()
 class Recipe {
-  final List<String> ingredients;
+  final List<ApiIngredient> ingredients;
   final List<String> tools;
   final int servingAmount;
   final String difficulty;

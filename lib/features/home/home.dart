@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:legend_design_core/layout/navigation/section/legend_section.dart';
 import 'package:legend_design_core/layout/scaffold/legend_scaffold.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
@@ -110,18 +111,68 @@ class HomePage extends LegendWidget {
             padding: const EdgeInsets.all(32),
             title: LegendText("Meal Planner", style: theme.typography.h3),
             titleAligment: Alignment.center,
-            child: const LegendText(
-              "Struggling to plan your meals for the week? Say goodbye to last-minute grocery runs and food-related stress! Smartchef's AI-powered Mealplan Generator is here to make your life easier. Based on your dietary preferences, allergies, and time constraints, our AI will craft a comprehensive meal plan tailored to your needs. Save time, eat healthily, and enjoy a variety of delicious meals throughout the week.",
-              textAlign: TextAlign.center,
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 1000,
+                  child: LegendText(
+                    "Struggling to plan your meals for the week? Say goodbye to last-minute grocery runs and food-related stress! Smartchef's AI-powered Mealplan Generator is here to make your life easier. Based on your dietary preferences, allergies, and time constraints, our AI will craft a comprehensive meal plan tailored to your needs. Save time, eat healthily, and enjoy a variety of delicious meals throughout the week.",
+                    textAlign: TextAlign.center,
+                    style: theme.typography.h1,
+                  ),
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: theme.colors.background2,
+                  ),
+                  height: 400,
+                  width: 400,
+                  child: Center(
+                    child: SvgPicture.asset(
+                      "assets/illustrations/cooking2.svg",
+                      height: 240,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           LegendSection(
             padding: const EdgeInsets.all(32),
             title: LegendText("Assistant", style: theme.typography.h3),
             titleAligment: Alignment.center,
-            child: const LegendText(
-              "Have a cooking question? Need advice on ingredient substitutions or cooking techniques? Smartchef's AI-powered Cooking Assistant is here",
-              textAlign: TextAlign.center,
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 600,
+                  child: LegendText(
+                    "Have a cooking question? Need advice on ingredient substitutions or cooking techniques? Smartchef's AI-powered Cooking Assistant is here",
+                    textAlign: TextAlign.center,
+                    style: theme.typography.h1,
+                  ),
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: theme.colors.background2,
+                  ),
+                  height: 400,
+                  width: 400,
+                  child: Center(
+                    child: SvgPicture.asset(
+                      "assets/illustrations/cooking.svg",
+                      height: 240,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ];
