@@ -5,7 +5,7 @@ import 'package:smart_chef_app/services/models/user.dart';
 part 'auth_state.freezed.dart';
 
 @freezed
-class AuthState {
+class AuthState with _$AuthState {
   const factory AuthState.unauthenticated() = Unauthenticated;
   const factory AuthState.authenticated(LoginState info) = Authenticated;
   const factory AuthState.error(String message) = AuthError;

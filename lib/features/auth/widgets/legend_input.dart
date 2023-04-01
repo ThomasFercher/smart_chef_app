@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
-import 'package:legend_design_widgets/input/form/formfields.dart/legendTextFormField.dart';
-import 'package:legend_design_widgets/input/form/legendFormField.dart';
 import 'package:legend_design_widgets/input/text/legendInputDecoration.dart';
-import 'package:legend_design_widgets/input/text/legendTextField.dart';
+import 'package:legend_utils/extensions/extensions.dart';
 
 class LegendInput extends StatelessWidget {
   final LegendInputDecoration decoration;
@@ -59,3 +57,48 @@ class LegendInput extends StatelessWidget {
     );
   }
 }
+
+LegendInputDecoration geLoginDecoration(
+  LegendTheme theme,
+  String? errorMessage, {
+  String? hintText,
+}) =>
+    LegendInputDecoration(
+      hintText: hintText,
+      hintStyle: theme.typography.h0.copyWith(
+        color: theme.colors.foreground4,
+      ),
+      errorText: errorMessage,
+      cursorColor: theme.colors.selection,
+      errorStyle: theme.typography.h0.copyWith(
+        color: theme.colors.error,
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: theme.sizing.radius1.asRadius(),
+        borderSide: BorderSide(
+          color: theme.colors.error,
+          width: 1,
+        ),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: theme.sizing.radius1.asRadius(),
+        borderSide: BorderSide(
+          color: theme.colors.foreground4,
+          width: 1,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: theme.sizing.radius1.asRadius(),
+        borderSide: BorderSide(
+          color: theme.colors.foreground4,
+          width: 1,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: theme.sizing.radius1.asRadius(),
+        borderSide: BorderSide(
+          color: theme.colors.selection,
+          width: 2,
+        ),
+      ),
+    );
