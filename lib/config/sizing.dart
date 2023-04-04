@@ -45,7 +45,7 @@ class AppSizing extends SizingDelegate {
             h5: 42,
           ),
           footerSizing: FooterSizing(
-            height: 80,
+            height: 200,
             maxWidth: 1000,
             padding: EdgeInsets.zero,
           ),
@@ -216,6 +216,9 @@ class AppSizing extends SizingDelegate {
             typographySizing: TypographySizingOverride(
               h0: 12,
               h1: 14,
+            ),
+            footerSizing: FooterSizingOverride(
+              height: 200,
             ),
             siderSizing: SiderSizingOverride(
               width: 200,

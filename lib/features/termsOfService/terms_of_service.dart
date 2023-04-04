@@ -85,9 +85,6 @@ class TermsOfServicePage extends LegendWidget {
 
   @override
   Widget build(BuildContext context, theme) {
-    const spacer = SizedBox(height: 16);
-    const spacer2 = SizedBox(height: 32);
-
     final heading = ParagraphType(
       theme.typography.h3,
       margin: const EdgeInsets.only(bottom: 12, top: 24),
