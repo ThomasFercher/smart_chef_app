@@ -9,6 +9,7 @@ import 'package:legend_design_core/styles/typography/rich/legend_rich_text.dart'
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
+import 'package:smart_chef_app/features/auth/signup/signup.dart';
 import 'package:smart_chef_app/features/auth/state/auth_process_state.dart';
 import 'package:smart_chef_app/features/auth/widgets/backbutton.dart';
 import 'package:smart_chef_app/features/auth/widgets/legend_checkbox.dart';
@@ -239,11 +240,12 @@ class SignInScreen extends HookConsumerWidget {
                                       style: theme.typography.h1,
                                     ),
                                     RichTextItem(
-                                      text: "Sign up",
-                                      style: theme.typography.h1.copyWith(
-                                          color: theme.colors.primary),
-                                      hoverColor: theme.colors.selection,
-                                    ),
+                                        text: "Sign up",
+                                        style: theme.typography.h1.copyWith(
+                                            color: theme.colors.primary),
+                                        hoverColor: theme.colors.selection,
+                                        onTap: () => LegendRouter.of(context)
+                                            .replacePage(SignUpScreen.route)),
                                   ],
                                 ),
                               ),

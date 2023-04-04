@@ -47,22 +47,6 @@ class HomeScreenAppBarActions extends ConsumerWidget {
               ),
             ),
           ),
-          LegendButton(
-            background: theme.appBarColors.background,
-            height: 56,
-            width: 96,
-            selBackground: theme.colors.secondary,
-            borderRadius: theme.sizing.radius1.asRadius(),
-            onTap: () {
-              context.legendRouter.pushPage(SignInScreen.route);
-            },
-            text: Text(
-              "Sign In",
-              style: theme.typography.h1.copyWith(
-                color: theme.colors.onSecondary,
-              ),
-            ),
-          ),
           const SizedBox(width: 8),
           LegendButton(
             background: theme.colors.secondary,

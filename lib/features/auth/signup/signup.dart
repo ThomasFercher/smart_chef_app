@@ -10,11 +10,14 @@ import 'package:legend_design_core/styles/typography/rich/legend_rich_text.dart'
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
+import 'package:smart_chef_app/features/auth/signIn/signIn.dart';
 import 'package:smart_chef_app/features/auth/state/auth_process_state.dart';
 import 'package:smart_chef_app/features/auth/widgets/backbutton.dart';
 import 'package:smart_chef_app/features/auth/widgets/legend_input.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_chef_app/features/auth/widgets/success_dialog.dart';
+import 'package:smart_chef_app/features/privacyPolicy/privacy_policy.dart';
+import 'package:smart_chef_app/features/termsOfService/terms_of_service.dart';
 import 'package:smart_chef_app/providers/auth/auth_provider.dart';
 import 'package:smart_chef_app/services/auth_service.dart';
 
@@ -225,6 +228,8 @@ class SignUpScreen extends HookConsumerWidget {
                                     style: theme.typography.h0
                                         .copyWith(color: theme.colors.primary),
                                     hoverColor: theme.colors.selection,
+                                    onTap: () => LegendRouter.of(context)
+                                        .pushPage(TermsOfServicePage.route),
                                   ),
                                   RichTextItem(
                                     text: "and",
@@ -235,6 +240,8 @@ class SignUpScreen extends HookConsumerWidget {
                                     style: theme.typography.h0
                                         .copyWith(color: theme.colors.primary),
                                     hoverColor: theme.colors.selection,
+                                    onTap: () => LegendRouter.of(context)
+                                        .pushPage(PrivacyPolicyPage.route),
                                   ),
                                 ],
                               ),
@@ -251,6 +258,8 @@ class SignUpScreen extends HookConsumerWidget {
                                       style: theme.typography.h1.copyWith(
                                           color: theme.colors.primary),
                                       hoverColor: theme.colors.selection,
+                                      onTap: () => LegendRouter.of(context)
+                                          .replacePage(SignInScreen.route),
                                     ),
                                   ],
                                 ),
