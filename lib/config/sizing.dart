@@ -45,7 +45,6 @@ class AppSizing extends SizingDelegate {
             h5: 42,
           ),
           footerSizing: FooterSizing(
-            height: 200,
             maxWidth: 1000,
             padding: EdgeInsets.zero,
           ),
@@ -166,10 +165,10 @@ class AppSizing extends SizingDelegate {
     return [
       LegendSizingOverride(
         key: 480,
-        spacing1: 16,
-        spacing2: 12,
-        spacing3: 10,
-        spacing4: 8,
+        spacing1: 12,
+        spacing2: 16,
+        spacing3: 20,
+        spacing4: 24,
         subSizing: (sizing) {
           return LegendSubSizingOverride(
             typographySizing: TypographySizingOverride(
@@ -207,6 +206,10 @@ class AppSizing extends SizingDelegate {
       ),
       LegendSizingOverride(
         key: 720,
+        spacing1: 16,
+        spacing2: 20,
+        spacing3: 24,
+        spacing4: 32,
         subSizing: (sizing) {
           return LegendSubSizingOverride(
             appBarSizing: AppBarSizingOverride(
@@ -216,9 +219,6 @@ class AppSizing extends SizingDelegate {
             typographySizing: TypographySizingOverride(
               h0: 12,
               h1: 14,
-            ),
-            footerSizing: FooterSizingOverride(
-              height: 200,
             ),
             siderSizing: SiderSizingOverride(
               width: 200,
