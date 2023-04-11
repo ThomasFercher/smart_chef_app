@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
+import 'package:legend_design_core/widgets/gestures/detector.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 
 class Footer extends StatelessWidget {
@@ -101,7 +102,11 @@ class Footer extends StatelessWidget {
                 spacer2,
                 LegendText("Terms of Service", style: body),
                 spacer,
-                LegendText("Privacy Policy", style: body),
+                LegendText(
+                  "Privacy Policy",
+                  style: body,
+                  selectable: false,
+                ),
               ],
             ).toRowIf(isSmall, crossAxisAlignment: CrossAxisAlignment.end),
           ],

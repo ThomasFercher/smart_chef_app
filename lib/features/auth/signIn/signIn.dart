@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/route_body_info.dart';
-import 'package:legend_design_core/legend_design_core.dart';
+import 'package:legend_design_core/legend_design_core.dart' as l;
 import 'package:legend_design_core/libraries/scaffold.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/rich/legend_rich_text.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
+import 'package:legend_utils/legend_utils.dart';
 import 'package:smart_chef_app/features/auth/signup/signup.dart';
 import 'package:smart_chef_app/features/auth/state/auth_process_state.dart';
 import 'package:smart_chef_app/features/auth/widgets/backbutton.dart';
@@ -17,6 +18,7 @@ import 'package:smart_chef_app/features/auth/widgets/legend_input.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_chef_app/providers/auth/auth_provider.dart';
 import 'package:smart_chef_app/providers/auth/auth_state.dart';
+import 'package:smart_chef_app/services/auth_service.dart';
 
 final emailValidProvider = StateProvider.autoDispose<EmailValidation>((ref) {
   return EmailValidation.none;
@@ -29,6 +31,14 @@ final passwordValidProvider =
 
 final authstateProvider = StateProvider.autoDispose<String?>((ref) {
   return null;
+});
+
+final asdasdProvider = FutureProvider<SavedUser?>((ref) async {
+  return AuthService.readUser();
+});
+
+final rememberMeProvider = StateProvider.autoDispose<bool>((ref) {
+  return false;
 });
 
 class SignInScreen extends HookConsumerWidget {
@@ -60,6 +70,13 @@ class SignInScreen extends HookConsumerWidget {
         return false;
       }
 
+      final rememberMe = ref.read(rememberMeProvider);
+      if (rememberMe) {
+        AuthService.saveUserInfo(SavedUser(email, password));
+      } else {
+        AuthService.deleteInfo();
+      }
+
       return state is Authenticated;
     }
     return false;
@@ -80,6 +97,14 @@ class SignInScreen extends HookConsumerWidget {
     final passwordController = useTextEditingController();
     final authErrorMessage = ref.watch(authstateProvider);
     final collapsed = SizeInfo.of(context).width < 800;
+
+    ref.watch(asdasdProvider).whenData((value) {
+      if (value != null) {
+        emailController.text = value.email;
+        passwordController.text = value.password;
+      }
+    });
+
     return LegendRouteBody(
       singlePage: true,
       disableContentDecoration: true,
@@ -174,9 +199,11 @@ class SignInScreen extends HookConsumerWidget {
                                 children: [
                                   LegendCheckbox(
                                     borderRadius: BorderRadius.circular(4),
-                                    initalValue: true,
+                                    initalValue: ref.read(rememberMeProvider),
                                     onChanged: (value) {
-                                      print(value);
+                                      ref
+                                          .read(rememberMeProvider.notifier)
+                                          .state = value;
                                     },
                                   ),
                                   const SizedBox(width: 8),
@@ -221,7 +248,7 @@ class SignInScreen extends HookConsumerWidget {
                                   context,
                                 ).then((success) {
                                   if (success) {
-                                    LegendRouter.of(context).popPage();
+                                    l.LegendRouter.of(context).popPage();
                                   }
                                 }),
                                 text: LegendText(
@@ -244,7 +271,7 @@ class SignInScreen extends HookConsumerWidget {
                                         style: theme.typography.h1.copyWith(
                                             color: theme.colors.primary),
                                         hoverColor: theme.colors.selection,
-                                        onTap: () => LegendRouter.of(context)
+                                        onTap: () => l.LegendRouter.of(context)
                                             .replacePage(SignUpScreen.route)),
                                   ],
                                 ),

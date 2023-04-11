@@ -30,7 +30,7 @@ class HomeScreenAppBarActions extends ConsumerWidget {
             width: 24,
             height: 24,
           ),
-        if (authState is Unauthenticated) ...[
+        if (authState is! Authenticated) ...[
           LegendButton(
             background: theme.appBarColors.background,
             height: 56,
