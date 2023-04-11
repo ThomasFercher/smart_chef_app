@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:legend_design_core/layout/navigation/section/legend_section.dart';
-import 'package:legend_design_core/layout/scaffold/legend_scaffold.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
-import 'package:legend_design_widgets/datadisplay/card/legend_card.dart';
 import 'package:legend_design_widgets/datadisplay/carousel/legend_carousel.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
 import 'package:legend_utils/legend_utils.dart';
@@ -132,9 +129,9 @@ class HomePage extends LegendWidget {
                   height: 400,
                   width: 400,
                   child: Center(
-                    child: SvgPicture.asset(
-                      "assets/illustrations/cooking2.svg",
-                      height: 240,
+                    child: Image.asset(
+                      "assets/illustrations/illustration_03.png",
+                      height: 300,
                     ),
                   ),
                 ),

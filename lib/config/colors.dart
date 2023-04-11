@@ -192,6 +192,7 @@ class AppColors extends ColorsDelegate {
           ),
           footer: FooterColorsOverride(
             background: colors.background5,
+            foreground: colors.background2,
           ),
           bottomBar: BottomBarColorsOverride(
             backgroundColor: colors.background1,
