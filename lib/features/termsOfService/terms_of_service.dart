@@ -91,6 +91,7 @@ class TermsOfServicePage extends LegendWidget {
 
     final heading = ParagraphType(theme.typography.h4);
     final body = ParagraphType(theme.typography.h1);
+
     return LegendRouteBody(
       children: (controller, s) {
         return [
@@ -99,12 +100,14 @@ class TermsOfServicePage extends LegendWidget {
             style: theme.typography.h5,
           ),
           LegendParagraph(
-            values: {
-              heading: "1. Acceptance of Terms",
-              body:
-                  "Welcome to Smartchef, an AI-powered Cooking Assistant (hereinafter referred to as \"Smartchef\", \"we\", \"us\", or \"our\"). By accessing, using, or participating in the Smartchef platform (which includes the website, mobile application, or any other services provided by Smartchef), you (\"User\", \"you\", or \"your\") agree to be bound by these Terms of Use (\"Terms\"). Please read these Terms carefully before using the services provided by Smartchef.\n\nIf you do not agree to these Terms, you are not authorized to access or use the Smartchef platform. We reserve the right to modify, update or change these Terms at any time, and it is your responsibility to review these Terms regularly.",
-              heading.withId: "asdasd"
-            },
+            "Welcome to Smartchef, an AI-powered Cooking Assistant (hereinafter referred to as \"Smartchef\", \"we\", \"us\", or \"our\"). By accessing, using, or participating in the Smartchef platform (which includes the website, mobile application, or any other services provided by Smartchef), you (\"User\", \"you\", or \"your\") agree to be bound by these Terms of Use (\"Terms\"). Please read these Terms carefully before using the services provided by Smartchef.\n\nIf you do not agree to these Terms, you are not authorized to access or use the Smartchef platform. We reserve the right to modify, update or change these Terms at any time, and it is your responsibility to review these Terms regularly."
+                as List<PEntry>,
+            // values: {
+            //   heading: "1. Acceptance of Terms",
+            //   body:
+            //       "Welcome to Smartchef, an AI-powered Cooking Assistant (hereinafter referred to as \"Smartchef\", \"we\", \"us\", or \"our\"). By accessing, using, or participating in the Smartchef platform (which includes the website, mobile application, or any other services provided by Smartchef), you (\"User\", \"you\", or \"your\") agree to be bound by these Terms of Use (\"Terms\"). Please read these Terms carefully before using the services provided by Smartchef.\n\nIf you do not agree to these Terms, you are not authorized to access or use the Smartchef platform. We reserve the right to modify, update or change these Terms at any time, and it is your responsibility to review these Terms regularly.",
+            //   heading.withId: "asdasd"
+            // },
           ),
         ];
       },

@@ -6,8 +6,8 @@ import 'package:legend_design_widgets/input/button/legendButton/legend_button.da
 import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
 import 'dart:math' as math;
 
-class BackButton extends ConsumerWidget {
-  const BackButton({super.key});
+class GoBack extends ConsumerWidget {
+  const GoBack({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,9 +48,10 @@ class BackButton extends ConsumerWidget {
               ],
             ),
             onTap: () {
-              ref.read(indexProvider.notifier).update(
-                    (state) => state - 1 >= 0 ? state - 1 : state,
-                  );
+              ref.read(indexProvider.notifier).state -= 1;
+              // ref.read(indexProvider.notifier).update(
+              //       (state) => state - 1 >= 0 ? state - 1 : state,
+              //     );
             },
           ),
         ),

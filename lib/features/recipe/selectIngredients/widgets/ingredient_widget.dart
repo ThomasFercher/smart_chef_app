@@ -94,6 +94,7 @@ class IngredientTile extends ConsumerWidget {
           child: Container(
             alignment: Alignment.centerRight,
             child: IconButton(
+              splashRadius: 16,
               onPressed: () {
                 ingredientNotifier.addIngredient(ingredient);
               },

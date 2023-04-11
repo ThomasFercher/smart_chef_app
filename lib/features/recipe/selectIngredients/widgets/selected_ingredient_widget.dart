@@ -42,84 +42,84 @@ class SelectedIngredientWidget extends ConsumerWidget {
                 "Selected Ingredients",
                 style: theme.typography.h3,
               ),
-              SizedBox(
-                width: 200,
-                child: LegendButton.text(
-                    text: "Generate Recipe",
-                    style: TextStyle(
-                        color: theme.colors.onSecondary, fontSize: 16),
-                    background: theme.colors.primary,
-                    onTap: () {
-                      List<String> ingedients = [];
-                      selectedIngredients
-                          .map((e) => ingedients.add(e.name!))
-                          .toList();
-                      Recipe recipe =
-                          Recipe([], [], 2, "Hard", "Selected", null);
-                      ref.read(recipeProvider.notifier).getRecipe(recipe);
-                      /*    showDialog(
-                        context: context,
-                        builder: (context) => FutureBuilder(
-                          future: ApiService.postRecipe(recipe),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              RecipeResponse response =
-                                  snapshot.data as RecipeResponse;
+              // SizedBox(
+              //   width: 200,
+              //   child: LegendButton.text(
+              //       text: "Generate Recipe",
+              //       style: TextStyle(
+              //           color: theme.colors.onSecondary, fontSize: 16),
+              //       background: theme.colors.primary,
+              //       onTap: () {
+              //         List<String> ingedients = [];
+              //         selectedIngredients
+              //             .map((e) => ingedients.add(e.name!))
+              //             .toList();
+              //         Recipe recipe =
+              //             Recipe([], [], 2, "Hard", "Selected", null);
+              //         ref.read(recipeProvider.notifier).getRecipe(recipe);
+              //         /*    showDialog(
+              //           context: context,
+              //           builder: (context) => FutureBuilder(
+              //             future: ApiService.postRecipe(recipe),
+              //             builder: (context, snapshot) {
+              //               if (snapshot.hasData) {
+              //                 RecipeResponse response =
+              //                     snapshot.data as RecipeResponse;
 
-                              List processedItems =
-                                  response.ingredients.map((item) {
-                                return item.values.map((part) {
-                                  return part.replaceAll(RegExp('[{}"]+'), '');
-                                }).toList();
-                              }).toList();
+              //                 List processedItems =
+              //                     response.ingredients.map((item) {
+              //                   return item.values.map((part) {
+              //                     return part.replaceAll(RegExp('[{}"]+'), '');
+              //                   }).toList();
+              //                 }).toList();
 
-                              return AlertDialog(
-                                title: Text(response.name),
-                                content: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    LegendText(
-                                      "Ingredients: ",
-                                      style: theme.typography.h2,
-                                    ),
-                                    ...processedItems
-                                        .map((item) => Text("- $item"))
-                                        .toList(),
-                                    LegendText(
-                                      "Tools: ",
-                                      style: theme.typography.h2,
-                                    ),
-                                    ...response.tools
-                                        .map((item) => Text("- $item"))
-                                        .toList(),
-                                    LegendText(
-                                      "Steps: ",
-                                      style: theme.typography.h2,
-                                    ),
-                                    ...response.steps
-                                        .map((item) => Text("- $item"))
-                                        .toList(),
-                                    LegendText(
-                                      "Tips: ",
-                                      style: theme.typography.h2,
-                                    ),
-                                    ...response.tips
-                                        .map((item) => Text("- $item"))
-                                        .toList(),
-                                  ],
-                                ),
-                              );
-                            }
-                            return Center(
-                                child: SizedBox(
-                                    width: 80,
-                                    height: 80,
-                                    child: CircularProgressIndicator()));
-                          },
-                        ),
-                      );*/
-                    }),
-              ),
+              //                 return AlertDialog(
+              //                   title: Text(response.name),
+              //                   content: Column(
+              //                     crossAxisAlignment: CrossAxisAlignment.start,
+              //                     children: [
+              //                       LegendText(
+              //                         "Ingredients: ",
+              //                         style: theme.typography.h2,
+              //                       ),
+              //                       ...processedItems
+              //                           .map((item) => Text("- $item"))
+              //                           .toList(),
+              //                       LegendText(
+              //                         "Tools: ",
+              //                         style: theme.typography.h2,
+              //                       ),
+              //                       ...response.tools
+              //                           .map((item) => Text("- $item"))
+              //                           .toList(),
+              //                       LegendText(
+              //                         "Steps: ",
+              //                         style: theme.typography.h2,
+              //                       ),
+              //                       ...response.steps
+              //                           .map((item) => Text("- $item"))
+              //                           .toList(),
+              //                       LegendText(
+              //                         "Tips: ",
+              //                         style: theme.typography.h2,
+              //                       ),
+              //                       ...response.tips
+              //                           .map((item) => Text("- $item"))
+              //                           .toList(),
+              //                     ],
+              //                   ),
+              //                 );
+              //               }
+              //               return Center(
+              //                   child: SizedBox(
+              //                       width: 80,
+              //                       height: 80,
+              //                       child: CircularProgressIndicator()));
+              //             },
+              //           ),
+              //         );*/
+              //       }),
+              // ),
               Expanded(
                 child: ListView.separated(
                   separatorBuilder: (context, index) => Divider(
@@ -169,6 +169,7 @@ class SelectedIngredientTile extends ConsumerWidget {
           child: Container(
             alignment: Alignment.centerRight,
             child: IconButton(
+              splashRadius: 16,
               onPressed: () {
                 ingredientNotifier.removeIngredient(ingredient);
               },

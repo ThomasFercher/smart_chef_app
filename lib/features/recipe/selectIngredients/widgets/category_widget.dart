@@ -44,7 +44,8 @@ class CategoryWidget extends ConsumerWidget {
                       child: LegendText(
                         category.title,
                         style: theme.typography.h1,
-                        fontSize: 12,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
                         color: theme.colors.foreground1,
                       ),
                     ),
