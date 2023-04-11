@@ -7,7 +7,6 @@ import 'package:smart_chef_app/services/models/user.dart';
 
 const baseUrl = "https://info.smartchef.ai/auth";
 
-const _authKey = 'auth_token';
 const _infoKey = 'auth_info';
 
 const db = FlutterSecureStorage();
@@ -39,9 +38,6 @@ class AuthService {
         final json = jsonDecode(response.body) as Map<String, dynamic>;
         final token = json['access_token'];
         if (token is! String) throw Exception('Failed to login');
-
-        saveToken(token);
-        saveUserInfo(SavedUser(email, password));
 
         return token;
       case 401:
@@ -76,8 +72,7 @@ class AuthService {
       Uri.parse('$baseUrl/logout'),
       headers: getHeaders(token),
     );
-
-    _deleteToken();
+    await deleteInfo();
     return response.statusCode == 200;
   }
 
@@ -86,6 +81,7 @@ class AuthService {
       Uri.parse('$baseUrl/delete'),
       headers: getHeaders(token),
     );
+    await deleteInfo();
     return response.statusCode == 200;
   }
 
@@ -113,22 +109,6 @@ class AuthService {
   /// Local storage
   ///
 
-  static void saveToken(String token) {
-    db.write(key: _authKey, value: token).then(
-          (_) => Logger.log(
-            'Saved token $token',
-          ),
-        );
-  }
-
-  static void _deleteToken() {
-    db.delete(key: _authKey).then(
-          (_) => Logger.log(
-            'Deleted token',
-          ),
-        );
-  }
-
   static void saveUserInfo(SavedUser user) {
     final userString = jsonEncode(user);
     db.write(key: _infoKey, value: userString).then(
@@ -147,10 +127,8 @@ class AuthService {
     return null;
   }
 
-  static Future<bool> deleteInfo() async => Future.wait([
-        db.delete(key: _authKey),
-        db.delete(key: _infoKey),
-      ]).then((_) => true);
+  static Future<bool> deleteInfo() async =>
+      db.delete(key: _infoKey).then((_) => true);
 }
 
 class SavedUser {
