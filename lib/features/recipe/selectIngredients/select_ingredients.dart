@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
+import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/category_widget.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_search.dart';
@@ -18,31 +20,32 @@ class SelectIngredientsSection extends ConsumerWidget {
     final selectedIngredients = ref.watch(selectedIngredient);
     final theme = LegendTheme.of(context);
     return Container(
-      color: Colors.red,
       width: SizeInfo.of(context).width,
-      height: SizeInfo.of(context).height,
-      child: Container(
-        color: theme.colors.background1,
+      padding: EdgeInsets.all(theme.sizing.spacing3),
+      child: ElevatedCard(
+        background: theme.colors.background1,
         padding: EdgeInsets.all(theme.sizing.spacing2),
+        borderRadius: theme.sizing.radius1.asRadius(),
+        elevation: 1,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 16,
-            ),
             LegendText(
               "Select your ingredients",
               style: theme.typography.h4,
             ),
-            SizedBox(
-              height: 8,
+            const SizedBox(
+              height: 16,
             ),
             Expanded(
               child: Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     flex: 1,
-                    child: const CategoryWidget(),
+                    child: CategoryWidget(),
+                  ),
+                  const SizedBox(
+                    width: 16,
                   ),
                   Expanded(
                     flex: 5,
@@ -50,7 +53,10 @@ class SelectIngredientsSection extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         IngredientSearch(),
-                        Expanded(child: const IngredientWidget()),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        const Expanded(child: IngredientWidget()),
                       ],
                     ),
                   ),

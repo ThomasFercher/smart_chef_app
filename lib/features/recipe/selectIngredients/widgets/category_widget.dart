@@ -35,7 +35,7 @@ class CategoryWidget extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    color: theme.colors.background2,
+                    color: theme.colors.background1,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Column(

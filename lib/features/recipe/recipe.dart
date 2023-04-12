@@ -57,7 +57,13 @@ class RecipePage extends ConsumerWidget {
           SliverFillViewport(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return sections[index];
+                return Padding(
+                  padding: EdgeInsets.only(
+                    bottom: theme.appBarSizing.appBarHeight / 2,
+                    top: theme.appBarSizing.appBarHeight / 2,
+                  ),
+                  child: sections[index],
+                );
               },
               childCount: sections.length,
             ),
