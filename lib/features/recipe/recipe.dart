@@ -5,6 +5,7 @@ import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
 import 'package:legend_design_core/layout/scaffold/scaffold_info.dart';
 import 'package:legend_design_core/state/legend_state.dart';
+import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/features/recipe/output.dart';
 import 'package:smart_chef_app/features/recipe/selectInfo/select_info.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/select_ingredients.dart';
@@ -26,6 +27,11 @@ class RecipePage extends ConsumerWidget {
     final appBarActions =
         ScaffoldInfo.of(context).scaffold.builders.appBarActions;
 
+    final index = ref.watch(indexProvider);
+    final initialScrollOffset =
+        (SizeInfo.of(context).height + theme.appBarSizing.appBarHeight / 2) *
+            index;
+
     return LegendRouteBody(
       singlePage: true,
       sliverAppBar: LegendSliverBar(
@@ -38,6 +44,7 @@ class RecipePage extends ConsumerWidget {
         showMenu: true,
         actions: appBarActions,
       ),
+      initalScrollOffset: initialScrollOffset,
       listWrapper: (listView, _, __) {
         return ContentWrap(
           sectionLength: sections.length,

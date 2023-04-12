@@ -6,9 +6,11 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
+import 'package:legend_utils/extensions/boolean.dart';
 import 'package:smart_chef_app/features/recipe/widgets/back_button.dart';
 import 'package:smart_chef_app/features/recipe/widgets/continue_button.dart';
 import 'dart:math' as math;
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:smart_chef_app/features/recipe/widgets/generate_recipe.dart';
 
@@ -16,7 +18,6 @@ const kDur = Duration(milliseconds: 300);
 const kCurve = Curves.easeInOut;
 
 final indexProvider = StateProvider<int>((ref) {
-  print("indexProvider created");
   return 0;
 });
 
@@ -30,7 +31,6 @@ class ContentWrap extends ConsumerWidget {
     required this.sectionLength,
   });
   Widget getButtons(int index, WidgetRef ref) {
-    print(ref.read(indexProvider));
     switch (index) {
       case 0:
         return ContinueButton(sectionLength);
@@ -43,7 +43,7 @@ class ContentWrap extends ConsumerWidget {
           ],
         );
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   @override
@@ -51,7 +51,8 @@ class ContentWrap extends ConsumerWidget {
     final sizeInfo = SizeInfo.of(context);
     final theme = LegendTheme.of(context);
     final height = sizeInfo.height;
-    final RouteBodyInfo routeBodyInfo = RouteBodyInfo.of(context);
+    final routeBodyInfo = RouteBodyInfo.of(context);
+    final index = ref.watch(indexProvider);
 
     ref.listen<int>(indexProvider, (index, nextIndex) {
       var position = height;
@@ -64,7 +65,6 @@ class ContentWrap extends ConsumerWidget {
         curve: Curves.easeInOut,
       );
     });
-    final index = ref.watch(indexProvider);
 
     return Stack(
       fit: StackFit.expand,
