@@ -167,6 +167,7 @@ class SignInScreen extends HookConsumerWidget {
                               const SizedBox(height: 6),
                               LegendInput(
                                 ctrl: emailController,
+                                keyboardType: TextInputType.emailAddress,
                                 decoration: geLoginDecoration(
                                   theme,
                                   emailState.errorMessage,
@@ -185,6 +186,8 @@ class SignInScreen extends HookConsumerWidget {
                               const SizedBox(height: 6),
                               LegendInput(
                                 ctrl: passwordController,
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
                                 decoration: geLoginDecoration(
                                   theme,
                                   passwordState.errorMessage,
