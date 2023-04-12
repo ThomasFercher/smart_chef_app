@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
+import 'package:smart_chef_app/features/recipe/recipe.dart';
 import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 import 'dart:math' as math;
@@ -54,10 +55,10 @@ class GenerateRecipe extends ConsumerWidget {
               ],
             ),
             onTap: () {
-              List<String> ingedients = [];
-              selectedIngredients.map((e) => ingedients.add(e.name!)).toList();
-              Recipe recipe = Recipe([], [], 2, "Hard", "Selected", null);
-              ref.read(recipeProvider.notifier).getRecipe(recipe);
+              // List<String> ingedients = [];
+              // selectedIngredients.map((e) => ingedients.add(e.name!)).toList();
+              // Recipe recipe = Recipe([], [], 2, "Hard", "Selected", null);
+              // ref.read(recipeProvider.notifier).getRecipe(recipe);
               ref.read(indexProvider.notifier).state += 1;
               // ref.read(indexProvider.notifier).update(
               //       (state) => state + 1 < sectionLength ? state + 1 : state,

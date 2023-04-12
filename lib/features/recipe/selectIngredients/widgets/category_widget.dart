@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
@@ -16,43 +17,61 @@ class CategoryWidget extends ConsumerWidget {
     final sorted = ref.watch(categoryDataProvider);
     return sorted.when(
       data: (sorted) {
-        return SizedBox(
-          height: SizeInfo.of(context).height * 0.1,
-          child: SelectableList(
-            children: [
-              for (final category in sorted)
-                Column(
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: InkWell(
-                        onTap: () {
-                          ref.read(categoryProvider.notifier).state =
-                              category.title;
-                        },
-                        child: Image.asset(
-                          'assets/images/${category.title}.png',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: LegendText(
-                        category.title,
-                        style: theme.typography.h1,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: theme.colors.foreground1,
-                      ),
-                    ),
-                  ],
-                ),
-            ],
+        return ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            physics: ClampingScrollPhysics(),
+            dragDevices: {
+              PointerDeviceKind.trackpad,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            },
           ),
+          child: ListView.builder(
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  height: 120,
+                  child: Card(
+                    elevation: 2.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                    color: theme.colors.background2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: InkWell(
+                              onTap: () {
+                                ref.read(categoryProvider.notifier).state =
+                                    sorted[index].title;
+                              },
+                              child: Image.asset(
+                                'assets/images/${sorted[index].title}.png',
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          LegendText(
+                            sorted[index].title,
+                            style: theme.typography.h1,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: theme.colors.foreground1,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: sorted.length),
         );
       },
       error: (error, stackTrace) => Text(error.toString()),

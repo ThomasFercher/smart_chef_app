@@ -15,7 +15,6 @@ class IngredientSearch extends ConsumerWidget {
     final theme = LegendTheme.of(context);
     final data = ref.watch(ingredientDataProvider);
     return Container(
-      padding: EdgeInsets.all(theme.sizing.spacing1),
       child: data.when(
         data: (data) {
           return SearchField(

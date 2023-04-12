@@ -12,7 +12,7 @@ import 'package:smart_chef_app/features/recipe/widgets/continue_button.dart';
 import 'dart:math' as math;
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:smart_chef_app/features/recipe/widgets/generate_recipe.dart';
+import 'package:smart_chef_app/features/recipe/widgets/generate_recipe_button.dart';
 
 const kDur = Duration(milliseconds: 300);
 const kCurve = Curves.easeInOut;
