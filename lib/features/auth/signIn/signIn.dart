@@ -33,12 +33,16 @@ final authstateProvider = StateProvider.autoDispose<String?>((ref) {
   return null;
 });
 
-final asdasdProvider = FutureProvider<SavedUser?>((ref) async {
+final savedInfo = FutureProvider<SavedUser?>((ref) async {
   return AuthService.readUser();
 });
 
-final rememberMeProvider = StateProvider.autoDispose<bool>((ref) {
-  return false;
+final rememberMeProvider = StateProvider<bool>((ref) {
+  return ref.watch(savedInfo).when(
+        data: (data) => data != null,
+        loading: () => false,
+        error: (_, __) => false,
+      );
 });
 
 class SignInScreen extends HookConsumerWidget {
@@ -98,7 +102,7 @@ class SignInScreen extends HookConsumerWidget {
     final authErrorMessage = ref.watch(authstateProvider);
     final collapsed = SizeInfo.of(context).width < 800;
 
-    ref.watch(asdasdProvider).whenData((value) {
+    ref.watch(savedInfo).whenData((value) {
       if (value != null) {
         emailController.text = value.email;
         passwordController.text = value.password;

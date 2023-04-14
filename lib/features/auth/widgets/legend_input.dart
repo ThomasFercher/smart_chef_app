@@ -48,11 +48,13 @@ class LegendInput extends StatefulWidget {
 
 class _LegendInputState extends State<LegendInput> {
   late bool isObscured;
+  late bool textNotEmpty;
 
   @override
   void initState() {
     super.initState();
     isObscured = widget.obscureText;
+    textNotEmpty = widget.ctrl?.text.isNotEmpty ?? false;
   }
 
   @override
@@ -84,7 +86,7 @@ class _LegendInputState extends State<LegendInput> {
             disabled: theme.colors.disabled,
           ),
           disableShadow: true,
-        ).ifW(widget.obscureText),
+        ).ifW(widget.obscureText && textNotEmpty),
         contentPadding: EdgeInsets.symmetric(
           vertical: (widget.height - getTextHeight(theme.typography.h1)) / 2,
           horizontal: 12,
@@ -101,6 +103,10 @@ class _LegendInputState extends State<LegendInput> {
       maxLines: 1,
       obscureText: isObscured,
       onChanged: (value) {
+        setState(() {
+          textNotEmpty = value.isNotEmpty;
+        });
+
         if (widget.onChanged != null) widget.onChanged!(value);
       },
       style: widget.style ?? theme.typography.h1,
