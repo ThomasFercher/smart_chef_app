@@ -11,8 +11,10 @@ RecipeResponse _$RecipeResponseFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       length: json['length'] as int,
       servingAmount: json['servingAmount'] as int,
-      ingredients: json['ingredients'] as List<dynamic>,
-      tools: json['tools'] as List<dynamic>,
+      ingredients: (json['ingredients'] as List<dynamic>)
+          .map((e) => ApiIngredient.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tools: (json['tools'] as List<dynamic>).map((e) => e as String).toList(),
       steps: (json['steps'] as List<dynamic>).map((e) => e as String).toList(),
       tips: (json['tips'] as List<dynamic>).map((e) => e as String).toList(),
     );

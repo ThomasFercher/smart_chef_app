@@ -65,8 +65,9 @@ abstract class ApiService {
       body: jsonEncode(recipe.toJson()),
     );
     if (response.statusCode == 200) {
-      final result = RecipeResponse.fromJson(jsonDecode(response.body));
-      return result;
+      final body = response.body;
+      final json = jsonDecode(body);
+      return RecipeResponse.fromJson(json);
     } else {
       throw Exception("Unable to post recipe");
     }
