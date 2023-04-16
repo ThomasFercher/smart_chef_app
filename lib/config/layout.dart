@@ -7,6 +7,7 @@ import 'package:legend_design_core/layout/menu_drawer/menu_drawer_layout.dart';
 import 'package:legend_design_core/layout/scaffold/config/scaffold_config.dart';
 import 'package:legend_design_core/layout/config/dynamic_route_layout.dart';
 import 'package:legend_design_core/layout/sider/sider_layout.dart';
+import 'package:smart_chef_app/features/home/home_appbar_actions.dart';
 import 'package:smart_chef_app/widgets/themeSwitcher/themeSwitcher.dart';
 
 import '../features/footer/footer.dart';
@@ -81,9 +82,7 @@ class AppLayout extends LayoutDelegate {
       ),
       builders: ScaffoldBuilders(
         customFooter: const Footer(),
-        appBarActions: (p0, p1) {
-          return const ThemeSwitcher();
-        },
+        appBarActions: (_, __) => const HomeScreenAppBarActions(),
       ),
     );
   }

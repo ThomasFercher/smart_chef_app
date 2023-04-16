@@ -1,9 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/gestures/detector.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
+import 'package:smart_chef_app/features/blog/blog.dart';
+import 'package:smart_chef_app/features/faq/faq.dart';
+import 'package:smart_chef_app/features/pricing/pricing.dart';
+import 'package:smart_chef_app/features/privacyPolicy/privacy_policy.dart';
 
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
@@ -61,9 +66,23 @@ class Footer extends StatelessWidget {
                 LegendText("About", style: header),
                 if (isSmall) const Spacer(),
                 spacer2,
-                LegendText("Contact", style: body),
+                LegendText(
+                  "Contact",
+                  style: body,
+                  selectable: false,
+                  onTap: () => LegendFunctions.launchInBrowser(
+                    "mailto:info@smartchef.ai",
+                  ),
+                ),
                 spacer,
-                LegendText("Blog", style: body),
+                LegendText(
+                  "Blog",
+                  style: body,
+                  selectable: false,
+                  onTap: () => LegendRouter.of(context).pushPage(
+                    BlogScreen.route,
+                  ),
+                ),
               ],
             ).toRowIf(isSmall, crossAxisAlignment: CrossAxisAlignment.end),
             if (isSmall) spacer,
@@ -74,9 +93,23 @@ class Footer extends StatelessWidget {
                 LegendText("Product", style: header),
                 if (isSmall) const Spacer(),
                 spacer2,
-                LegendText("Pricing", style: body),
+                LegendText(
+                  "Pricing",
+                  style: body,
+                  selectable: false,
+                  onTap: () => LegendRouter.of(context).pushNamed(
+                    PricingScreen.route,
+                  ),
+                ),
                 spacer,
-                LegendText("FAQ", style: body),
+                LegendText(
+                  "FAQ",
+                  style: body,
+                  selectable: false,
+                  onTap: () => LegendRouter.of(context).pushNamed(
+                    FAQScreen.route,
+                  ),
+                ),
               ],
             ).toRowIf(isSmall, crossAxisAlignment: CrossAxisAlignment.end),
             if (isSmall) spacer,
@@ -87,9 +120,23 @@ class Footer extends StatelessWidget {
                 LegendText("Socials", style: header),
                 if (isSmall) const Spacer(),
                 spacer2,
-                LegendText("Twitter", style: body),
+                LegendText(
+                  "Twitter",
+                  style: body,
+                  selectable: false,
+                  onTap: () => LegendFunctions.launchInBrowser(
+                    "https://twitter.com/SmartChefAI",
+                  ),
+                ),
                 spacer,
-                LegendText("Instagram", style: body),
+                LegendText(
+                  "Instagram",
+                  style: body,
+                  selectable: false,
+                  onTap: () => LegendFunctions.launchInBrowser(
+                    "https://www.instagram.com/smartchefai/",
+                  ),
+                ),
               ],
             ).toRowIf(isSmall, crossAxisAlignment: CrossAxisAlignment.end),
             if (isSmall) spacer,
@@ -100,12 +147,22 @@ class Footer extends StatelessWidget {
                 LegendText("Legal", style: header),
                 if (isSmall) const Spacer(),
                 spacer2,
-                LegendText("Terms of Service", style: body),
+                LegendText(
+                  "Terms of Service",
+                  style: body,
+                  selectable: false,
+                  onTap: () => LegendRouter.of(context).pushNamed(
+                    PrivacyPolicyPage.route,
+                  ),
+                ),
                 spacer,
                 LegendText(
                   "Privacy Policy",
                   style: body,
                   selectable: false,
+                  onTap: () => LegendRouter.of(context).pushNamed(
+                    PrivacyPolicyPage.route,
+                  ),
                 ),
               ],
             ).toRowIf(isSmall, crossAxisAlignment: CrossAxisAlignment.end),
