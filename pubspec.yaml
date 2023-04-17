@@ -35,6 +35,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   flutter_secure_storage: ^8.0.0
   searchfield: ^0.7.5
+  google_fonts: ^4.0.3
 
 
 

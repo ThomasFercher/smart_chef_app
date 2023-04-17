@@ -6,7 +6,6 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
-import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/selectable_list.dart';
 
 class CategoryWidget extends ConsumerWidget {
   const CategoryWidget({super.key});
@@ -35,7 +34,7 @@ class CategoryWidget extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    color: theme.colors.background1,
+                    color: theme.colors.secondary,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Column(
@@ -62,7 +61,7 @@ class CategoryWidget extends ConsumerWidget {
                             style: theme.typography.h1,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
-                            color: theme.colors.foreground1,
+                            color: theme.colors.foreground5,
                             textAlign: TextAlign.center,
                           ),
                         ],

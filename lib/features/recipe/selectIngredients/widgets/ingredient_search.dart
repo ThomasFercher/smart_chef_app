@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:searchfield/searchfield.dart';
@@ -30,11 +31,13 @@ class IngredientSearch extends ConsumerWidget {
             hint: "Search for ingredients",
             searchInputDecoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
+                borderRadius: theme.sizing.radius1.asRadius(),
                 borderSide: BorderSide(
                   color: Colors.black.withOpacity(0.8),
                 ),
               ),
-              border: const OutlineInputBorder(
+              border: OutlineInputBorder(
+                borderRadius: theme.sizing.radius1.asRadius(),
                 borderSide: BorderSide(color: Colors.black),
               ),
             ),

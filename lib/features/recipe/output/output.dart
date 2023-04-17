@@ -18,11 +18,23 @@ class OutputSection extends ConsumerWidget {
         return Column(
           children: [
             LegendText(
-              "Recipe",
-            ),
-            LegendText(
               recipe.name,
+              style: theme.typography.h4,
             ),
+            LegendText(recipe.ingredients.toString(),
+                style: theme.typography.h2),
+            SizedBox(
+              height: theme.sizing.spacing3,
+            ),
+            LegendText(recipe.tools.toString(), style: theme.typography.h2),
+            SizedBox(
+              height: theme.sizing.spacing3,
+            ),
+            LegendText(recipe.steps.toString(), style: theme.typography.h2),
+            SizedBox(
+              height: theme.sizing.spacing3,
+            ),
+            LegendText(recipe.tips.toString(), style: theme.typography.h2),
           ],
         );
       },

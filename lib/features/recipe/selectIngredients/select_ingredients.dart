@@ -56,24 +56,17 @@ class SelectIngredientsSection extends ConsumerWidget {
                         const SizedBox(
                           height: 16,
                         ),
-                        const Expanded(child: IngredientWidget()),
+                        const Expanded(flex: 5, child: IngredientWidget()),
+                        selectedIngredients.isEmpty
+                            ? const SizedBox()
+                            : const Expanded(
+                                flex: 1, child: SelectedIngredientWidget()),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-            // Expanded(
-            //   child: selectedIngredients.isEmpty
-            //       ? const IngredientWidget()
-            //       : Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //           children: const [
-            //             IngredientWidget(),
-            //             SelectedIngredientWidget(),
-            //           ],
-            //         ),
-            // ),
           ],
         ),
       ),

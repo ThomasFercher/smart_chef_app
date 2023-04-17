@@ -55,14 +55,11 @@ class GenerateRecipe extends ConsumerWidget {
               ],
             ),
             onTap: () {
-              // List<String> ingedients = [];
-              // selectedIngredients.map((e) => ingedients.add(e.name!)).toList();
-              // Recipe recipe = Recipe([], [], 2, "Hard", "Selected", null);
-              // ref.read(recipeProvider.notifier).getRecipe(recipe);
+              List<String> ingedients = [];
+              selectedIngredients.map((e) => ingedients.add(e.name!)).toList();
+              Recipe recipe = Recipe([], [], 2, "Hard", "Selected", null);
+              ref.read(recipeProvider.notifier).getRecipe(recipe);
               ref.read(indexProvider.notifier).state += 1;
-              // ref.read(indexProvider.notifier).update(
-              //       (state) => state + 1 < sectionLength ? state + 1 : state,
-              //     );
             },
           ),
         ),

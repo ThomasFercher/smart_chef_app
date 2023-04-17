@@ -6,10 +6,10 @@ import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.d
 import 'package:legend_design_core/layout/scaffold/scaffold_info.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:smart_chef_app/features/recipe/output.dart';
 import 'package:smart_chef_app/features/recipe/selectInfo/select_info.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/select_ingredients.dart';
 import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
+import 'package:smart_chef_app/features/recipe/output/output.dart';
 
 class RecipePage extends ConsumerWidget {
   static String route = "/recipe";

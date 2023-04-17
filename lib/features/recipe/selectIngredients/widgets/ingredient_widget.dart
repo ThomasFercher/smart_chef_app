@@ -72,7 +72,7 @@ class IngredientTile extends ConsumerWidget {
     return AnimatedCard(
       elevation: 1,
       selElevation: 2,
-      background: theme.colors.background1,
+      background: theme.colors.background4,
       borderRadius: theme.sizing.radius1.asRadius(),
       padding: EdgeInsets.symmetric(
         horizontal: 24,
@@ -84,6 +84,10 @@ class IngredientTile extends ConsumerWidget {
             width: 200,
             child: LegendText(
               ingredient.name,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
               color: theme.colors.foreground1,
             ),
           ),
