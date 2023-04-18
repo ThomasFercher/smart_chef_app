@@ -10,11 +10,9 @@ import 'package:smart_chef_app/features/auth/signup/signup.dart';
 import 'package:smart_chef_app/features/blog/blog.dart';
 import 'package:smart_chef_app/features/faq/faq.dart';
 import 'package:smart_chef_app/features/home/home.dart';
-import 'package:smart_chef_app/features/home/home_appbar_actions.dart';
 import 'package:smart_chef_app/features/pricing/pricing.dart';
 import 'package:smart_chef_app/features/privacyPolicy/privacy_policy.dart';
 import 'package:smart_chef_app/features/recipe/recipe.dart';
-import 'package:smart_chef_app/features/settings/settings.dart';
 import 'package:smart_chef_app/features/auth/signIn/signIn.dart';
 import 'package:smart_chef_app/features/termsOfService/terms_of_service.dart';
 import 'layout.dart';
@@ -130,11 +128,6 @@ class AppRoutes extends RoutesDelegate {
         ),
         page: const FAQScreen(),
         isMenu: true,
-      ),
-      const ModalRouteInfo(
-        name: "/settings",
-        title: "Home",
-        page: Settings(),
       ),
       const ModalRouteInfo(
         name: "/menudrawer",
