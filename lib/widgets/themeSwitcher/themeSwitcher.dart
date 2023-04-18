@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
-import 'package:legend_design_core/styles/theme_provider.dart';
+import 'package:legend_design_core/styles/theme_state.dart';
 import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_chef_app/main.dart';
@@ -27,12 +25,12 @@ class ThemeSwitcher extends ConsumerWidget {
       lightThemeSelectedProvider,
       (previous, next) {
         if (next) {
-          context.read<ThemeProvider>().changeColorTheme(PaletteType.light());
+          ThemeState.changeColorTheme(context, PaletteType.light());
           SharedPreferences.getInstance().then(
             (pref) => pref.setString(colorThemeKey, lightKey),
           );
         } else {
-          context.read<ThemeProvider>().changeColorTheme(PaletteType.dark());
+          ThemeState.changeColorTheme(context, PaletteType.dark());
           SharedPreferences.getInstance().then(
             (pref) => pref.setString(colorThemeKey, darkKey),
           );
