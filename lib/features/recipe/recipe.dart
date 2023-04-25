@@ -28,9 +28,6 @@ class RecipePage extends ConsumerWidget {
         ScaffoldInfo.of(context).scaffold.builders.appBarActions;
 
     final index = ref.watch(indexProvider);
-    final initialScrollOffset =
-        (SizeInfo.of(context).height + theme.appBarSizing.appBarHeight / 2) *
-            index;
 
     return LegendRouteBody(
       singlePage: true,
@@ -44,7 +41,6 @@ class RecipePage extends ConsumerWidget {
         showMenu: true,
         actions: appBarActions,
       ),
-      initalScrollOffset: initialScrollOffset,
       listWrapper: (listView, _, __) {
         return ContentWrap(
           sectionLength: sections.length,
@@ -54,20 +50,10 @@ class RecipePage extends ConsumerWidget {
       physics: const NeverScrollableScrollPhysics(),
       slivers: (scrollcontroller) {
         return [
-          SliverFillViewport(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(
-                    bottom: theme.appBarSizing.appBarHeight / 2,
-                    top: theme.appBarSizing.appBarHeight / 2,
-                  ),
-                  child: sections[index],
-                );
-              },
-              childCount: sections.length,
+          for (var section in sections)
+            SliverFillRemaining(
+              child: section,
             ),
-          ),
         ];
       },
     );

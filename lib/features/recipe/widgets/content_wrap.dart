@@ -7,6 +7,7 @@ import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
 import 'package:legend_utils/extensions/boolean.dart';
+import 'package:smart_chef_app/features/recipe/output/output.dart';
 import 'package:smart_chef_app/features/recipe/widgets/back_button.dart';
 import 'package:smart_chef_app/features/recipe/widgets/continue_button.dart';
 import 'dart:math' as math;
@@ -30,16 +31,18 @@ class ContentWrap extends ConsumerWidget {
     required this.child,
     required this.sectionLength,
   });
-  Widget getButtons(int index, WidgetRef ref) {
+  Widget getButtons(int index, bool checkRecipe) {
     switch (index) {
       case 0:
         return ContinueButton(sectionLength);
       case 1:
-        return GenerateRecipe(sectionLength);
+        return checkRecipe
+            ? GenerateRecipe(sectionLength)
+            : ContinueButton(sectionLength);
       case 2:
         return Row(
-          children: [
-            const GoBack(),
+          children: const [
+            GoBack(),
           ],
         );
     }
@@ -53,12 +56,13 @@ class ContentWrap extends ConsumerWidget {
     final height = sizeInfo.height;
     final routeBodyInfo = RouteBodyInfo.of(context);
     final index = ref.watch(indexProvider);
+    final checkRecipe = ref.watch(checkRecipeProvider);
 
     ref.listen<int>(indexProvider, (index, nextIndex) {
       var position = height;
-      if ((index == 0 && nextIndex == 1) || (index == 2 && nextIndex == 1)) {
-        position += theme.appBarSizing.appBarHeight / 2;
-      }
+      // if ((index == 0 && nextIndex == 1) || (index == 2 && nextIndex == 1)) {
+      //   position += theme.appBarSizing.appBarHeight / 2;
+      // }
       routeBodyInfo.scrollController.animateTo(
         position * nextIndex,
         duration: const Duration(milliseconds: 600),
@@ -73,7 +77,7 @@ class ContentWrap extends ConsumerWidget {
         Positioned(
           right: theme.sizing.spacing1,
           bottom: theme.sizing.spacing1,
-          child: getButtons(index, ref),
+          child: getButtons(index, checkRecipe),
         ),
       ],
     );

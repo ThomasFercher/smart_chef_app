@@ -8,6 +8,7 @@ import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
+import 'package:legend_design_widgets/layout/dynamic/row/dynamic_row.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
 import 'package:smart_chef_app/features/recipe/output/widgets/recipe_card.dart';
 import 'package:smart_chef_app/providers/recipe/recipe_provider.dart';
@@ -67,19 +68,16 @@ class OutputSection extends ConsumerWidget {
                               SizedBox(
                                 height: theme.sizing.spacing1,
                               ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    for (final ingredient in recipe.ingredients)
-                                      IngredientCard(
-                                        child: LegendText(ingredient.toString(),
-                                            style: theme.typography.h2),
+                              DynamicRow(
+                                children: [
+                                  for (final ingredient in recipe.ingredients)
+                                    IngredientCard(
+                                      child: LegendText(
+                                        "${ingredient.name} - ${ingredient.amount}",
+                                        style: theme.typography.h2,
                                       ),
-                                  ],
-                                ).toColumnIf(isMobile,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start),
+                                    ),
+                                ],
                               ),
                               SizedBox(
                                 height: theme.sizing.spacing3,
@@ -88,7 +86,7 @@ class OutputSection extends ConsumerWidget {
                               SizedBox(
                                 height: theme.sizing.spacing1,
                               ),
-                              Row(
+                              DynamicRow(
                                 children: [
                                   for (final tool in recipe.tools)
                                     IngredientCard(

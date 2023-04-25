@@ -9,12 +9,21 @@ class SelectInfoSection extends LegendWidget {
   @override
   Widget build(BuildContext context, theme) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         LegendText(
-          "Create your own recipe",
+          "Welcome to the Smart Chef Recipe Generator",
           style: theme.typography.h5,
         ),
+        const SizedBox(height: 12),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              color: Colors.amber,
+            ),
+          ),
+        )
       ],
     );
   }

@@ -10,6 +10,10 @@ import 'dart:math' as math;
 import 'package:smart_chef_app/providers/recipe/recipe_provider.dart';
 import 'package:smart_chef_app/services/models/recipe.dart';
 
+final checkRecipeProvider = StateProvider<bool>((ref) {
+  return true;
+});
+
 class GenerateRecipe extends ConsumerWidget {
   final int sectionLength;
 
@@ -60,6 +64,8 @@ class GenerateRecipe extends ConsumerWidget {
               Recipe recipe = Recipe([], [], 2, "Hard", "Selected", null);
               ref.read(recipeProvider.notifier).getRecipe(recipe);
               ref.read(indexProvider.notifier).state += 1;
+              ref.read(checkRecipeProvider.notifier).state = false;
+              print(ref.read(checkRecipeProvider));
             },
           ),
         ),
