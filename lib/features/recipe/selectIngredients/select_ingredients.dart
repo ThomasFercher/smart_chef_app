@@ -31,7 +31,7 @@ class SelectIngredientsSection extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             LegendText(
-              "Select your ingredients",
+              "Select your Ingredients",
               style: theme.typography.h4,
             ),
             const SizedBox(
@@ -59,8 +59,7 @@ class SelectIngredientsSection extends ConsumerWidget {
                         const Expanded(flex: 5, child: IngredientWidget()),
                         selectedIngredients.isEmpty
                             ? const SizedBox()
-                            : const Expanded(
-                                flex: 1, child: SelectedIngredientWidget()),
+                            : const SelectedIngredientWidget(),
                       ],
                     ),
                   ),

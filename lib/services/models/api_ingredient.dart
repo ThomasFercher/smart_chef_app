@@ -12,4 +12,9 @@ class ApiIngredient {
   factory ApiIngredient.fromJson(Map<String, dynamic> json) =>
       _$ApiIngredientFromJson(json);
   Map<String, dynamic> toJson() => _$ApiIngredientToJson(this);
+
+  @override
+  String toString() {
+    return "$name $amount";
+  }
 }

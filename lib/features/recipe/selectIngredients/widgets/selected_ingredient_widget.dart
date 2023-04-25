@@ -22,37 +22,40 @@ class SelectedIngredientWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = LegendTheme.of(context);
     final selectedIngredients = ref.watch(selectedIngredient);
-    return Card(
-      elevation: 3.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      color: theme.colors.background1,
-      child: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(
-          physics: const ClampingScrollPhysics(),
-          dragDevices: {
-            PointerDeviceKind.trackpad,
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          },
+    return SizedBox(
+      height: 100,
+      child: Card(
+        elevation: 3.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
         ),
-        child: LayoutBuilder(
-          builder: (context, constraints) => ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: selectedIngredients.length,
-            itemBuilder: (context, index) {
-              return Container(
-                padding: const EdgeInsets.all(8.0),
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
-                ),
-                child: Center(
-                  child: SelectedIngredientTile(
-                      ingredient: selectedIngredients[index]),
-                ),
-              );
+        color: theme.colors.background1,
+        child: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            physics: const ClampingScrollPhysics(),
+            dragDevices: {
+              PointerDeviceKind.trackpad,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
             },
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) => ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: selectedIngredients.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  padding: const EdgeInsets.all(8.0),
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: Center(
+                    child: SelectedIngredientTile(
+                        ingredient: selectedIngredients[index]),
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
