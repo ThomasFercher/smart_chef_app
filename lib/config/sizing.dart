@@ -174,8 +174,8 @@ class AppSizing extends SizingDelegate {
             typographySizing: TypographySizingOverride(
               h0: 10,
               h1: 12,
-              h2: 16,
-              h3: 20,
+              h2: 14,
+              h3: 22,
               h4: 26,
               h5: 32,
             ),
@@ -205,7 +205,7 @@ class AppSizing extends SizingDelegate {
         },
       ),
       LegendSizingOverride(
-        key: 720,
+        key: 800,
         spacing1: 16,
         spacing2: 20,
         spacing3: 24,
@@ -235,7 +235,7 @@ class AppSizing extends SizingDelegate {
         },
       ),
       LegendSizingOverride(
-        key: 1080,
+        key: 1200,
         subSizing: (sizing) {
           return LegendSubSizingOverride(
             typographySizing: TypographySizingOverride(
@@ -258,7 +258,7 @@ class AppSizing extends SizingDelegate {
         },
       ),
       LegendSizingOverride(
-        key: 1600,
+        key: 1920,
         subSizing: (sizing) {
           return LegendSubSizingOverride(
             typographySizing: TypographySizingOverride(

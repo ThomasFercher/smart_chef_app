@@ -212,4 +212,9 @@ extension widgetIf<T> on T {
     if (condition) return this;
     return null;
   }
+
+  T ifElse(bool condition, T elseValue) {
+    if (condition) return this;
+    return elseValue;
+  }
 }
