@@ -7,7 +7,6 @@ import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/router/scaffold_route_info.dart';
 import 'package:legend_utils/extensions/maps.dart';
 import 'package:smart_chef_app/features/auth/signup/signup.dart';
-import 'package:smart_chef_app/features/blog/blog.dart';
 import 'package:smart_chef_app/features/faq/faq.dart';
 import 'package:smart_chef_app/features/home/home.dart';
 import 'package:smart_chef_app/features/pricing/pricing.dart';
@@ -93,18 +92,18 @@ class AppRoutes extends RoutesDelegate {
         ),
         page: const PrivacyPolicyPage(),
       ),
-      PageInfo(
-        name: BlogScreen.route,
-        title: "Blog",
-        config: ScaffoldRouteConfig(
-          whether: ScaffoldWhetherOverride(
-            showBackButton: true,
-          ),
-          layout: layouts.get(PageLayout.home),
-        ),
-        page: const BlogScreen(),
-        isMenu: true,
-      ),
+      // PageInfo(
+      //   name: BlogScreen.route,
+      //   title: "Blog",
+      //   config: ScaffoldRouteConfig(
+      //     whether: ScaffoldWhetherOverride(
+      //       showBackButton: true,
+      //     ),
+      //     layout: layouts.get(PageLayout.home),
+      //   ),
+      //   page: const BlogScreen(),
+      //   isMenu: true,
+      // ),
       PageInfo(
         name: PricingScreen.route,
         title: "Pricing",

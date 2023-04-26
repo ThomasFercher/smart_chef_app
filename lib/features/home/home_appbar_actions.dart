@@ -21,7 +21,7 @@ class HomeScreenAppBarActions extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const ThemeSwitcher(),
-        const SizedBox(width: 8),
+        const SizedBox(width: 12),
         if (authState is Authenticated)
           Container(
             color: Colors.red,
@@ -31,8 +31,8 @@ class HomeScreenAppBarActions extends ConsumerWidget {
         if (authState is! Authenticated) ...[
           LegendButton(
             background: theme.appBarColors.background,
-            height: 48,
-            width: 96,
+            height: theme.appBarSizing.appBarHeight - 24,
+            width: 80,
             selBackground: theme.colors.secondary,
             borderRadius: theme.sizing.radius1.asRadius(),
             onTap: () {
@@ -45,11 +45,11 @@ class HomeScreenAppBarActions extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 12),
           LegendButton(
             background: theme.colors.secondary,
-            height: 48,
-            width: 128,
+            height: theme.appBarSizing.appBarHeight - 24,
+            width: 120,
             borderRadius: theme.sizing.radius1.asRadius(),
             selElevation: 2,
             onTap: () {

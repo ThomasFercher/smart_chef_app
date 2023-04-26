@@ -3,9 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/gestures/detector.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:smart_chef_app/features/blog/blog.dart';
 import 'package:smart_chef_app/features/faq/faq.dart';
 import 'package:smart_chef_app/features/pricing/pricing.dart';
 import 'package:smart_chef_app/features/privacyPolicy/privacy_policy.dart';
@@ -76,12 +74,9 @@ class Footer extends StatelessWidget {
                 ),
                 spacer,
                 LegendText(
-                  "Blog",
+                  "",
                   style: body,
                   selectable: false,
-                  onTap: () => LegendRouter.of(context).pushPage(
-                    BlogScreen.route,
-                  ),
                 ),
               ],
             ).toRowIf(isSmall, crossAxisAlignment: CrossAxisAlignment.end),

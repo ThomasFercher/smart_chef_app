@@ -5,24 +5,28 @@ import 'package:legend_design_core/layout/navigation/section/legend_section.dart
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
+import 'package:legend_design_core/styles/theme_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_widgets/datadisplay/carousel/legend_carousel.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
-import 'package:legend_utils/legend_utils.dart';
+import 'package:smart_chef_app/features/footer/footer.dart';
 
 class HomePage extends LegendWidget {
   static String route = "/";
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, theme) {
+  Widget build(BuildContext context, LegendTheme theme) {
     const spacer = SizedBox(height: 16);
     const spacer2 = SizedBox(height: 32);
+    const spacer3 = SizedBox(height: 96);
+    const spacerH = SizedBox(width: 64);
+
     return LegendRouteBody(
+      maxContentWidth: 1440,
       children: (controller, s) {
         return [
           LegendSection(
-            color: theme.colors.background2,
             borderRadius: const BorderRadius.vertical(
               bottom: Radius.circular(32),
             ),
@@ -91,89 +95,131 @@ class HomePage extends LegendWidget {
               ],
             ),
           ),
-          LegendSection(
-            padding: const EdgeInsets.all(32),
-            title: LegendText("Recipe Generation", style: theme.typography.h3),
-            titleAligment: Alignment.center,
-            child: Column(
-              children: const [
-                LegendText(
-                  "Are you tired of cooking the same old dishes? With Smartchef's AI-powered Recipe Generator, you can instantly create unique and delicious recipes tailored to your tastes and preferences. Just enter the ingredients you have on hand or select a specific cuisine, and let our AI work its magic! Explore a world of gastronomic delights and surprise yourself with new, mouth-watering dishes every day.",
-                  textAlign: TextAlign.center,
-                )
-              ],
-            ),
+          spacer3,
+          _InfoSection(
+            image: "assets/illustrations/i13.png",
+            content: [
+              LegendText(
+                "Recipe Generation",
+                style: theme.typography.h3,
+                textAlign: TextAlign.left,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const LegendText(
+                "Are you tired of cooking the same old dishes? With Smartchef's AI-powered Recipe Generator, you can instantly create unique and delicious recipes tailored to your tastes and preferences. Just enter the ingredients you have on hand or select a specific cuisine, and let our AI work its magic! Explore a world of gastronomic delights and surprise yourself with new, mouth-watering dishes every day.",
+                textAlign: TextAlign.left,
+              ),
+            ],
           ),
-          LegendSection(
-            padding: const EdgeInsets.all(32),
-            title: LegendText("Meal Planner", style: theme.typography.h3),
-            titleAligment: Alignment.center,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: 1000,
-                  child: LegendText(
-                    "Struggling to plan your meals for the week? Say goodbye to last-minute grocery runs and food-related stress! Smartchef's AI-powered Mealplan Generator is here to make your life easier. Based on your dietary preferences, allergies, and time constraints, our AI will craft a comprehensive meal plan tailored to your needs. Save time, eat healthily, and enjoy a variety of delicious meals throughout the week.",
-                    textAlign: TextAlign.center,
-                    style: theme.typography.h1,
-                  ),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.colors.background2,
-                  ),
-                  height: 400,
-                  width: 400,
-                  child: Center(
-                    child: Image.asset(
-                      "assets/illustrations/illustration_03.png",
-                      height: 300,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          spacer3,
+          _InfoSection(
+            image: "assets/illustrations/i05.png",
+            content: [
+              LegendText("Meal Planner", style: theme.typography.h3),
+              const SizedBox(
+                height: 16,
+              ),
+              LegendText(
+                "Struggling to plan your meals for the week? Say goodbye to last-minute grocery runs and food-related stress! Smartchef's AI-powered Mealplan Generator is here to make your life easier. Based on your dietary preferences, allergies, and time constraints, our AI will craft a comprehensive meal plan tailored to your needs. Save time, eat healthily, and enjoy a variety of delicious meals throughout the week.",
+                style: theme.typography.h1,
+              ),
+            ],
           ),
-          LegendSection(
-            padding: const EdgeInsets.all(32),
-            title: LegendText("Assistant", style: theme.typography.h3),
-            titleAligment: Alignment.center,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: 600,
-                  child: LegendText(
-                    "Have a cooking question? Need advice on ingredient substitutions or cooking techniques? Smartchef's AI-powered Cooking Assistant is here",
-                    textAlign: TextAlign.center,
-                    style: theme.typography.h1,
-                  ),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: theme.colors.background2,
-                  ),
-                  height: 400,
-                  width: 400,
-                  child: Center(
-                    child: SvgPicture.asset(
-                      "assets/illustrations/cooking.svg",
-                      height: 240,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          spacer3,
+          _InfoSection(
+            image: "assets/illustrations/i08.png",
+            content: [
+              LegendText(
+                "Personal AI Assistant",
+                style: theme.typography.h3,
+                textAlign: TextAlign.left,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              LegendText(
+                "Have a cooking question? Need advice on ingredient substitutions or cooking techniques? Smartchef's AI-powered Cooking Assistant is here",
+                textAlign: TextAlign.left,
+                style: theme.typography.h1,
+              ),
+            ],
           ),
+          spacer3,
         ];
       },
     );
+  }
+}
+
+class _InfoSection extends LegendWidget {
+  final String image;
+  final List<Widget> content;
+
+  const _InfoSection({
+    Key? key,
+    required this.image,
+    required this.content,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, theme) {
+    final imgRadius = theme.rVal<double>(s: 24, m: 24, l: 64, xl: 64);
+    final sectionHeight =
+        theme.rVal<double?>(s: null, m: null, l: 420, xl: 512);
+    final collapsed = theme.rVal(s: true, m: true, l: false, xl: false);
+    final imgWidth = theme.rVal<double?>(s: null, m: 420, l: 360, xl: null);
+    final padding = theme.rVal<double>(s: 24, m: 64, l: 32, xl: 48);
+
+    final spacing = theme.rVal<double>(s: 24, m: 32, l: 48, xl: 96);
+
+    return SizedBox(
+      height: sectionHeight,
+      child: Padding(
+        padding: EdgeInsets.all(padding),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: ClipRRect(
+                borderRadius: imgRadius.asRadius(),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.contain,
+                  width: imgWidth,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: spacing,
+              width: spacing,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: content,
+            ).expandIf(!collapsed),
+            if (!collapsed) const SizedBox(width: 32),
+          ],
+        ).toColumnIf(collapsed),
+      ),
+    );
+  }
+}
+
+extension DynamicSizing on LegendTheme {
+  T rVal<T>({
+    required T s,
+    required T m,
+    required T l,
+    required T xl,
+  }) {
+    final key = sizing.key;
+    if (key == splits.first) return s;
+    if (key == splits[1]) return m;
+    if (key == splits[2]) return l;
+    if (key == splits.last) return xl;
+    return m;
   }
 }
