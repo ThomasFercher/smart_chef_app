@@ -75,23 +75,6 @@ class AppColors extends ColorsDelegate {
             activeColor: Colors.indigoAccent,
             disabledColor: Colors.indigoAccent[100],
           ),
-          sider: SiderColorsOverride(
-            background: colors.primary,
-            foreground: colors.onPrimary,
-            selection: colors.selection,
-            backgroundMenu: colors.primary,
-            buildComponents: (sider) {
-              return SiderColorsComponentsOverride(
-                menuColors: SideMenuColorsOverride(
-                  background: colors.primary.darken(0.05),
-                  activeForeground: sider.selection,
-                  activeBackground: colors.primary.darken(0.1),
-                  foreground: sider.foreground,
-                  menuBackground: sider.background,
-                ),
-              );
-            },
-          ),
           menuDrawer: MenuDrawerColorsOverride(
             background: colors.background1,
             backgroundMenu: colors.onPrimary,
@@ -174,10 +157,10 @@ class AppColors extends ColorsDelegate {
               return AppBarColorsComponentsOverride(
                 menuColors: MenuColorsOverride(
                   foreground: appBar.foreground,
-                  menuBackground: appBar.background,
-                  background: appBar.background,
-                  activeForeground: colors.selection,
-                  activeBackground: colors.background1,
+                  menuBackground: Colors.transparent,
+                  background: colors.secondary,
+                  activeForeground: appBar.foreground,
+                  activeBackground: colors.selection,
                 ),
                 subMenuColors: SideMenuColorsOverride(
                   foreground: appBar.foreground,
@@ -199,37 +182,17 @@ class AppColors extends ColorsDelegate {
             activeColor: Colors.indigoAccent,
             disabledColor: Colors.indigoAccent[100],
           ),
-          sider: SiderColorsOverride(
-            background: colors.primary,
-            foreground: colors.foreground5,
-            selection: colors.selection,
-            backgroundMenu: colors.primary,
-            buildComponents: (sider) {
-              return SiderColorsComponentsOverride(
-                menuColors: SideMenuColorsOverride(
-                  background: colors.primary.darken(0.05),
-                  activeForeground: sider.selection,
-                  activeBackground: colors.primary.darken(0.1),
-                  foreground: sider.foreground,
-                  menuBackground: sider.background,
-                ),
-              );
-            },
-          ),
           menuDrawer: MenuDrawerColorsOverride(
-            background: Colors.white,
-            backgroundMenu: colors.onPrimary,
-            foreground: colors.primary,
-            backgroundMenuSelection: colors.primary,
-            backgroundSelection: colors.primary,
+            background: colors.background1,
+            foreground: colors.foreground1,
             buildComponents: (menu) {
               return MenuDrawerColorsComponentsOverride(
                 menuColors: SideMenuColorsOverride(
-                  menuBackground: menu.background,
-                  activeBackground: colors.primary,
-                  activeForeground: colors.selection,
-                  background: menu.background,
-                  foreground: menu.foreground,
+                  menuBackground: Colors.transparent,
+                  activeBackground: colors.selection,
+                  activeForeground: colors.onPrimary,
+                  background: colors.primary,
+                  foreground: colors.onPrimary,
                 ),
               );
             },
