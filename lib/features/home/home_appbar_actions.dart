@@ -35,8 +35,6 @@ class HomeScreenAppBarActions extends ConsumerWidget {
             height: theme.appBarSizing.appBarHeight - 24,
             width: 80,
             borderRadius: theme.sizing.radius2.asRadius(),
-            selElevation: 2,
-            elevation: 1,
             onTap: () {
               context.legendRouter.pushPage(SignInScreen.route);
             },
@@ -57,7 +55,7 @@ class HomeScreenAppBarActions extends ConsumerWidget {
             width: 120,
             borderRadius: theme.sizing.radius2.asRadius(),
             selElevation: 2,
-            elevation: 1,
+            elevation: 0,
             onTap: () {
               context.legendRouter.pushPage(SignUpScreen.route);
             },

@@ -142,7 +142,7 @@ class AppColors extends ColorsDelegate {
       foreground3: const Color(0xFF757575),
       foreground4: const Color(0xFF9E9E9E),
       foreground5: const Color(0xFFF0F0F0),
-      background1: const Color(0xFFF9F9F9),
+      background1: const Color(0xFFF7F7F7),
       background2: const Color(0xFFE0F3F3),
       background3: const Color(0xFFD0ECEC),
       background4: const Color(0xFFC0E5E5),

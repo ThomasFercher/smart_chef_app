@@ -90,11 +90,6 @@ class AppSizing extends SizingDelegate {
                     horizontal: 21,
                   ),
                   itemSpacing: 6,
-                  shadow: const BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 1.0,
-                    spreadRadius: 0.5,
-                  ),
                 ),
                 subMenuSizing: SideMenuSizing(
                   spacing: 21,
