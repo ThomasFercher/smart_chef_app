@@ -115,6 +115,7 @@ class AppRoutes extends RoutesDelegate {
         ),
         page: const PricingScreen(),
         isMenu: true,
+        icon: Icons.price_change,
       ),
       PageInfo(
         name: FAQScreen.route,
@@ -126,6 +127,7 @@ class AppRoutes extends RoutesDelegate {
           layout: layouts.get(PageLayout.home),
         ),
         page: const FAQScreen(),
+        icon: Icons.question_mark,
         isMenu: true,
       ),
       const ModalRouteInfo(

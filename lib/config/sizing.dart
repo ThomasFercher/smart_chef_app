@@ -89,7 +89,7 @@ class AppSizing extends SizingDelegate {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 21,
                   ),
-                  itemSpacing: 4,
+                  itemSpacing: 6,
                 ),
                 subMenuSizing: SideMenuSizing(
                   spacing: 21,

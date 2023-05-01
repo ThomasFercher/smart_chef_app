@@ -42,7 +42,7 @@ class AppLayout extends LayoutDelegate {
         splits,
         defaultLayout: RouteLayout(
           appBarLayout: AppBarLayout(
-            layout: AppBarLayoutConfig.fixedAbove,
+            layout: AppBarLayoutConfig.body,
             aligment: AppBarLayoutType.TiMeAc,
             showTabbar: false,
           ),

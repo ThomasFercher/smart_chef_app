@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:legend_design_core/layout/appBar.dart/appbar_config.dart';
+import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/navigation/section/legend_section.dart';
-import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
 import 'package:legend_design_core/legend_design_core.dart';
+import 'package:legend_design_core/libraries/scaffold.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
@@ -37,6 +39,14 @@ class HomePage extends LegendWidget {
     return LegendRouteBody(
       maxContentWidth: 1440,
       disableContentDecoration: true,
+      sliverAppBar: LegendSliverBar(
+        config: LegendAppBarConfig(
+          appBarHeight: theme.sizing.appBarSizing.appBarHeight,
+          elevation: 0,
+          floating: true,
+        ),
+        actions: ScaffoldInfo.of(context).scaffold.builders.appBarActions,
+      ),
       slivers: (controller) {
         return [
           Container(
