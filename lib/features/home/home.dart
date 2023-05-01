@@ -8,8 +8,8 @@ import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/datadisplay/carousel/legend_carousel.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
+import 'package:legend_design_widgets/scrolling/effects/visibility_sliver.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:smart_chef_app/features/home/widgets/animate_in_widget.dart';
 
 // ConstrainedBox(
@@ -37,7 +37,7 @@ class HomePage extends LegendWidget {
     return LegendRouteBody(
       maxContentWidth: 1440,
       disableContentDecoration: true,
-      children: (controller, s) {
+      slivers: (controller) {
         return [
           Container(
             decoration: BoxDecoration(
@@ -114,7 +114,7 @@ class HomePage extends LegendWidget {
                 ).expandIf(!collapsed),
               ],
             ).toColumnIf(collapsed, mainAxisSize: MainAxisSize.min),
-          ),
+          ).toSliver(),
           const LegendSection(
             child: LegendCarousel(
               height: 800,
@@ -124,8 +124,8 @@ class HomePage extends LegendWidget {
                 Center(child: LegendText("Exmaple 3")),
               ],
             ),
-          ),
-          spacer3,
+          ).toSliver(),
+          spacer3.toSliver(),
           _InfoSection(
             collapsed: collapsed,
             image: "assets/illustrations/i13.png",
@@ -146,7 +146,7 @@ class HomePage extends LegendWidget {
               ),
             ],
           ),
-          spacer3,
+          spacer3.toSliver(),
           _InfoSection(
             collapsed: collapsed,
             image: "assets/illustrations/i05.png",
@@ -162,7 +162,7 @@ class HomePage extends LegendWidget {
               ),
             ],
           ),
-          spacer3,
+          spacer3.toSliver(),
           _InfoSection(
             collapsed: collapsed,
             inverted: collapsed,
@@ -183,7 +183,7 @@ class HomePage extends LegendWidget {
               ),
             ],
           ),
-          spacer3,
+          spacer3.toSliver(),
         ];
       },
     );
@@ -244,11 +244,28 @@ class _InfoSection extends StatelessWidget {
     ).expandIf(!collapsed);
 
     final insetX = context.width * 0.15;
-    final insetY = context.height * 0.09;
+    final insetY = context.height * 0.1;
 
-    return AnimateIn(
-      uKey: ValueKey(image),
-      offset: inverted ? Offset(-insetX, -insetY) : Offset(insetX, -insetY),
+    return SliverVis(
+      type: VisibilityType.ONCE,
+      binary: true,
+      binaryThreshold: 0.5,
+      builder: (context, child, visible) {
+        final vis = visible == 1;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          transform: Matrix4.translationValues(
+            0,
+            vis ? 0 : insetY,
+            0,
+          ),
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            opacity: visible,
+            child: child,
+          ),
+        );
+      },
       child: SizedBox(
         height: sectionHeight,
         child: Padding(
@@ -325,4 +342,14 @@ extension ContextUtil on BuildContext {
   double get width => SizeInfo.of(this).width;
 
   double get height => SizeInfo.of(this).height;
+}
+
+extension SliverUtil on Widget {
+  SliverToBoxAdapter toSliver() => SliverToBoxAdapter(child: this);
+}
+
+extension SliverUtil2 on List<Widget> {
+  SliverList toSliver() => SliverList(
+        delegate: SliverChildListDelegate(this),
+      );
 }
