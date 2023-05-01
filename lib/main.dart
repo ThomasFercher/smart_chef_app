@@ -6,12 +6,12 @@ import 'package:legend_design_core/legend_app.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_utils/logging/logger.dart';
 import 'package:legend_utils/urlstrategy/url_strategy.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'config/colors.dart';
 import 'config/layout.dart';
 import 'config/routes.dart';
 import 'config/sizing.dart';
 import 'config/typography.dart';
+import 'services/db_service.dart';
 
 const colorThemeKey = 'colorTheme';
 
@@ -19,10 +19,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
 
-  final pref = await SharedPreferences.getInstance();
-  final key = pref.getString(colorThemeKey);
-  final initalColorTheme = key == null ? PaletteType.light() : PaletteType(key);
+  await DB.initDB();
 
+  final key = DB.prefs.getString(colorThemeKey);
+  final initalColorTheme = key == null ? PaletteType.light() : PaletteType(key);
   Logger.log("Inital Color Theme: ${initalColorTheme.key}", 'main');
 
   runApp(
