@@ -18,23 +18,23 @@ class AppColors extends ColorsDelegate {
   @override
   LegendPalette get darkTheme {
     return LegendPalette(
-      primary: Colors.grey[900]!,
+      primary: Colors.teal,
       secondary: Colors.tealAccent,
       tertiary: Colors.blueGrey,
       foreground1: Colors.white,
-      foreground2: const Color(0xFFF3EFCC),
+      foreground2: Color(0xFFF0FFF0),
       foreground3: Colors.blueGrey[50]!,
       foreground4: Colors.blueGrey[50]!,
       foreground5: Colors.blueGrey[100]!,
-      background1: Colors.black,
-      background2: Colors.greenAccent[700]!,
-      background3: Colors.grey[800]!,
+      background1: Color(0xFF050505),
+      background2: Color(0xFF0A0A0A),
+      background3: Color(0XFF0B0B0B),
       background4: Colors.grey[600]!,
       background5: Colors.grey[500]!,
       error: Colors.red[400]!,
       disabled: LegendColors.gray2,
       selection: Colors.tealAccent[400]!,
-      onPrimary: Colors.indigo[50]!,
+      onPrimary: Color(0xFFF0FFF0),
       onSecondary: Colors.teal[200]!,
       onTertiary: Colors.blueGrey[200]!,
       custom: {
@@ -54,7 +54,12 @@ class AppColors extends ColorsDelegate {
             foreground: colors.onPrimary,
             buildComponents: (appBar) {
               return AppBarColorsComponentsOverride(
-                menuColors: MenuColorsOverride(),
+                menuColors: MenuColorsOverride(
+                  background: colors.background2,
+                  menuBackground: colors.background1,
+                  activeBackground: colors.selection,
+                  activeForeground: colors.onPrimary,
+                ),
                 subMenuColors: SideMenuColorsOverride(
                   foreground: appBar.foreground,
                   background: appBar.background,
