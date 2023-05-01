@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
+import 'package:legend_design_core/libraries/appbar.dart';
+import 'package:legend_design_core/libraries/scaffold.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_widgets/input/expandable/legend_expandable..dart';
 import 'package:legend_utils/legend_utils.dart';
 import 'package:smart_chef_app/features/faq/widgets/faq_item.dart';
 

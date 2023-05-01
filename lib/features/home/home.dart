@@ -36,13 +36,15 @@ class HomePage extends LegendWidget {
     final spacer3 = theme.rVal<double>(s: 96, m: 96, l: 48, xl: 144).vSpacing;
     final collapsed = theme.rVal(s: true, m: true, l: false, xl: false);
 
+    final margin = theme.rVal<double>(s: 12, m: 24, l: 48, xl: 64);
+
     return LegendRouteBody(
       maxContentWidth: 1440,
       disableContentDecoration: true,
       sliverAppBar: LegendSliverBar(
         config: LegendAppBarConfig(
           appBarHeight: theme.sizing.appBarSizing.appBarHeight,
-          elevation: 0,
+          elevation: 0.5,
           floating: true,
         ),
         actions: ScaffoldInfo.of(context).scaffold.builders.appBarActions,
@@ -52,14 +54,15 @@ class HomePage extends LegendWidget {
           Container(
             decoration: BoxDecoration(
               color: theme.colors.background2,
-              borderRadius: const BorderRadius.vertical(
-                bottom: Radius.circular(64),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(32),
               ),
             ),
             width: context.width,
             padding: const EdgeInsets.all(48).copyWith(
               right: !collapsed ? 24 : 48,
             ),
+            margin: EdgeInsets.all(margin),
             child: Row(
               children: [
                 Column(
@@ -85,7 +88,7 @@ class HomePage extends LegendWidget {
                       borderRadius: 32.0.asRadius(),
                       height: 64,
                       width: 320,
-                      selBackground: theme.colors.secondary,
+                      selBackground: theme.colors.selection,
                       selElevation: 1,
                       background: theme.colors.primary,
                       onTap: () {

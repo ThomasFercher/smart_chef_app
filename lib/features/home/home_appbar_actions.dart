@@ -17,11 +17,12 @@ class HomeScreenAppBarActions extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final authState = ref.watch(authProvider);
     final theme = LegendTheme.of(context);
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         const ThemeSwitcher(),
-        const SizedBox(width: 12),
+        const SizedBox(width: 16),
         if (authState is Authenticated)
           Container(
             color: Colors.red,
@@ -30,28 +31,33 @@ class HomeScreenAppBarActions extends ConsumerWidget {
           ),
         if (authState is! Authenticated) ...[
           LegendButton(
-            background: theme.appBarColors.background,
+            background: theme.colors.secondary,
             height: theme.appBarSizing.appBarHeight - 24,
             width: 80,
-            selBackground: theme.colors.secondary,
-            borderRadius: theme.sizing.radius1.asRadius(),
+            borderRadius: theme.sizing.radius2.asRadius(),
+            selElevation: 2,
+            elevation: 1,
             onTap: () {
               context.legendRouter.pushPage(SignInScreen.route);
             },
-            text: Text(
-              "Sign In",
-              style: theme.typography.h1.copyWith(
-                color: theme.colors.onSecondary,
-              ),
-            ),
+            builder: (hovered) {
+              return Text(
+                "Sign In",
+                style: theme.typography.h1.copyWith(
+                  color:
+                      hovered ? theme.colors.primary : theme.colors.onSecondary,
+                ),
+              );
+            },
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 16),
           LegendButton(
-            background: theme.colors.secondary,
+            background: theme.colors.primary,
             height: theme.appBarSizing.appBarHeight - 24,
             width: 120,
-            borderRadius: theme.sizing.radius1.asRadius(),
+            borderRadius: theme.sizing.radius2.asRadius(),
             selElevation: 2,
+            elevation: 1,
             onTap: () {
               context.legendRouter.pushPage(SignUpScreen.route);
             },
@@ -62,13 +68,13 @@ class HomeScreenAppBarActions extends ConsumerWidget {
                 Text(
                   "Sign Up",
                   style: theme.typography.h1.copyWith(
-                    color: theme.colors.onSecondary,
+                    color: theme.colors.onPrimary,
                   ),
                 ),
                 const SizedBox(width: 8),
                 Icon(
                   Icons.arrow_forward,
-                  color: theme.colors.onSecondary,
+                  color: theme.colors.onPrimary,
                 ),
               ],
             ),

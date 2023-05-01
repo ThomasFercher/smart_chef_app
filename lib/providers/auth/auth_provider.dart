@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_chef_app/providers/auth/auth_state.dart';
 import 'package:smart_chef_app/services/auth_service.dart';
 
-const LOGIN = true;
+const LOGIN = false;
 const debugProfile = SavedUser("test@smartchef.ai", "test#420");
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {

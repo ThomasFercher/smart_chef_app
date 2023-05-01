@@ -15,7 +15,7 @@ class AppSizing extends SizingDelegate {
   LegendSizing get defaultSizing {
     return LegendSizing(
       custom: {
-        'settingsWidth': 280,
+        'settingsWidth': 320,
       },
       key: 720,
       elevation1: 0,
@@ -76,20 +76,25 @@ class AppSizing extends SizingDelegate {
               right: 12,
               left: 16,
             ),
-            iconSize: 22,
+            iconSize: 28,
             spacing: 4,
             logoSize: 72,
             buildComponents: (AppBarSizingInfo appBar) {
               return AppBarSizingComponents(
                 menuSizing: MenuSizing(
                   spacing: 21,
-                  borderRadius: 21.0.asRadius(),
+                  borderRadius: sizing.radius2.asRadius(),
                   iconSize: sizing.iconSize1,
                   height: 42,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 21,
                   ),
                   itemSpacing: 6,
+                  shadow: const BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 1.0,
+                    spreadRadius: 0.5,
+                  ),
                 ),
                 subMenuSizing: SideMenuSizing(
                   spacing: 21,
@@ -181,7 +186,7 @@ class AppSizing extends SizingDelegate {
             ),
             appBarSizing: AppBarSizingOverride(
               spacing: 24,
-              iconSize: 24,
+              //  iconSize: 24,
               appBarHeight: 64,
               logoSize: 48,
               buildComponents: (sizing) => AppBarSizingComponentsOverride(
@@ -247,11 +252,7 @@ class AppSizing extends SizingDelegate {
             ),
             appBarSizing: AppBarSizingOverride(
               buildComponents: (sizing) {
-                return AppBarSizingComponentsOverride(
-                  menuSizing: MenuSizingOverride(
-                    height: 36,
-                  ),
-                );
+                return AppBarSizingComponentsOverride();
               },
             ),
           );

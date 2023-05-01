@@ -16,6 +16,7 @@ enum PageLayout {
   recipe,
   home,
   blank,
+  other,
 }
 
 class AppLayout extends LayoutDelegate {
@@ -43,6 +44,22 @@ class AppLayout extends LayoutDelegate {
         defaultLayout: RouteLayout(
           appBarLayout: AppBarLayout(
             layout: AppBarLayoutConfig.body,
+            aligment: AppBarLayoutType.TiMeAc,
+            showTabbar: false,
+          ),
+          bottomBarLayout: NoBottomBarLayout(),
+          footerLayout: FooterLayout(),
+          siderLayout: NoSiderLayout(),
+          menuDrawerLayout: MenuDrawerLayout(
+            type: MenuDrawerLayoutType.drawerRight,
+          ),
+        ),
+      ),
+      PageLayout.other: DynamicRouteLayout.override(
+        splits,
+        defaultLayout: RouteLayout(
+          appBarLayout: AppBarLayout(
+            layout: AppBarLayoutConfig.fixedAbove,
             aligment: AppBarLayoutType.TiMeAc,
             showTabbar: false,
           ),

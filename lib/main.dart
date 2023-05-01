@@ -38,7 +38,7 @@ void main() async {
         ),
         logoBuilder: (_) => SvgPicture.asset(
           "assets/logo.svg",
-          color: LegendTheme.of(_).colors.onPrimary,
+          color: LegendTheme.of(_).colors.primary,
           height: LegendTheme.of(_).appBarSizing.appBarHeight,
         ),
         title: "Legend Template",

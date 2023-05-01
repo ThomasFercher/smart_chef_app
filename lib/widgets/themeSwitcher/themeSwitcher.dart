@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_chef_app/main.dart';
 import 'package:smart_chef_app/services/db_service.dart';
 
-const kLight = Icons.light_mode_outlined;
+const kLight = Icons.light_mode;
 const kDark = Icons.dark_mode_outlined;
 
 final lightThemeSelectedProvider =

@@ -27,7 +27,9 @@ class AppRoutes extends RoutesDelegate {
         title: "Home",
         icon: Icons.home,
         config: ScaffoldRouteConfig(
-          whether: ScaffoldWhetherOverride(),
+          whether: ScaffoldWhetherOverride(
+            showBackButton: false,
+          ),
           layout: layouts.get(PageLayout.home),
         ),
         page: const HomePage(),
@@ -77,7 +79,7 @@ class AppRoutes extends RoutesDelegate {
           whether: ScaffoldWhetherOverride(
             showBackButton: true,
           ),
-          layout: layouts.get(PageLayout.home),
+          layout: layouts.get(PageLayout.other),
         ),
         page: const TermsOfServicePage(),
       ),
@@ -88,7 +90,7 @@ class AppRoutes extends RoutesDelegate {
           whether: ScaffoldWhetherOverride(
             showBackButton: true,
           ),
-          layout: layouts.get(PageLayout.home),
+          layout: layouts.get(PageLayout.other),
         ),
         page: const PrivacyPolicyPage(),
       ),
@@ -111,7 +113,7 @@ class AppRoutes extends RoutesDelegate {
           whether: ScaffoldWhetherOverride(
             showBackButton: true,
           ),
-          layout: layouts.get(PageLayout.home),
+          layout: layouts.get(PageLayout.other),
         ),
         page: const PricingScreen(),
         isMenu: true,
@@ -124,7 +126,7 @@ class AppRoutes extends RoutesDelegate {
           whether: ScaffoldWhetherOverride(
             showBackButton: true,
           ),
-          layout: layouts.get(PageLayout.home),
+          layout: layouts.get(PageLayout.other),
         ),
         page: const FAQScreen(),
         icon: Icons.question_mark,
