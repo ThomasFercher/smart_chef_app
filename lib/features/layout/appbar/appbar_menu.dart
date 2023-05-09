@@ -38,6 +38,7 @@ class AppBarMenu extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           for (var route in _routes) ...[
             AppBarMenuItem(

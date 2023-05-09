@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
-
 import 'package:legend_design_core/state/legend_state.dart';
-import 'package:legend_design_core/styles/typography/rich/legend_rich_text.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/elevation/animated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
-import 'package:legend_utils/legend_utils.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
 import 'package:smart_chef_app/features/pricing/widgets/legend_switch_bar.dart';
-import 'package:smart_chef_app/features/pricing/widgets/review.dart';
-
 import 'widgets/pricing_plan.dart';
 
 final isYearlyProvider = StateProvider<bool>((ref) {
@@ -27,7 +19,7 @@ class PricingScreen extends LegendWidget {
 
   @override
   Widget build(BuildContext context, LegendTheme theme) {
-    final isMobile = SizeInfo.of(context).width < 880;
+    final isMobile = SizeInfo.of(context).width < 920;
     final testemonialsCollapsed = SizeInfo.of(context).width < 1000;
 
     return LegendRouteBody(

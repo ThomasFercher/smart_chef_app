@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/layout/appBar.dart/appbar_config.dart';
 import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/navigation/section/legend_section.dart';
@@ -10,19 +11,24 @@ import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/datadisplay/carousel/legend_carousel.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
 import 'package:legend_design_widgets/scrolling/effects/visibility_sliver.dart';
+import 'package:smart_chef_app/features/auth/signup/signup.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
 import 'package:smart_chef_app/features/home/widgets/animate_in_widget.dart';
+import 'package:smart_chef_app/features/recipe/recipe.dart';
+import 'package:smart_chef_app/providers/auth/auth_provider.dart';
+import 'package:smart_chef_app/providers/auth/auth_state.dart';
 
 const kSlideInDuration = Duration(milliseconds: 500);
 const kSlideCurve = Curves.easeInOut;
 const kAnimDelay = Duration(milliseconds: 500);
 
-class HomePage extends LegendWidget {
+class HomePage extends ConsumerWidget {
   static String route = "/";
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, LegendTheme theme) {
+  Widget build(BuildContext context, ref) {
+    final theme = context.theme;
     final spacer3 = theme.rVal<double>(s: 96, m: 96, l: 48, xl: 144).vSpacing;
     final collapsed = theme.rVal(s: true, m: true, l: false, xl: false);
 
@@ -83,7 +89,11 @@ class HomePage extends LegendWidget {
                       elevation: 0,
                       background: theme.colors.primary,
                       onTap: () {
-                        LegendRouter.of(context).pushPage('/recipe');
+                        if (ref.read(authProvider) is Authenticated) {
+                          LegendRouter.of(context).pushPage(RecipePage.route);
+                          return;
+                        }
+                        LegendRouter.of(context).pushPage(SignUpScreen.route);
                       },
                       text: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
