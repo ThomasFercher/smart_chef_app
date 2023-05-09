@@ -6,6 +6,8 @@ import 'package:legend_design_core/legend_app.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_utils/logging/logger.dart';
 import 'package:legend_utils/urlstrategy/url_strategy.dart';
+import 'package:smart_chef_app/providers/auth/auth_provider.dart';
+import 'package:smart_chef_app/providers/auth/auth_state.dart';
 import 'config/colors.dart';
 import 'config/layout.dart';
 import 'config/routes.dart';
@@ -14,6 +16,8 @@ import 'config/typography.dart';
 import 'services/db_service.dart';
 
 const colorThemeKey = 'colorTheme';
+
+final globalProvider = ProviderContainer();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +31,7 @@ void main() async {
 
   runApp(
     ProviderScope(
+      parent: globalProvider,
       child: LegendApp(
         config: LegendConfig(
           colorsDelegate: AppColors(),

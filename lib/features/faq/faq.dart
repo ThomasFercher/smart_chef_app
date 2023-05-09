@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:legend_design_core/libraries/appbar.dart';
 import 'package:legend_design_core/libraries/scaffold.dart';
@@ -14,6 +15,7 @@ class FAQScreen extends LegendWidget {
   @override
   Widget build(BuildContext context, theme) {
     return LegendRouteBody(
+      disableContentDecoration: true,
       builder: (context, s) {
         return Column(
           children: [

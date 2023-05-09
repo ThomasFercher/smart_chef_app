@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/layout/appBar.dart/appbar_config.dart';
 import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/navigation/section/legend_section.dart';
@@ -13,15 +12,6 @@ import 'package:legend_design_widgets/input/button/legendButton/legend_button.da
 import 'package:legend_design_widgets/scrolling/effects/visibility_sliver.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
 import 'package:smart_chef_app/features/home/widgets/animate_in_widget.dart';
-
-// ConstrainedBox(
-//   constraints: const BoxConstraints(maxWidth: 720),
-//   child: LegendText(
-//     "Welcome to Smartchef, the ultimate AI-powered cooking assistant designed to make your culinary journey seamless and enjoyable. Whether you're a cooking novice or a seasoned chef, our platform offers a range of innovative features that cater to all your kitchen needs. From generating personalized recipes and meal plans to answering your cooking queries, Smartchef is here to help you save time, reduce stress, and elevate your home dining experience. Embrace the future of cooking with Smartchef – your one-stop destination for all things culinary.",
-//     textAlign: TextAlign.center,
-//     style: theme.typography.h2,
-//   ),
-// ),
 
 const kSlideInDuration = Duration(milliseconds: 500);
 const kSlideCurve = Curves.easeInOut;
@@ -90,6 +80,7 @@ class HomePage extends LegendWidget {
                       width: 320,
                       selBackground: theme.colors.selection,
                       selElevation: 1,
+                      elevation: 0,
                       background: theme.colors.primary,
                       onTap: () {
                         LegendRouter.of(context).pushPage('/recipe');
@@ -104,12 +95,12 @@ class HomePage extends LegendWidget {
                             color: theme.colors.onPrimary,
                           ),
                           const SizedBox(
-                            width: 4,
+                            width: 6,
                           ),
                           Icon(
                             Icons.arrow_forward_rounded,
                             color: theme.colors.onPrimary,
-                            size: 28,
+                            size: 32,
                           ),
                         ],
                       ),

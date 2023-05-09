@@ -82,14 +82,14 @@ class AppSizing extends SizingDelegate {
             buildComponents: (AppBarSizingInfo appBar) {
               return AppBarSizingComponents(
                 menuSizing: MenuSizing(
-                  spacing: 21,
+                  spacing: 16,
                   borderRadius: sizing.radius2.asRadius(),
                   iconSize: sizing.iconSize1,
-                  height: 42,
+                  height: appBar.appBarHeight - 32,
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 21,
+                    horizontal: 16,
                   ),
-                  itemSpacing: 6,
+                  itemSpacing: 8,
                 ),
                 subMenuSizing: SideMenuSizing(
                   spacing: 21,

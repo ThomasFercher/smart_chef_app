@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smart_chef_app/providers/auth/auth_state.dart';
 import 'package:smart_chef_app/services/auth_service.dart';
 
-const LOGIN = false;
+const LOGIN = true;
 const debugProfile = SavedUser("test@smartchef.ai", "test#420");
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
@@ -33,7 +33,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<bool> logout() async {
     if (state is Authenticated) {
-      return AuthService.logout((state as Authenticated).info.token);
+      final success = await AuthService.logout(
+        (state as Authenticated).info.token,
+      );
+      if (success) state = const AuthState.unauthenticated();
+
+      return success;
     }
     return false;
   }

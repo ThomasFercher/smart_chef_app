@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/theme_state.dart';
+import 'package:legend_design_core/widgets/gestures/detector.dart';
 import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
+import 'package:legend_utils/legend_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_chef_app/main.dart';
 import 'package:smart_chef_app/services/db_service.dart';
 
 const kLight = Icons.light_mode;
-const kDark = Icons.dark_mode_outlined;
+const kDark = Icons.dark_mode;
 
 final lightThemeSelectedProvider =
     StateProvider<bool>((ref) => DB.prefs.getString(colorThemeKey) == lightKey);
@@ -38,16 +40,25 @@ class ThemeSwitcher extends ConsumerWidget {
       },
     );
 
-    return LegendAnimatedIcon(
-      icon: isLight ? kDark : kLight,
-      onPressed: () => ref
-          .read(lightThemeSelectedProvider.notifier)
-          .update((state) => !state),
-      disableShadow: true,
-      iconSize: 24,
-      theme: LegendAnimtedIconTheme(
-        disabled: theme.colors.appBar.foreground,
-        enabled: theme.colors.appBar.foreground,
+    final appBarHeight = theme.appBarSizing.appBarHeight;
+    const paddingVertical = 12.0;
+
+    return Container(
+      width: appBarHeight - paddingVertical * 2,
+      padding: const EdgeInsets.symmetric(vertical: paddingVertical),
+      child: LegendDetector(
+        onTap: () => ref
+            .read(lightThemeSelectedProvider.notifier)
+            .update((state) => !state),
+        background: theme.colors.background3,
+        borderRadius: theme.sizing.radius2.asRadius(),
+        child: Center(
+          child: Icon(
+            isLight ? kDark : kLight,
+            size: 24,
+            color: isLight ? theme.colors.primary : theme.colors.foreground1,
+          ),
+        ),
       ),
     );
   }

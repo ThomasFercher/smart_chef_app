@@ -31,7 +31,7 @@ class PricingScreen extends LegendWidget {
     final testemonialsCollapsed = SizeInfo.of(context).width < 1000;
 
     return LegendRouteBody(
-      maxContentWidth: 800,
+      maxContentWidth: 1000,
       builder: (context, s) {
         return Column(
           children: [

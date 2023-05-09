@@ -92,7 +92,7 @@ class Footer extends StatelessWidget {
                   "Pricing",
                   style: body,
                   selectable: false,
-                  onTap: () => LegendRouter.of(context).pushNamed(
+                  onTap: () => LegendRouter.of(context).pushPage(
                     PricingScreen.route,
                   ),
                 ),
@@ -101,7 +101,7 @@ class Footer extends StatelessWidget {
                   "FAQ",
                   style: body,
                   selectable: false,
-                  onTap: () => LegendRouter.of(context).pushNamed(
+                  onTap: () => LegendRouter.of(context).pushPage(
                     FAQScreen.route,
                   ),
                 ),
@@ -146,7 +146,7 @@ class Footer extends StatelessWidget {
                   "Terms of Service",
                   style: body,
                   selectable: false,
-                  onTap: () => LegendRouter.of(context).pushNamed(
+                  onTap: () => LegendRouter.of(context).pushPage(
                     PrivacyPolicyPage.route,
                   ),
                 ),
@@ -155,7 +155,7 @@ class Footer extends StatelessWidget {
                   "Privacy Policy",
                   style: body,
                   selectable: false,
-                  onTap: () => LegendRouter.of(context).pushNamed(
+                  onTap: () => LegendRouter.of(context).pushPage(
                     PrivacyPolicyPage.route,
                   ),
                 ),
