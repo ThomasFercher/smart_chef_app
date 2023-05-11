@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:legend_design_core/legend_design_core.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_chef_app/services/models/category.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';

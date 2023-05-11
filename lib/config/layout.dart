@@ -10,7 +10,6 @@ import 'package:legend_design_core/layout/sider/sider_layout.dart';
 import 'package:smart_chef_app/features/home/home_appbar_actions.dart';
 import 'package:smart_chef_app/features/layout/appbar/appbar_menu.dart';
 import 'package:smart_chef_app/features/layout/appbar/collapsed_menu.dart';
-import 'package:smart_chef_app/widgets/themeSwitcher/themeSwitcher.dart';
 
 import '../features/footer/footer.dart';
 
@@ -102,7 +101,7 @@ class AppLayout extends LayoutDelegate {
       builders: ScaffoldBuilders(
         customFooter: const Footer(),
         appBarActions: (_, __) => const HomeScreenAppBarActions(),
-        collapsedMenuBuilder: (p0) => CollapsedWidget(),
+        collapsedMenuBuilder: (p0) => const CollapsedWidget(),
         fixedMenuBuilder: (c, routes, current) => AppBarMenu(
           routes: routes,
           route: current,

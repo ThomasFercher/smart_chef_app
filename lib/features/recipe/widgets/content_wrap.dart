@@ -3,15 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/route_body_info.dart';
 import 'package:legend_design_core/state/legend_state.dart';
-import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
-import 'package:legend_utils/extensions/boolean.dart';
-import 'package:smart_chef_app/features/recipe/output/output.dart';
 import 'package:smart_chef_app/features/recipe/widgets/back_button.dart';
 import 'package:smart_chef_app/features/recipe/widgets/continue_button.dart';
-import 'dart:math' as math;
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:smart_chef_app/features/recipe/widgets/generate_recipe_button.dart';
 
@@ -40,8 +34,8 @@ class ContentWrap extends ConsumerWidget {
             ? GenerateRecipe(sectionLength)
             : ContinueButton(sectionLength);
       case 2:
-        return Row(
-          children: const [
+        return const Row(
+          children: [
             GoBack(),
           ],
         );

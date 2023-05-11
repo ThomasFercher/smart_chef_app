@@ -108,7 +108,7 @@ class PrivacyPolicyPage extends LegendWidget {
               body.entry(
                   "By accessing or using the Service, you agree to this Privacy Policy. If you do not agree to this Privacy Policy, please do not use the Service."),
               heading.entry("1. Information We Collect"),
-              heading3.copyWith(margin: EdgeInsets.only(bottom: 8)).entry(
+              heading3.copyWith(margin: const EdgeInsets.only(bottom: 8)).entry(
                     "a. Personal Information",
                   ),
               body.entry(

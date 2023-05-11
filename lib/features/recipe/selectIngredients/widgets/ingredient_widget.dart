@@ -5,7 +5,6 @@ import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/animated_card.dart';
-import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
 import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_info.dart';
 
@@ -74,7 +73,7 @@ class IngredientTile extends ConsumerWidget {
       selElevation: 2,
       background: theme.colors.background4,
       borderRadius: theme.sizing.radius1.asRadius(),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 24,
       ),
       child: Row(
@@ -84,7 +83,7 @@ class IngredientTile extends ConsumerWidget {
             width: 200,
             child: LegendText(
               ingredient.name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),

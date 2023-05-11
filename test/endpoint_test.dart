@@ -26,7 +26,7 @@ void main() {
     'postRecipe',
     () async {
       final result = await ApiService.postRecipe(
-          new Recipe([], [], 1, "Hard", "Selected", null));
+          Recipe([], [], 1, "Hard", "Selected", null));
 
       expect(result, isA<RecipeResponse>());
     },

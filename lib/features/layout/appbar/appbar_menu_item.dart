@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/elevation/elevation_box.dart';
 import 'package:legend_design_core/widgets/gestures/detector.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
 

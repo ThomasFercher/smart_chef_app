@@ -11,13 +11,13 @@ import 'package:legend_design_core/styles/colors/subcolors/sub_colors.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
 import 'package:legend_design_core/styles/typography/style/typography_colors.dart';
 
-const greenPrimary = const Color(0xFF03C988);
+const greenPrimary = Color(0xFF03C988);
 //const secondary = Color(0xFFf5f9e7);
-const secondary = const Color(0xFFf2f9e5);
+const secondary = Color(0xFFf2f9e5);
 const onSecondary = Color(0xFF88b48e);
 const selection = Color(0xFF03e299);
 const a = Color(0xFFc5dec3);
-const second = const Color(0xFFFDFFFB);
+const second = Color(0xFFFDFFFB);
 
 class AppColors extends ColorsDelegate {
   @override

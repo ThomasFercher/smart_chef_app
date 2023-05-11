@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/styles/legend_theme.dart';
-import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_utils/extensions/extensions.dart';
 
 class RecipeCard extends StatelessWidget {

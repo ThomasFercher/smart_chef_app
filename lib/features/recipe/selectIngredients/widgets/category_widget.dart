@@ -1,10 +1,8 @@
-import 'dart:collection';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 
 class CategoryWidget extends ConsumerWidget {
@@ -18,7 +16,7 @@ class CategoryWidget extends ConsumerWidget {
       data: (sorted) {
         return ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             dragDevices: {
               PointerDeviceKind.trackpad,
               PointerDeviceKind.touch,

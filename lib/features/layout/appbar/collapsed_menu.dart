@@ -3,7 +3,6 @@ import 'package:legend_design_core/layout/menu_drawer/menu_drawer.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/widgets/elevation/elevation_box.dart';
-import 'package:legend_design_core/widgets/gestures/detector.dart';
 
 class CollapsedWidget extends LegendWidget {
   const CollapsedWidget({Key? key}) : super(key: key);

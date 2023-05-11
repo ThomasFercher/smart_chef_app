@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
 import 'package:legend_design_core/router/extension.dart';
@@ -9,7 +8,6 @@ import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_widgets/input/button/legendButton/legend_button.dart';
 import 'package:legend_design_widgets/layout/dynamic/row/dynamic_row.dart';
 import 'package:legend_utils/legend_utils.dart';
-import 'package:smart_chef_app/features/home/home.dart';
 import 'package:smart_chef_app/providers/auth/auth_provider.dart';
 import 'package:smart_chef_app/providers/auth/auth_state.dart';
 
@@ -86,7 +84,7 @@ class ProfileScreen extends ConsumerWidget {
                       height: 48,
                       width: 120,
                       borderRadius: BorderRadius.circular(12),
-                      margin: EdgeInsets.only(right: 16),
+                      margin: const EdgeInsets.only(right: 16),
                       text: LegendText(
                         "Verify Email",
                         color: theme.colors.primary,

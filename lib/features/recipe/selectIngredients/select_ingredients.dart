@@ -52,7 +52,7 @@ class SelectIngredientsSection extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        IngredientSearch(),
+                        const IngredientSearch(),
                         const SizedBox(
                           height: 16,
                         ),

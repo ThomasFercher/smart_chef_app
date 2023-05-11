@@ -6,7 +6,7 @@ class CookingAppBackgroundPainter extends CustomPainter {
     final path = Path();
     final startY = size.height * 0.3;
     final endY = size.height * 0.0;
-    final color = Colors.blue;
+    const color = Colors.blue;
 
     path.moveTo(0, startY);
     path.quadraticBezierTo(

@@ -1,18 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/layout/dynamic/row/dynamic_row.dart';
-import 'package:smart_chef_app/features/footer/footer.dart';
 import 'package:smart_chef_app/features/recipe/output/widgets/recipe_card.dart';
 import 'package:smart_chef_app/providers/recipe/recipe_provider.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 class OutputSection extends ConsumerWidget {
   const OutputSection({Key? key}) : super(key: key);
