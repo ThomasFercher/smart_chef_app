@@ -7,7 +7,7 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/layout/dynamic/row/dynamic_row.dart';
-import 'package:smart_chef_app/features/recipe/output/widgets/recipe_card.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/output/widgets/recipe_card.dart';
 import 'package:smart_chef_app/providers/recipe/recipe_provider.dart';
 
 class OutputSection extends ConsumerWidget {

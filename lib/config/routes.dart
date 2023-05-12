@@ -51,7 +51,7 @@ class AppRoutes extends RoutesDelegate {
           ),
           layout: layouts.get(PageLayout.recipe),
         ),
-        page: const RecipePage(),
+        page: RecipePage(),
         isMenu: true,
       ),
 

@@ -6,10 +6,11 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/category_widget.dart';
-import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_search.dart';
-import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/ingredient_widget.dart';
-import 'package:smart_chef_app/features/recipe/selectIngredients/widgets/selected_ingredient_widget.dart';
+import 'package:smart_chef_app/features/home/home.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/category_widget.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_search.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_widget.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/selected_ingredient_widget.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 
 class SelectIngredientsSection extends ConsumerWidget {
@@ -21,6 +22,7 @@ class SelectIngredientsSection extends ConsumerWidget {
     final theme = LegendTheme.of(context);
     return Container(
       width: SizeInfo.of(context).width,
+      height: context.height,
       padding: EdgeInsets.all(theme.sizing.spacing3),
       child: ElevatedCard(
         background: theme.colors.background1,
