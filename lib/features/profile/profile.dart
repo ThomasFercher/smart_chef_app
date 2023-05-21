@@ -76,7 +76,7 @@ class ProfileScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 48),
               DynamicRow(
-                verticalSpacing: 24,
+                vSpacing: 24,
                 children: [
                   if (!verified)
                     LegendButton(

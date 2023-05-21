@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
+import 'package:smart_chef_app/features/recipe/recipe.dart';
 
 import 'package:smart_chef_app/features/recipe/widgets/nav_button.dart';
 
@@ -67,16 +68,18 @@ class ContentWrap extends ConsumerWidget {
     final index = ref.watch(indexProvider);
     // final checkRecipe = ref.watch(checkRecipeProvider);
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        child,
-        Positioned(
-          right: theme.sizing.spacing1,
-          bottom: theme.sizing.spacing1,
-          child: _getButtons(index, false),
-        ),
-      ],
+    return SizedBox(
+      height: context.viewportHeight,
+      child: Stack(
+        children: [
+          child,
+          Positioned(
+            right: theme.sizing.spacing1,
+            bottom: theme.sizing.spacing1,
+            child: _getButtons(index, false),
+          ),
+        ],
+      ),
     );
   }
 }

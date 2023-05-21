@@ -315,6 +315,14 @@ extension DynamicSizing on LegendTheme {
     if (key == splits.last) return xl;
     return m;
   }
+
+  bool get isSmall => sizing.key == splits.first;
+
+  bool get isMedium => sizing.key == splits[1];
+
+  bool get isLarge => sizing.key == splits[2];
+
+  bool get isXLarge => sizing.key == splits.last;
 }
 
 extension LayoutUtilFix on num {

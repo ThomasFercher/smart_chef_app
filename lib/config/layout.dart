@@ -33,7 +33,7 @@ class AppLayout extends LayoutDelegate {
             showTabbar: false,
           ),
           bottomBarLayout: NoBottomBarLayout(),
-          footerLayout: FooterLayout(),
+          footerLayout: NoFooterLayout(),
           siderLayout: NoSiderLayout(),
           menuDrawerLayout: MenuDrawerLayout(
             type: MenuDrawerLayoutType.drawerRight,

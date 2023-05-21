@@ -205,6 +205,7 @@ class SignInScreen extends HookConsumerWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   LegendCheckbox(
+                                    vkey: const ValueKey("rememberme"),
                                     borderRadius: BorderRadius.circular(4),
                                     initalValue: ref.read(rememberMeProvider),
                                     onChanged: (value) {

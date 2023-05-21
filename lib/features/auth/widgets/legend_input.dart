@@ -16,13 +16,15 @@ class LegendInput extends StatefulWidget {
   final List<TextInputFormatter>? formatter;
   final TextEditingController? ctrl;
   final TextAlign textAlign;
-  final double height;
+  final double? height;
   final bool error;
 
   final TextInputType keyboardType;
   final FocusNode? focusNode;
   final Color? cursorColor;
   final TextStyle? style;
+
+  final bool expands;
 
   const LegendInput({
     super.key,
@@ -37,9 +39,10 @@ class LegendInput extends StatefulWidget {
     this.keyboardType = TextInputType.text,
     this.error = false,
     this.focusNode,
-    this.height = 24,
+    this.height,
     this.cursorColor,
     this.style,
+    this.expands = false,
   });
 
   @override
@@ -87,11 +90,14 @@ class _LegendInputState extends State<LegendInput> {
           ),
           disableShadow: true,
         ).ifW(widget.obscureText && textNotEmpty),
-        contentPadding: EdgeInsets.symmetric(
-          vertical: (widget.height - getTextHeight(theme.typography.h1)) / 2,
-          horizontal: 12,
-        ),
+        // contentPadding: EdgeInsets.symmetric(
+        //   vertical: widget.height != null
+        //       ? (widget.height! - getTextHeight(theme.typography.h1)) / 2
+        //       : 0,
+        //   horizontal: 12,
+        // ),
       ),
+      expands: widget.expands,
       cursorColor: widget.cursorColor ?? theme.colors.primary,
       textAlignVertical: TextAlignVertical.center,
       textInputAction: TextInputAction.next,
@@ -99,8 +105,8 @@ class _LegendInputState extends State<LegendInput> {
       keyboardType: widget.keyboardType,
       inputFormatters: widget.formatter,
       focusNode: widget.focusNode,
-      minLines: 1,
-      maxLines: 1,
+      minLines: widget.expands ? null : 1,
+      maxLines: widget.expands ? null : 1,
       obscureText: isObscured,
       onChanged: (value) {
         setState(() {
@@ -118,8 +124,11 @@ InputDecoration geLoginDecoration(
   LegendTheme theme,
   String? errorMessage, {
   String? hintText,
+  Color? fillColor,
 }) =>
     InputDecoration(
+      fillColor: fillColor,
+      filled: fillColor != null,
       hintText: hintText,
       hintStyle: theme.typography.h0.copyWith(
         color: theme.colors.foreground4,
