@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
-import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
-import 'package:legend_design_core/widgets/gestures/detector.dart';
-import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
 import 'package:legend_design_widgets/layout/dynamic/row/dynamic_row.dart';
 import 'package:legend_utils/legend_utils.dart';
-import 'package:smart_chef_app/features/auth/widgets/legend_checkbox.dart';
-import 'package:smart_chef_app/features/auth/widgets/legend_input.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
 import 'package:smart_chef_app/features/home/home.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/widgets/add_tool_button.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/widgets/difficulty_card.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/widgets/selectable_chip.dart';
 import 'package:smart_chef_app/features/recipe/recipe.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 enum Difficulty {
   easy("Beginner"),
@@ -94,7 +91,7 @@ class SelectInfoSection extends StatelessWidget {
                                 });
                               },
                             ),
-                          _AddToolButton(
+                          AddToolButton(
                             onAdd: (name) {
                               ref.read(toolsProvider.notifier).update((state) {
                                 if (state.contains(name)) return state;
@@ -118,7 +115,7 @@ class SelectInfoSection extends StatelessWidget {
                     child: Row(
                       children: [
                         for (final difficulty in Difficulty.values)
-                          _DifficultyCard(
+                          DifficultyCard(
                             title: difficulty.label,
                             selected: selDiff == difficulty,
                             onTap: () {
@@ -196,55 +193,6 @@ class _ConfigSection extends LegendWidget {
   }
 }
 
-class _DifficultyCard extends LegendWidget {
-  final String title;
-  final bool selected;
-  final void Function()? onTap;
-
-  const _DifficultyCard({
-    Key? key,
-    required this.title,
-    this.selected = false,
-    this.onTap,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, theme) {
-    return ElevatedCard(
-      onTap: onTap,
-      elevation: 1,
-      background: theme.colors.background3,
-      borderRadius: theme.sizing.radius1.asRadius(),
-      child: Container(
-        height: 120,
-        //  width: 240,
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 16,
-              left: 16,
-              child: LegendText(
-                title,
-                style: theme.typography.h3,
-              ),
-            ),
-            Positioned(
-              right: 16,
-              top: 16,
-              child: LegendCheckboxNoState(
-                value: selected,
-                onChanged: (value) {
-                  onTap?.call();
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 extension Spacing on List<Widget> {
   List<Widget> withSpacing(double spacing) {
     return List.generate(length * 2 - 1, (index) {
@@ -254,278 +202,4 @@ extension Spacing on List<Widget> {
       return SizedBox(width: spacing, height: spacing);
     });
   }
-}
-
-class SelectableChip extends StatefulWidget {
-  final String title;
-  final bool selected;
-  final bool def;
-
-  final void Function(bool v)? onSelected;
-  final void Function()? onDelete;
-
-  const SelectableChip({
-    Key? key,
-    this.selected = false,
-    this.onSelected,
-    required this.title,
-    this.onDelete,
-    this.def = true,
-  }) : super(key: key);
-
-  @override
-  State<SelectableChip> createState() => _SelectableChipState();
-}
-
-class _SelectableChipState extends State<SelectableChip> {
-  late bool visible;
-
-  late bool showDelete;
-
-  @override
-  void initState() {
-    showDelete = false;
-    visible = widget.def;
-    Future.delayed(const Duration(milliseconds: 100), () {
-      setState(() {
-        visible = true;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = LegendTheme.of(context);
-
-    final color = showDelete
-        ? theme.colors.error
-        : widget.selected
-            ? theme.colors.primary
-            : theme.colors.background3;
-
-    final height = theme.rVal<double>(s: 42, m: 48, l: 56, xl: 56);
-
-    return GestureDetector(
-      onTap: () {
-        if (showDelete && !widget.def) {
-          setState(() {
-            showDelete = false;
-          });
-          return;
-        }
-        widget.onSelected?.call(!widget.selected);
-      },
-      onLongPress: () {
-        if (widget.def) return;
-        setState(() {
-          showDelete = !showDelete;
-        });
-      },
-      child: Stack(
-        children: [
-          AnimatedContainer(
-            padding: EdgeInsets.symmetric(
-              horizontal: visible ? 42 : 8,
-            ),
-            height: height,
-            duration: const Duration(milliseconds: 200),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: color,
-            ),
-            child: Column(
-              // Workaround since using aligment Center fucks up the Dynamic Row
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 200),
-                  opacity: visible ? 1 : 0,
-                  child: !showDelete
-                      ? LegendText(
-                          widget.title,
-                          style: theme.typography.h2,
-                          selectable: false,
-                        )
-                      : LegendAnimatedIcon(
-                          icon: Icons.delete,
-                          padding: const EdgeInsets.all(4),
-                          iconSize: 24,
-                          theme: LegendAnimtedIconTheme(
-                              enabled: theme.colors.error.lighten(0.25),
-                              disabled: theme.colors.error.lighten(0.25)),
-                          onPressed: () {
-                            widget.onDelete?.call();
-                          },
-                        ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-final isAddingProvider = StateProvider<bool>((ref) => false);
-
-class _AddToolButton extends HookConsumerWidget {
-  final void Function(String name) onAdd;
-
-  const _AddToolButton({
-    Key? key,
-    required this.onAdd,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, ref) {
-    final theme = context.theme;
-    final isAdding = ref.watch(isAddingProvider);
-    final ctrl = useTextEditingController();
-    final focusNode = useFocusNode();
-
-    final textWidth = getTextWidth(
-      ctrl.text,
-      theme.typography.h1,
-    );
-
-    final width = useState(textWidth);
-
-    useEffect(
-      () {
-        ctrl.addListener(() {
-          width.value = getTextWidth(
-            ctrl.text,
-            theme.typography.h1,
-          );
-        });
-        return () {
-          width.value = 16;
-        };
-      },
-      [],
-    );
-
-    return Padding(
-      padding: EdgeInsets.only(right: !isAdding ? 48 : 0),
-      child: SizedBox(
-        height: 48,
-        child: LegendDetector(
-          background: theme.colors.background4,
-          borderRadius: 16.0.asRadius(),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 200),
-                  opacity: isAdding ? 1 : 0,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    padding: const EdgeInsets.symmetric(vertical: 0),
-                    width: isAdding ? width.value + 16 : 0,
-                    height: 48,
-                    child: Offstage(
-                      offstage: !isAdding,
-                      child: Center(
-                        child: LegendInput(
-                          ctrl: ctrl,
-                          style: theme.typography.h1,
-                          focusNode: focusNode,
-                          decoration: asdasdsd(
-                            theme,
-                            null,
-                            hintText: "Enter Tool Name",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
-                  child: isAdding
-                      ? LegendAnimatedIcon(
-                          onPressed: () {
-                            onAdd(ctrl.text);
-                            ref.read(isAddingProvider.notifier).state = false;
-                            ctrl.text = "";
-                          },
-                          icon: Icons.check,
-                          iconSize: 20,
-                          theme: LegendAnimtedIconTheme(
-                            enabled: theme.colors.selection,
-                            disabled: theme.colors.primary,
-                          ),
-                        )
-                      : Icon(
-                          Icons.add,
-                          color: theme.colors.primary,
-                          size: 20,
-                        ),
-                ),
-                if (isAdding) ...[
-                  const SizedBox(width: 8),
-                  LegendAnimatedIcon(
-                    onPressed: () {
-                      ctrl.text = "";
-                      ref
-                          .read(isAddingProvider.notifier)
-                          .update((state) => state ? !state : !state);
-                    },
-                    icon: Icons.cancel,
-                    iconSize: 20,
-                    theme: LegendAnimtedIconTheme(
-                      enabled: theme.colors.error,
-                      disabled: theme.colors.error,
-                    ),
-                  )
-                ]
-              ],
-            ),
-          ),
-          onTap: () {
-            if (isAdding) return;
-            focusNode.requestFocus();
-            ref
-                .read(isAddingProvider.notifier)
-                .update((state) => state ? !state : !state);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-InputDecoration asdasdsd(
-  LegendTheme theme,
-  String? errorMessage, {
-  String? hintText,
-}) =>
-    InputDecoration(
-      hintText: hintText,
-      hintStyle: theme.typography.h0.copyWith(
-        color: theme.colors.foreground4,
-      ),
-      errorText: errorMessage,
-      errorStyle: theme.typography.h0.copyWith(
-        color: theme.colors.error,
-      ),
-      errorBorder: InputBorder.none,
-      border: InputBorder.none,
-      enabledBorder: InputBorder.none,
-      focusedBorder: InputBorder.none,
-      isCollapsed: true,
-    );
-
-double getTextWidth(String s, TextStyle style) {
-  final TextPainter textPainter = TextPainter(
-    text: TextSpan(text: s, style: style),
-    maxLines: 1,
-    textDirection: TextDirection.ltr,
-  )..layout(minWidth: 0, maxWidth: double.infinity);
-
-  return textPainter.size.width;
 }
