@@ -89,7 +89,7 @@ class _LegendInputState extends State<LegendInput> {
             disabled: theme.colors.disabled,
           ),
           disableShadow: true,
-        ).ifW(widget.obscureText && textNotEmpty),
+        ).ifElseNull(widget.obscureText && textNotEmpty),
         // contentPadding: EdgeInsets.symmetric(
         //   vertical: widget.height != null
         //       ? (widget.height! - getTextHeight(theme.typography.h1)) / 2

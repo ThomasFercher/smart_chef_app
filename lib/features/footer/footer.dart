@@ -45,14 +45,14 @@ class Footer extends StatelessWidget {
                   "Powered by OpenAI",
                   style: theme.typography.h2,
                   color: foreground,
-                  margin: const EdgeInsets.only(left: 12).ifW(!isSmall),
+                  margin: const EdgeInsets.only(left: 12).ifElseNull(!isSmall),
                 ),
                 spacer,
                 LegendText(
                   "© Copyright 2023 Smartchef.${isSmall ? " " : "\n"}All rights reserved.",
                   style: theme.typography.h0,
                   color: foreground,
-                  margin: const EdgeInsets.only(left: 12).ifW(!isSmall),
+                  margin: const EdgeInsets.only(left: 12).ifElseNull(!isSmall),
                 ),
               ],
             ),
@@ -208,7 +208,7 @@ extension DynamicFlexLayout on Flex {
 }
 
 extension widgetIf<T> on T {
-  T? ifW(bool condition) {
+  T? ifElseNull(bool condition) {
     if (condition) return this;
     return null;
   }

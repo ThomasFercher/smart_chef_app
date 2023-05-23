@@ -7,6 +7,7 @@ import 'package:legend_design_core/layout/scaffold/scaffold_info.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:smart_chef_app/features/home/home.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/select_info.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/select_info_providers.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/select_ingredients.dart';
 import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/output/output.dart';

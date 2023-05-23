@@ -56,7 +56,7 @@ class AnimateIn extends HookConsumerWidget {
           isShown ? 0 : offset!.dx,
           isShown ? 0 : offset!.dy,
           0,
-        ).ifW(offset != null),
+        ).ifElseNull(offset != null),
         child: child,
       ),
     );
