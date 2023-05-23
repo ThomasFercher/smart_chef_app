@@ -37,6 +37,19 @@ class _RecipePageState extends ConsumerState<RecipePage> {
 
   Future<void> onPageChanged(int index, Duration duration, Curve curve) async {
     final immediate = (index - lastPage) < 0;
+
+    final diff = (index - lastPage);
+
+    final allowNext = switch (index) {
+      _ when diff > 0 && index == 2 => validateSelectInfo(ref),
+      _ => true,
+    };
+
+    if (!allowNext) {
+      print("Not allowed");
+      return;
+    }
+
     final sectionContext = switch (index) {
       0 => recipeKey.currentContext,
       1 => selectKey.currentContext,
@@ -45,6 +58,7 @@ class _RecipePageState extends ConsumerState<RecipePage> {
       _ => null,
     };
     if (sectionContext == null) return;
+
     if (immediate) ref.read(indexProvider.notifier).state = index;
     await Scrollable.ensureVisible(
       sectionContext,

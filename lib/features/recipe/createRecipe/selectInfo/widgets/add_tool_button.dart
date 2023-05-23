@@ -48,14 +48,14 @@ class AddToolButton extends HookConsumerWidget {
     );
 
     return Padding(
-      padding: EdgeInsets.only(right: !isAdding ? 48 : 0),
+      padding: EdgeInsets.only(right: !isAdding ? 56 : 0),
       child: SizedBox(
-        height: 48,
+        height: 56,
         child: LegendDetector(
-          background: theme.colors.background4,
+          background: theme.colors.background3,
           borderRadius: 16.0.asRadius(),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -74,7 +74,7 @@ class AddToolButton extends HookConsumerWidget {
                           ctrl: ctrl,
                           style: theme.typography.h1,
                           focusNode: focusNode,
-                          decoration: asdasdsd(
+                          decoration: addToolDecoration(
                             theme,
                             null,
                             hintText: "Enter Tool Name",
@@ -139,7 +139,7 @@ class AddToolButton extends HookConsumerWidget {
   }
 }
 
-InputDecoration asdasdsd(
+InputDecoration addToolDecoration(
   LegendTheme theme,
   String? errorMessage, {
   String? hintText,

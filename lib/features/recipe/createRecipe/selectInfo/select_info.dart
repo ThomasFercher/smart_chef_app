@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_widgets/layout/dynamic/row/dynamic_row.dart';
 import 'package:legend_utils/legend_utils.dart';
+import 'package:smart_chef_app/features/auth/widgets/legend_input.dart';
 import 'package:smart_chef_app/features/footer/footer.dart';
 import 'package:smart_chef_app/features/home/home.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/widgets/add_tool_button.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/widgets/difficulty_card.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/widgets/selectable_chip.dart';
 import 'package:smart_chef_app/features/recipe/recipe.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+
+bool validateSelectInfo(WidgetRef ref) {
+  bool isValid = true;
+
+  /// Tools
+  final tools = ref.read(selectedToolsProvider);
+  if (tools.isEmpty) {
+    isValid = false;
+  }
+
+  /// Difficulty
+  final difficulty = ref.read(difficultyProvider);
+  if (difficulty == null) {
+    isValid = false;
+  }
+
+  /// Time is always valid
+
+  /// Serving Amount is always valid
+
+  /// Ingredient Mode
+  final ingredientMode = ref.read(ingredientSelectionProvider);
+  if (ingredientMode == null) {
+    isValid = false;
+  }
+
+  return isValid;
+}
 
 enum Difficulty {
   easy("Beginner"),
@@ -21,23 +52,38 @@ enum Difficulty {
   const Difficulty(this.label);
 }
 
-enum IngredientSelection { all, some, none }
+enum IngredientMode {
+  random("Random"),
+  strict("Strict"),
+  stricGen("Strict with Generated Ingredients"),
+  selection("Selection");
+
+  final String label;
+
+  const IngredientMode(this.label);
+}
 
 final difficultyProvider = StateProvider<Difficulty?>((ref) => null);
 final ingredientSelectionProvider =
-    StateProvider<IngredientSelection?>((ref) => null);
+    StateProvider<IngredientMode?>((ref) => null);
 
 const defaultTools = ["Stove", "Airfryer", "Microwave", "Pan", "Pot", "Bowl"];
 
 final toolsProvider = StateProvider<List<String>>((ref) => defaultTools);
 final selectedToolsProvider = StateProvider<List<String>>((ref) => []);
 
-class SelectInfoSection extends StatelessWidget {
+final minuteProvider = StateProvider<double>((ref) => 60);
+
+final servingAmountProvider = StateProvider<int?>((ref) => 1);
+
+class SelectInfoSection extends HookConsumerWidget {
   const SelectInfoSection({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     final theme = LegendTheme.of(context);
+    final servingAmountController = useTextEditingController(
+        text: ref.read(servingAmountProvider).toString());
 
     return SizedBox(
       height: context.viewportHeight,
@@ -109,39 +155,136 @@ class SelectInfoSection extends StatelessWidget {
               _ConfigSection(
                 title: "Difficulty",
                 subtitle: "Select your cooking pedigree",
+                child: Consumer(
+                  builder: (context, ref, child) {
+                    final selDiff = ref.watch(difficultyProvider);
+                    return Container(
+                      child: Row(
+                        children: [
+                          for (final difficulty in Difficulty.values)
+                            DifficultyCard(
+                              title: difficulty.label,
+                              selected: selDiff == difficulty,
+                              onTap: () {
+                                final notifier =
+                                    ref.read(difficultyProvider.notifier);
+                                if (notifier.state == difficulty) {
+                                  notifier.state = null;
+                                  return;
+                                }
+                                notifier.state = difficulty;
+                              },
+                            ).expandIf(!theme.isSmall),
+                        ].withSpacing(24),
+                      ).toColumnIf(
+                        theme.isSmall,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 32),
+              _ConfigSection(
+                title: "How much time do you have?",
                 child: Consumer(builder: (context, ref, child) {
-                  final selDiff = ref.watch(difficultyProvider);
-                  return Container(
-                    child: Row(
-                      children: [
-                        for (final difficulty in Difficulty.values)
-                          DifficultyCard(
-                            title: difficulty.label,
-                            selected: selDiff == difficulty,
-                            onTap: () {
-                              final notifier =
-                                  ref.read(difficultyProvider.notifier);
-                              if (notifier.state == difficulty) {
-                                notifier.state = null;
-                                return;
-                              }
-                              notifier.state = difficulty;
-                            },
-                          ).expandIf(!theme.isSmall),
-                      ].withSpacing(24),
-                    ).toColumnIf(
-                      theme.isSmall,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                    ),
+                  final value = ref.watch(minuteProvider);
+                  return Column(
+                    children: [
+                      const SizedBox(height: 12),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: theme.colors.background4,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: EdgeInsets.all(16),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.access_time,
+                              size: 24,
+                              color: theme.colors.primary,
+                            ),
+                            const SizedBox(width: 12),
+                            LegendText(
+                              "${value.toInt()} minutes",
+                              style: theme.typography.h2,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      SliderTheme(
+                        data: const SliderThemeData(
+                          trackHeight: 10,
+                          thumbShape: RoundSliderThumbShape(
+                            enabledThumbRadius: 14,
+                          ),
+                        ),
+                        child: Slider(
+                          activeColor: theme.colors.primary,
+                          value: value,
+                          min: 5,
+                          max: 180,
+                          onChanged: (value) {
+                            ref.read(minuteProvider.notifier).state =
+                                value.ceilToDouble();
+                          },
+                          divisions: 35,
+                        ),
+                      ),
+                    ],
                   );
                 }),
               ),
               const SizedBox(height: 32),
               _ConfigSection(
-                title: "Ingredient Selection",
-                child: Container(),
+                title: "How many people are you cooking for?",
+                child: LegendInput(
+                  decoration: geLoginDecoration(theme, null),
+                  keyboardType: TextInputType.number,
+                  ctrl: servingAmountController,
+                  formatter: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    NumericTextFormatter(),
+                  ],
+                ),
               ),
+              const SizedBox(height: 32),
+              _ConfigSection(
+                title: "Ingredient Mode",
+                child: Consumer(
+                  builder: (context, ref, child) {
+                    final selectedMode = ref.watch(ingredientSelectionProvider);
+                    return GridView.count(
+                      crossAxisCount: theme.isSmall || theme.isMedium ? 1 : 2,
+                      shrinkWrap: true,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 3,
+                      children: [
+                        for (final selectionMode in IngredientMode.values)
+                          DifficultyCard(
+                            title: selectionMode.label,
+                            selected: selectedMode == selectionMode,
+                            onTap: () {
+                              final notifier = ref
+                                  .read(ingredientSelectionProvider.notifier);
+                              if (notifier.state == selectionMode) {
+                                notifier.state = null;
+                                return;
+                              }
+                              notifier.state = selectionMode;
+                            },
+                          ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 80),
             ],
           ),
         ),
@@ -201,5 +344,19 @@ extension Spacing on List<Widget> {
       }
       return SizedBox(width: spacing, height: spacing);
     });
+  }
+}
+
+class NumericTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final text = newValue.text;
+    if (text.isEmpty) return newValue;
+    final pattern = RegExp(r"^(?:100|[1-9]\d?)$");
+    if (pattern.hasMatch(text)) return newValue;
+    return oldValue;
   }
 }

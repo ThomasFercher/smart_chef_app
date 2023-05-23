@@ -42,7 +42,10 @@ class ContentWrap extends ConsumerWidget {
               onTap: () {
                 onPageChanged(index - 1);
               },
-              icon: Icons.arrow_upward,
+              icon: switch (index) {
+                1 => Icons.close,
+                _ => Icons.arrow_upward,
+              },
             ),
           ),
         ),
@@ -53,7 +56,7 @@ class ContentWrap extends ConsumerWidget {
             if (index == sectionLength - 1) print("Save");
           },
           icon: switch (index) {
-            _ when index == 0 => Icons.add,
+            0 => Icons.add,
             _ when index == sectionLength - 1 => Icons.save,
             _ => Icons.arrow_downward,
           },
