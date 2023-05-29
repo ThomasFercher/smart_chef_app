@@ -5,6 +5,7 @@ import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/animated_card.dart';
+import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_info.dart';
 
@@ -25,36 +26,34 @@ class IngredientWidget extends ConsumerWidget {
               .where((element) => element.category == category)
               .toList();
         }
-        return ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(
-            physics: const ClampingScrollPhysics(),
-            dragDevices: {
-              PointerDeviceKind.trackpad,
-              PointerDeviceKind.touch,
-              PointerDeviceKind.mouse,
-            },
-          ),
-          child: ListView.builder(
-            itemCount: ingredients.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  top: index == 0 ? 12 : 0,
-                  bottom: 12,
-                  left: 2,
-                  right: 2,
-                ),
-                child: IngredientTile(
-                  ingredient: ingredients[index],
-                ),
-              );
-            },
-          ),
+        return SliverList.builder(
+          itemCount: ingredients.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.only(
+                top: index == 0 ? 12 : 0,
+                bottom: 12,
+                left: 2,
+                right: 2,
+              ),
+              child: IngredientTile(
+                ingredient: ingredients[index],
+              ),
+            );
+          },
         );
       },
-      error: (err, s) => Text(err.toString()),
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
+      error: (err, s) => SliverFillRemaining(
+        child: Center(
+          child: Text(
+            err.toString(),
+          ),
+        ),
+      ),
+      loading: () => const SliverFillRemaining(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }
@@ -71,16 +70,17 @@ class IngredientTile extends ConsumerWidget {
     return AnimatedCard(
       elevation: 1,
       selElevation: 2,
+      height: 54,
       background: theme.colors.background4,
       borderRadius: theme.sizing.radius1.asRadius(),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 12,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 200,
+          Expanded(
             child: LegendText(
               ingredient.name,
               style: const TextStyle(
@@ -93,21 +93,22 @@ class IngredientTile extends ConsumerWidget {
           IngredienInfo(
             ingredient: ingredient,
           ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                splashRadius: 16,
-                onPressed: () {
-                  ingredientNotifier.addIngredient(ingredient);
-                },
-                icon: Icon(
-                  Icons.add,
-                  color: theme.colors.foreground1,
-                ),
-              ),
+          const SizedBox(
+            width: 8,
+          ),
+          LegendAnimatedIcon(
+            icon: Icons.add,
+            iconSize: 26,
+            padding: const EdgeInsets.all(8),
+            theme: LegendAnimtedIconTheme(
+              enabled: theme.colors.selection,
+              disabled: theme.colors.foreground1,
             ),
-          )
+            disableShadow: true,
+            onPressed: () {
+              ingredientNotifier.addIngredient(ingredient);
+            },
+          ),
         ],
       ),
     );

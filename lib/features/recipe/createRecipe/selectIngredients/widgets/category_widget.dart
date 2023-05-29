@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
+import 'package:legend_design_core/widgets/elevation/elevation_box.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 
 class CategoryWidget extends ConsumerWidget {
@@ -23,16 +24,19 @@ class CategoryWidget extends ConsumerWidget {
               PointerDeviceKind.mouse,
             },
           ),
-          child: ListView.builder(
+          child: SizedBox(
+            height: 120,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return SizedBox(
-                  height: 120,
-                  child: Card(
+                  width: 120,
+                  child: ElevatedBox(
                     elevation: 2.0,
-                    shape: RoundedRectangleBorder(
+                    decoration: BoxDecoration(
+                      color: theme.colors.background4,
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    color: theme.colors.secondary,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Column(
@@ -68,7 +72,9 @@ class CategoryWidget extends ConsumerWidget {
                   ),
                 );
               },
-              itemCount: sorted.length),
+              itemCount: sorted.length,
+            ),
+          ),
         );
       },
       error: (error, stackTrace) => Text(error.toString()),

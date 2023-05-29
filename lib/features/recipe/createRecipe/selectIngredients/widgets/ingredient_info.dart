@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
+import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
 
@@ -12,12 +13,15 @@ class IngredienInfo extends LegendWidget {
 
   @override
   Widget build(BuildContext context, LegendTheme theme) {
-    return IconButton(
-      icon: Icon(
-        Icons.info_outline,
-        color: theme.colors.foreground1,
+    return LegendAnimatedIcon(
+      iconSize: 26,
+      icon: Icons.info_outline,
+      padding: const EdgeInsets.all(8),
+      theme: LegendAnimtedIconTheme(
+        enabled: theme.colors.selection,
+        disabled: theme.colors.foreground1,
       ),
-      color: theme.colors.background2,
+      disableShadow: true,
       onPressed: () => showDialog(
         context: context,
         builder: (context) => Dialog(

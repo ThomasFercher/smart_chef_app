@@ -6,11 +6,11 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
-import 'package:smart_chef_app/features/home/home.dart';
+import 'package:smart_chef_app/features/auth/widgets/legend_input.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/category_widget.dart';
-import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_search.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_widget.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/selected_ingredient_widget.dart';
+import 'package:smart_chef_app/features/recipe/recipe.dart';
 import 'package:smart_chef_app/providers/ingredient_provider.dart';
 
 class SelectIngredientsSection extends ConsumerWidget {
@@ -20,12 +20,14 @@ class SelectIngredientsSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIngredients = ref.watch(selectedIngredient);
     final theme = LegendTheme.of(context);
+    final searchText = theme.typography.h1
+        .copyWith(color: theme.colors.foreground4, fontSize: 16);
     return Container(
       width: SizeInfo.of(context).width,
-      height: context.height,
-      padding: EdgeInsets.all(theme.sizing.spacing3),
+      height: context.viewportHeight,
+      padding: EdgeInsets.all(theme.sizing.spacing1),
       child: ElevatedCard(
-        background: theme.colors.background1,
+        background: theme.colors.background2,
         padding: EdgeInsets.all(theme.sizing.spacing2),
         borderRadius: theme.sizing.radius1.asRadius(),
         elevation: 1,
@@ -40,37 +42,122 @@ class SelectIngredientsSection extends ConsumerWidget {
               height: 16,
             ),
             Expanded(
-              child: Row(
-                children: [
-                  const Expanded(
-                    flex: 1,
-                    child: CategoryWidget(),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    pinned: false,
+                    snap: true,
+                    floating: true,
+                    leading: const SizedBox(),
+                    backgroundColor: Colors.transparent,
+                    toolbarHeight: 200,
+                    flexibleSpace: Stack(
                       children: [
-                        const IngredientSearch(),
-                        const SizedBox(
-                          height: 16,
+                        Positioned(
+                          bottom: 27,
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: theme.colors.background2,
+                            ),
+                          ),
                         ),
-                        const Expanded(flex: 5, child: IngredientWidget()),
-                        selectedIngredients.isEmpty
-                            ? const SizedBox()
-                            : const SelectedIngredientWidget(),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const CategoryWidget(),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            LegendInput(
+                              height: 54,
+                              expands: true,
+                              style: searchText,
+                              decoration: inputDecoration(
+                                theme,
+                                null,
+                                hintText: "Search Ingredients",
+                                textStyle: searchText,
+                                fillColor: theme.colors.background2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
+                  const IngredientWidget(),
                 ],
               ),
             ),
+            selectedIngredients.isEmpty
+                ? const SizedBox()
+                : const SelectedIngredientWidget(),
           ],
         ),
       ),
     );
   }
+}
+
+InputDecoration inputDecoration(
+  LegendTheme theme,
+  String? errorMessage, {
+  String? hintText,
+  Color? fillColor,
+  TextStyle? textStyle,
+}) {
+  final radius = 27.0.asRadius();
+  return InputDecoration(
+    fillColor: fillColor,
+    prefixIcon: Padding(
+      padding: const EdgeInsets.only(left: 16, right: 12),
+      child: Icon(
+        Icons.search,
+        color: theme.colors.foreground4,
+        size: 26,
+      ),
+    ),
+    filled: fillColor != null,
+    hintText: hintText,
+    hintStyle: textStyle ??
+        theme.typography.h1.copyWith(
+          color: theme.colors.foreground4,
+        ),
+    errorText: errorMessage,
+    errorStyle: textStyle ??
+        theme.typography.h0.copyWith(
+          color: theme.colors.error,
+        ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: radius,
+      borderSide: BorderSide(
+        color: theme.colors.error,
+        width: 1,
+      ),
+    ),
+    border: OutlineInputBorder(
+      borderRadius: radius,
+      borderSide: BorderSide(
+        color: theme.colors.foreground4,
+        width: 1,
+      ),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: radius,
+      borderSide: BorderSide(
+        color: theme.colors.foreground4,
+        width: 1,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: radius,
+      borderSide: BorderSide(
+        color: theme.colors.selection,
+        width: 2,
+      ),
+    ),
+  );
 }

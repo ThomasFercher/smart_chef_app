@@ -72,50 +72,53 @@ class _LegendInputState extends State<LegendInput> {
     //   });
     // }
 
-    return TextFormField(
-      controller: widget.ctrl,
-      decoration: widget.decoration.copyWith(
-        suffixIcon: LegendAnimatedIcon(
-          onPressed: () {
-            setState(() {
-              isObscured = !isObscured;
-            });
-          },
-          iconSize: 20,
-          padding: const EdgeInsets.only(right: 8),
-          icon: isObscured ? Icons.visibility_off : Icons.visibility,
-          theme: LegendAnimtedIconTheme(
-            enabled: theme.colors.selection,
-            disabled: theme.colors.disabled,
-          ),
-          disableShadow: true,
-        ).ifElseNull(widget.obscureText && textNotEmpty),
-        // contentPadding: EdgeInsets.symmetric(
-        //   vertical: widget.height != null
-        //       ? (widget.height! - getTextHeight(theme.typography.h1)) / 2
-        //       : 0,
-        //   horizontal: 12,
-        // ),
-      ),
-      expands: widget.expands,
-      cursorColor: widget.cursorColor ?? theme.colors.primary,
-      textAlignVertical: TextAlignVertical.center,
-      textInputAction: TextInputAction.next,
-      textAlign: widget.textAlign,
-      keyboardType: widget.keyboardType,
-      inputFormatters: widget.formatter,
-      focusNode: widget.focusNode,
-      minLines: widget.expands ? null : 1,
-      maxLines: widget.expands ? null : 1,
-      obscureText: isObscured,
-      onChanged: (value) {
-        setState(() {
-          textNotEmpty = value.isNotEmpty;
-        });
+    return SizedBox(
+      height: widget.height,
+      child: TextFormField(
+        controller: widget.ctrl,
+        decoration: widget.decoration.copyWith(
+          suffixIcon: LegendAnimatedIcon(
+            onPressed: () {
+              setState(() {
+                isObscured = !isObscured;
+              });
+            },
+            iconSize: 20,
+            padding: const EdgeInsets.only(right: 8),
+            icon: isObscured ? Icons.visibility_off : Icons.visibility,
+            theme: LegendAnimtedIconTheme(
+              enabled: theme.colors.selection,
+              disabled: theme.colors.disabled,
+            ),
+            disableShadow: true,
+          ).ifElseNull(widget.obscureText && textNotEmpty),
+          // contentPadding: EdgeInsets.symmetric(
+          //   vertical: widget.height != null
+          //       ? (widget.height! - getTextHeight(theme.typography.h1)) / 2
+          //       : 0,
+          //   horizontal: 12,
+          // ),
+        ),
+        expands: widget.expands,
+        cursorColor: widget.cursorColor ?? theme.colors.primary,
+        textAlignVertical: TextAlignVertical.center,
+        textInputAction: TextInputAction.next,
+        textAlign: widget.textAlign,
+        keyboardType: widget.keyboardType,
+        inputFormatters: widget.formatter,
+        focusNode: widget.focusNode,
+        minLines: widget.expands ? null : 1,
+        maxLines: widget.expands ? null : 1,
+        obscureText: isObscured,
+        onChanged: (value) {
+          setState(() {
+            textNotEmpty = value.isNotEmpty;
+          });
 
-        if (widget.onChanged != null) widget.onChanged!(value);
-      },
-      style: widget.style ?? theme.typography.h1,
+          if (widget.onChanged != null) widget.onChanged!(value);
+        },
+        style: widget.style ?? theme.typography.h1,
+      ),
     );
   }
 }
