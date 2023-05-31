@@ -5,9 +5,9 @@ part 'ingredient.g.dart';
 
 @JsonSerializable()
 class Ingredient {
-  final int? id;
-  final String? name;
-  final String? category;
+  final int id;
+  final String name;
+  final String category;
   final String? unit;
   final int? calories;
   final int? joules;

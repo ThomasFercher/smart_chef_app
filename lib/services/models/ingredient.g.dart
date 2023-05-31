@@ -7,9 +7,9 @@ part of 'ingredient.dart';
 // **************************************************************************
 
 Ingredient _$IngredientFromJson(Map<String, dynamic> json) => Ingredient(
-      id: json['id'] as int?,
-      name: json['name'] as String?,
-      category: json['category'] as String?,
+      id: json['id'] as int,
+      name: json['name'] as String,
+      category: json['category'] as String,
       unit: json['unit'] as String?,
       calories: json['calories'] as int?,
       joules: json['joules'] as int?,

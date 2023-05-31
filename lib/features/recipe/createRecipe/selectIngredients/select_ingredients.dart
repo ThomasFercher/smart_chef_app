@@ -7,11 +7,11 @@ import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:smart_chef_app/features/auth/widgets/legend_input.dart';
-import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/category_widget.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/select_ingredients_providers.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/categories.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_widget.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/selected_ingredient_widget.dart';
 import 'package:smart_chef_app/features/recipe/recipe.dart';
-import 'package:smart_chef_app/providers/ingredient_provider.dart';
 
 class SelectIngredientsSection extends ConsumerWidget {
   const SelectIngredientsSection({Key? key}) : super(key: key);
@@ -50,11 +50,16 @@ class SelectIngredientsSection extends ConsumerWidget {
                     floating: true,
                     leading: const SizedBox(),
                     backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    scrolledUnderElevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(27.0),
+                    ),
                     toolbarHeight: 200,
                     flexibleSpace: Stack(
                       children: [
                         Positioned(
-                          bottom: 27,
+                          bottom: 20,
                           top: 0,
                           left: 0,
                           right: 0,
@@ -82,6 +87,9 @@ class SelectIngredientsSection extends ConsumerWidget {
                                 textStyle: searchText,
                                 fillColor: theme.colors.background2,
                               ),
+                              onChanged: (value) => ref
+                                  .read(searchTextProvider.notifier)
+                                  .state = value,
                             ),
                           ],
                         ),
@@ -92,9 +100,6 @@ class SelectIngredientsSection extends ConsumerWidget {
                 ],
               ),
             ),
-            selectedIngredients.isEmpty
-                ? const SizedBox()
-                : const SelectedIngredientWidget(),
           ],
         ),
       ),

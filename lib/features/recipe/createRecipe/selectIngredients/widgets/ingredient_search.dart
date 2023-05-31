@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:searchfield/searchfield.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/select_ingredients_providers.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_widget.dart';
-import 'package:smart_chef_app/providers/ingredient_provider.dart';
 
 class IngredientSearch extends ConsumerWidget {
   const IngredientSearch({super.key});

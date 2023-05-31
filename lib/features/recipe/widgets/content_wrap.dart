@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/state/legend_state.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_basket.dart';
 import 'package:smart_chef_app/features/recipe/recipe.dart';
 
 import 'package:smart_chef_app/features/recipe/widgets/nav_button.dart';
@@ -27,7 +28,7 @@ class ContentWrap extends ConsumerWidget {
   Widget _getButtons(int index, bool checkRecipe) {
     final backVisible = index != 0;
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      // mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         AnimatedOpacity(
@@ -57,7 +58,10 @@ class ContentWrap extends ConsumerWidget {
           },
           icon: switch (index) {
             0 => Icons.add,
-            _ when index == sectionLength - 1 => Icons.save,
+            // 2 => Icons.bubble_chart,
+            _
+                when index == sectionLength - 1 =>
+              Icons.save,
             _ => Icons.arrow_downward,
           },
         ),
@@ -78,9 +82,11 @@ class ContentWrap extends ConsumerWidget {
           child,
           Positioned(
             right: theme.sizing.spacing1,
+            left: theme.sizing.spacing1,
             bottom: theme.sizing.spacing1,
             child: _getButtons(index, false),
           ),
+          IngredientBasket(),
         ],
       ),
     );

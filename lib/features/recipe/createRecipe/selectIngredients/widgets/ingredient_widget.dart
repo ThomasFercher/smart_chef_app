@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/legend_design_core.dart';
@@ -6,10 +5,10 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/animated_card.dart';
 import 'package:legend_design_core/widgets/icons/legend_animated_icon.dart';
+import 'package:smart_chef_app/features/footer/footer.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/select_ingredients_providers.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/widgets/ingredient_info.dart';
-
-import '../../../../../providers/ingredient_provider.dart';
 
 class IngredientWidget extends ConsumerWidget {
   const IngredientWidget({super.key});
@@ -17,27 +16,33 @@ class IngredientWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(ingredientDataProvider);
-    final category = ref.watch(categoryProvider);
+
     final theme = LegendTheme.of(context);
     return data.when(
       data: (ingredients) {
-        if (category != 'Meat') {
-          ingredients = ingredients
-              .where((element) => element.category == category)
-              .toList();
-        }
-        return SliverList.builder(
-          itemCount: ingredients.length,
+        final categories = ref.watch(selectedCategoriesProvider);
+        final searchText = ref.watch(searchTextProvider);
+
+        final filteredList = ingredients
+            .where((ingredient) => categories
+                .contains(ingredient.category)
+                .ifElse(categories.isNotEmpty, true))
+            .where((ingredient) => ingredient.name
+                .toLowerCase()
+                .contains(searchText.toLowerCase().trim())
+                .ifElse(searchText.isNotEmpty, true))
+            .toList();
+
+        return SliverList.separated(
+          itemCount: filteredList.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 8),
           itemBuilder: (context, index) {
+            final ingredient = filteredList[index];
             return Padding(
               padding: EdgeInsets.only(
-                top: index == 0 ? 12 : 0,
-                bottom: 12,
-                left: 2,
-                right: 2,
-              ),
+                  bottom: index == filteredList.length - 1 ? 64 : 0),
               child: IngredientTile(
-                ingredient: ingredients[index],
+                ingredient: ingredient,
               ),
             );
           },

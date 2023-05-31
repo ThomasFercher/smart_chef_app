@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:smart_chef_app/services/models/category.dart';
 import 'package:smart_chef_app/services/models/ingredient.dart';
 import 'package:smart_chef_app/services/models/recipe.dart';
 import 'package:smart_chef_app/services/models/recipe_response.dart';
@@ -32,7 +31,7 @@ abstract class ApiService {
     }
   }
 
-  static Future<List<Category>> fetchCategory() async {
+  static Future<List<String>> fetchCategory() async {
     final uri = Uri.parse('$endpoint$category');
     final response = await http.get(uri, headers: {
       'Content-Type': 'application/json',
@@ -45,7 +44,7 @@ abstract class ApiService {
 
       if (result is! List<dynamic>) throw Exception('Failed to load category');
 
-      return result.map((category) => Category(title: category)).toList();
+      return result.map((category) => category.toString()).toList();
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
