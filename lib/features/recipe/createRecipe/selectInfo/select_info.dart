@@ -199,6 +199,10 @@ class SelectInfoSection extends HookConsumerWidget {
                   children: [
                     for (final selectionMode in IngredientMode.values)
                       DifficultyCard(
+                        description:
+                            IngredientModeDescription.values.firstWhere(
+                          (element) => element.index == selectionMode.index,
+                        ),
                         title: selectionMode.label,
                         selected: ingredientSelectMode.value == selectionMode,
                         onTap: () {

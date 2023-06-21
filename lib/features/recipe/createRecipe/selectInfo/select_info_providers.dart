@@ -57,6 +57,19 @@ enum IngredientMode {
   const IngredientMode(this.label);
 }
 
+enum IngredientModeDescription {
+  random(
+      "Random Ingredients are selected. The List of ingredients is ignored."),
+  strict("Only the given ingredients are used."),
+  stricGen(
+      "All the given ingredients are used and a few ingredients are generated."),
+  selection("Fitting Ingredients are selected and others are generated.");
+
+  final String label;
+
+  const IngredientModeDescription(this.label);
+}
+
 final ingredientModeProvider = StateNotifierProvider<
     ValidationNotifier<IngredientMode?>, ValidationValue<IngredientMode?>>(
   (ref) => ValidationNotifier(

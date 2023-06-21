@@ -4,15 +4,18 @@ import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
 import 'package:smart_chef_app/features/auth/widgets/legend_checkbox.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/select_info_providers.dart';
 
 class DifficultyCard extends LegendWidget {
   final String title;
+  final IngredientModeDescription? description;
   final bool selected;
   final void Function()? onTap;
 
   const DifficultyCard({
     Key? key,
     required this.title,
+    this.description,
     this.selected = false,
     this.onTap,
   }) : super(key: key);
@@ -30,7 +33,7 @@ class DifficultyCard extends LegendWidget {
         child: Stack(
           children: [
             Positioned(
-              bottom: 16,
+              top: 16,
               left: 16,
               child: LegendText(
                 title,
@@ -46,6 +49,11 @@ class DifficultyCard extends LegendWidget {
                   onTap?.call();
                 },
               ),
+            ),
+            Positioned(
+              left: 16,
+              bottom: 16,
+              child: LegendText(description?.label, style: theme.typography.h1),
             ),
           ],
         ),

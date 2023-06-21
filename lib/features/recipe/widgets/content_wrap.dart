@@ -55,13 +55,14 @@ class ContentWrap extends ConsumerWidget {
           onTap: () {
             if (index < sectionLength - 1) onPageChanged(index + 1);
             if (index == sectionLength - 1) print("Save");
+            if (index == 2) {
+              // checkRecipe();
+            }
           },
           icon: switch (index) {
             0 => Icons.add,
             // 2 => Icons.bubble_chart,
-            _
-                when index == sectionLength - 1 =>
-              Icons.save,
+            _ when index == sectionLength - 1 => Icons.save,
             _ => Icons.arrow_downward,
           },
         ),
