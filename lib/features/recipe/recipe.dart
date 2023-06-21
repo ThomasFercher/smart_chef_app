@@ -13,7 +13,7 @@ import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/output/output.dart';
 import 'package:smart_chef_app/features/recipe/recipes/recipes_section.dart';
 
-const kPageDuration = Duration(milliseconds: 500);
+const kPageDuration = Duration(milliseconds: 800);
 const kResizeDuration = Duration(milliseconds: 200);
 const kPageCurve = Curves.easeInOut;
 const resizeCurve = Curves.ease;
@@ -84,12 +84,16 @@ class _RecipePageState extends ConsumerState<RecipePage> {
     final theme = LegendTheme.of(context);
     final appBarActions =
         ScaffoldInfo.of(context).scaffold.builders.appBarActions;
-
+    final spacer = (context.viewportHeight / 2).vSpacing;
     final sections = [
       RecipeSection(key: recipeKey),
+      spacer,
       SelectInfoSection(key: selectKey),
+      spacer,
       SelectIngredientsSection(key: ingredientsKey),
+      spacer,
       OutputSection(key: outputKey),
+      spacer,
     ];
 
     return RecipeMetricReactor(

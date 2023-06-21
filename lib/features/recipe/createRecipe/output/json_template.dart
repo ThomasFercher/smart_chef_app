@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:smart_chef_app/services/models/recipe.dart';
+import 'package:smart_chef_app/services/models/recipe_response.dart';
+
 Map<String, dynamic> jsonTemplate = {
   "name": "Autumn Pumpkin Soup",
   "length": 30,
@@ -24,3 +29,5 @@ Map<String, dynamic> jsonTemplate = {
     "If needed, adjust the consistency of the soup with more broth or water."
   ]
 };
+
+final sampleRecipe = RecipeResponse.fromJson(jsonTemplate);
