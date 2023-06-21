@@ -27,5 +27,5 @@ class SelectedIngredientNotifier extends StateNotifier<List<Ingredient>> {
 }
 
 final StateNotifierProvider<SelectedIngredientNotifier, List<Ingredient>>
-    selectedIngredient =
+    selectedIngredientProvider =
     StateNotifierProvider((ref) => SelectedIngredientNotifier());

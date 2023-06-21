@@ -11,7 +11,7 @@ import 'package:smart_chef_app/features/auth/signup/signup.dart';
 import 'package:smart_chef_app/features/profile/profile.dart';
 import 'package:smart_chef_app/providers/auth/auth_provider.dart';
 import 'package:smart_chef_app/providers/auth/auth_state.dart';
-import 'package:smart_chef_app/widgets/themeSwitcher/themeSwitcher.dart';
+import 'package:smart_chef_app/common/widgets/themeSwitcher/themeSwitcher.dart';
 
 class HomeScreenAppBarActions extends ConsumerWidget {
   const HomeScreenAppBarActions({Key? key}) : super(key: key);

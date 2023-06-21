@@ -18,7 +18,7 @@ class SelectIngredientsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedIngredients = ref.watch(selectedIngredient);
+    final selectedIngredients = ref.watch(selectedIngredientProvider);
     final theme = LegendTheme.of(context);
     final searchText = theme.typography.h1
         .copyWith(color: theme.colors.foreground4, fontSize: 16);

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 library select_info_providers;
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,9 +23,9 @@ bool validateSelectInfo(WidgetRef ref) {
 ///
 
 enum Difficulty {
-  easy("Beginner"),
-  medium("Intermediate"),
-  hard("Advanced");
+  Easy("Beginner"),
+  Medium("Intermediate"),
+  Hard("Advanced");
 
   final String label;
   const Difficulty(this.label);

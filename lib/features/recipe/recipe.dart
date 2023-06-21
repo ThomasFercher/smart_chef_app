@@ -4,14 +4,19 @@ import 'package:legend_design_core/layout/appBar.dart/appbar_config.dart';
 import 'package:legend_design_core/layout/appBar.dart/legend_sliverbar.dart';
 import 'package:legend_design_core/layout/scaffold/routebody/legend_route_body.dart';
 import 'package:legend_design_core/layout/scaffold/scaffold_info.dart';
+import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:smart_chef_app/features/home/home.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/select_info.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectInfo/select_info_providers.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/select_ingredients.dart';
+import 'package:smart_chef_app/features/recipe/createRecipe/selectIngredients/select_ingredients_providers.dart';
 import 'package:smart_chef_app/features/recipe/widgets/content_wrap.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/output/output.dart';
 import 'package:smart_chef_app/features/recipe/recipes/recipes_section.dart';
+import 'package:smart_chef_app/providers/recipe/recipe_provider.dart';
+import 'package:smart_chef_app/services/models/api_ingredient.dart';
+import 'package:smart_chef_app/services/models/recipe.dart';
 
 const kPageDuration = Duration(milliseconds: 800);
 const kResizeDuration = Duration(milliseconds: 200);
@@ -36,13 +41,45 @@ class _RecipePageState extends ConsumerState<RecipePage> {
 
   bool isResisizing = false;
 
+  //TODO: Add kitchen selection
+  Recipe buildRecipe(WidgetRef ref) {
+    final ingredientMode = ref.read(ingredientModeProvider).value!;
+    final tools = ref.read(toolsProvider);
+    final ingredients = ref.read(selectedIngredientProvider);
+    final difficulty = ref.read(difficultyProvider).value!;
+    final servingAmount = ref.read(servingAmountProvider)!;
+    final time = ref.read(minuteProvider);
+
+    final recipe = Recipe(
+      tools: tools,
+      difficulty: difficulty.name,
+      servingAmount: servingAmount,
+      ingredients: [
+        for (final ingredient in ingredients)
+          ApiIngredient(ingredient.name, "1"),
+      ],
+      slection: ingredientMode.name,
+    );
+    Logger.log("Recipe: $recipe");
+    return recipe;
+  }
+
+  bool allowedToRecipe(WidgetRef ref) {
+    final valid = validateSelectInfo(ref);
+    if (!valid) return false;
+
+    final recipe = buildRecipe(ref);
+    ref.read(recipeProvider.notifier).getRecipe(recipe);
+    return true;
+  }
+
   Future<void> onPageChanged(int index, Duration duration, Curve curve) async {
     final immediate = (index - lastPage) < 0;
 
     final diff = (index - lastPage);
 
     final allowNext = switch (index) {
-      _ when diff > 0 && index == 2 => validateSelectInfo(ref),
+      _ when diff > 0 && index == 2 => allowedToRecipe(ref),
       _ => true,
     };
 

@@ -56,7 +56,7 @@ class ContentWrap extends ConsumerWidget {
             if (index < sectionLength - 1) onPageChanged(index + 1);
             if (index == sectionLength - 1) print("Save");
             if (index == 2) {
-              // checkRecipe();
+              print("generate");
             }
           },
           icon: switch (index) {

@@ -12,9 +12,20 @@ class Recipe {
   final String slection;
   final String? kitchen;
 
-  Recipe(this.ingredients, this.tools, this.servingAmount, this.difficulty,
-      this.slection, this.kitchen);
+  const Recipe({
+    required this.ingredients,
+    required this.tools,
+    required this.servingAmount,
+    required this.difficulty,
+    required this.slection,
+    this.kitchen,
+  });
 
   factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
   Map<String, dynamic> toJson() => _$RecipeToJson(this);
+
+  @override
+  String toString() {
+    return 'Recipe{ingredients: $ingredients, tools: $tools, servingAmount: $servingAmount, difficulty: $difficulty, slection: $slection, kitchen: $kitchen}';
+  }
 }

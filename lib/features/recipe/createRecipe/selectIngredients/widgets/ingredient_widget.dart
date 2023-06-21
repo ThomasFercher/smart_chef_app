@@ -70,7 +70,7 @@ class IngredientTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final SelectedIngredientNotifier ingredientNotifier =
-        ref.watch(selectedIngredient.notifier);
+        ref.watch(selectedIngredientProvider.notifier);
     final theme = LegendTheme.of(context);
     return AnimatedCard(
       elevation: 1,

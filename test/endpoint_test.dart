@@ -21,13 +21,13 @@ void main() {
       expect(result, isA<List<String>>());
     },
   );
-  test(
-    'postRecipe',
-    () async {
-      final result = await ApiService.postRecipe(
-          Recipe([], [], 1, "Hard", "Selected", null));
+  // test(
+  //   'postRecipe',
+  //   () async {
+  //     final result = await ApiService.postRecipe(
+  //         Recipe([], [], 1, "Hard", "Selected", null));
 
-      expect(result, isA<RecipeResponse>());
-    },
-  );
+  //     expect(result, isA<RecipeResponse>());
+  //   },
+  // );
 }

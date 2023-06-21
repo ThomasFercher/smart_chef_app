@@ -15,7 +15,7 @@ class SelectedIngredients extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = LegendTheme.of(context);
-    final selectedIngredients = ref.watch(selectedIngredient);
+    final selectedIngredients = ref.watch(selectedIngredientProvider);
     return ListView.builder(
       itemCount: selectedIngredients.length,
       itemBuilder: (context, index) {
@@ -39,8 +39,9 @@ class SelectedIngredientTile extends ConsumerWidget {
           enabled: theme.colors.selection,
           disabled: theme.colors.disabled,
         ),
-        onPressed: () =>
-            ref.read(selectedIngredient.notifier).removeIngredient(ingredient),
+        onPressed: () => ref
+            .read(selectedIngredientProvider.notifier)
+            .removeIngredient(ingredient),
       ),
       content: SizedBox(
         height: 64,

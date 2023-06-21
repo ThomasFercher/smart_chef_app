@@ -7,14 +7,14 @@ part of 'recipe.dart';
 // **************************************************************************
 
 Recipe _$RecipeFromJson(Map<String, dynamic> json) => Recipe(
-      (json['ingredients'] as List<dynamic>)
+      ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => ApiIngredient.fromJson(e as Map<String, dynamic>))
           .toList(),
-      (json['tools'] as List<dynamic>).map((e) => e as String).toList(),
-      json['servingAmount'] as int,
-      json['difficulty'] as String,
-      json['slection'] as String,
-      json['kitchen'] as String?,
+      tools: (json['tools'] as List<dynamic>).map((e) => e as String).toList(),
+      servingAmount: json['servingAmount'] as int,
+      difficulty: json['difficulty'] as String,
+      slection: json['slection'] as String,
+      kitchen: json['kitchen'] as String?,
     );
 
 Map<String, dynamic> _$RecipeToJson(Recipe instance) => <String, dynamic>{
