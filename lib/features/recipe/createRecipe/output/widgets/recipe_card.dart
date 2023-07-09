@@ -31,8 +31,9 @@ class RecipeCard extends StatelessWidget {
 
 class IngredientCard extends LegendWidget {
   final ApiIngredient ingredient;
+  final TextStyle? style;
 
-  const IngredientCard({super.key, required this.ingredient});
+  const IngredientCard({super.key, required this.ingredient, this.style});
 
   @override
   Widget build(BuildContext context, theme) {
@@ -44,7 +45,7 @@ class IngredientCard extends LegendWidget {
         padding: const EdgeInsets.all(8.0),
         child: LegendText(
           "${ingredient.name} - ${ingredient.amount}",
-          style: theme.typography.h1,
+          style: style,
         ),
       ),
     );

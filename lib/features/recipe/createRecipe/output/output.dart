@@ -1,11 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:legend_design_core/legend_design_core.dart';
 import 'package:legend_design_core/state/legend_state.dart';
 import 'package:legend_design_core/styles/typography/widgets/legend_text.dart';
 import 'package:legend_design_core/widgets/elevation/elevated_card.dart';
+import 'package:legend_design_core/widgets/size_info.dart';
 import 'package:legend_design_widgets/layout/dynamic/row/dynamic_row.dart';
+import 'package:smart_chef_app/features/home/home.dart';
 import 'package:smart_chef_app/features/recipe/createRecipe/output/widgets/recipe_card.dart';
 import 'package:smart_chef_app/features/recipe/recipe.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -28,75 +31,121 @@ class OutputSection extends HookConsumerWidget {
     // notifier.getRecipe(
     //     Recipe(ingredients, [], 1, "difficulty", "slection", "kitchen"));
 
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
+    final body = GoogleFonts.indieFlower(
+      fontSize: 24,
+      color: theme.colors.foreground1,
+    );
+
+    final headline = GoogleFonts.lato(
+      fontSize: 36,
+      fontWeight: FontWeight.w500,
+      color: theme.colors.foreground1,
+    );
+
+    final s1 = theme.rVal(s: 24, m: 24, l: 32, xl: 32);
+
+    return Container(
+      width: SizeInfo.of(context).width,
+      height: context.viewportHeight,
       child: recipeState.when(
         data: (recipe) {
-          return Align(
-            alignment: Alignment.topCenter,
-            child: ElevatedCard(
-              elevation: 2.0,
-              background: theme.colors.background2,
-              borderRadius: theme.sizing.radius1.asRadius(),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LegendText(
-                      recipe.name,
-                      style: theme.typography.h4,
-                    ),
-                    LegendText("Ingredients", style: theme.typography.h3),
-                    SizedBox(
-                      height: theme.sizing.spacing1,
-                    ),
-                    DynamicRow(
-                      children: [
-                        for (final ingredient in recipe.ingredients)
-                          IngredientCard(ingredient: ingredient),
-                      ],
-                    ),
-                    SizedBox(
-                      height: theme.sizing.spacing3,
-                    ),
-                    LegendText("Tools", style: theme.typography.h3),
-                    SizedBox(
-                      height: theme.sizing.spacing1,
-                    ),
-                    DynamicRow(
-                      children: [
-                        for (final tool in recipe.tools)
-                          ElevatedCard(
-                            elevation: 1,
-                            child: LegendText(
-                              tool.toString(),
-                              style: theme.typography.h2,
-                            ),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 24,
+                horizontal: 32,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LegendText(
+                    recipe.name,
+                    style: headline.copyWith(fontSize: 48),
+                  ),
+                  s1.vSpacing,
+                  LegendText("Ingredients", style: headline),
+                  s1.vSpacing,
+                  DynamicRow(
+                    children: [
+                      for (final ingredient in recipe.ingredients)
+                        IngredientCard(
+                          ingredient: ingredient,
+                          style: GoogleFonts.kalam(
+                            color: theme.colors.foreground1,
+                            fontSize: 24,
                           ),
+                        ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: theme.sizing.spacing3,
+                  ),
+                  LegendText("Tools", style: headline),
+                  SizedBox(
+                    height: theme.sizing.spacing1,
+                  ),
+                  DynamicRow(
+                    children: [
+                      for (final tool in recipe.tools)
+                        ElevatedCard(
+                          elevation: 1,
+                          background: theme.colors.background3,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          borderRadius: theme.sizing.radius1.asRadius(),
+                          child: LegendText(
+                            tool.toString(),
+                            style: body,
+                          ),
+                        ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: theme.sizing.spacing3,
+                  ),
+                  LegendText(
+                    "Steps",
+                    style: headline,
+                  ),
+                  SizedBox(
+                    height: theme.sizing.spacing1,
+                  ),
+                  for (final step in recipe.steps) ...[
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: theme.sizing.spacing2,
+                        ),
+                        Icon(
+                          Icons.circle,
+                          color: theme.colors.primary,
+                        ),
+                        SizedBox(
+                          width: theme.sizing.spacing3,
+                        ),
+                        Expanded(
+                          child: LegendText(
+                            step.toString(),
+                            style: body,
+                          ),
+                        ),
                       ],
                     ),
-                    SizedBox(
-                      height: theme.sizing.spacing3,
+                    const SizedBox(
+                      height: 12,
                     ),
-                    LegendText("Steps", style: theme.typography.h3),
-                    SizedBox(
-                      height: theme.sizing.spacing1,
-                    ),
-                    for (final step in recipe.steps)
-                      LegendText(step.toString(), style: theme.typography.h2),
-                    SizedBox(
-                      height: theme.sizing.spacing3,
-                    ),
-                    LegendText("Tips", style: theme.typography.h3),
-                    SizedBox(
-                      height: theme.sizing.spacing1,
-                    ),
-                    for (final tip in recipe.tips)
-                      LegendText(tip.toString(), style: theme.typography.h2),
                   ],
-                ),
+                  SizedBox(
+                    height: theme.sizing.spacing3,
+                  ),
+                  LegendText("Tips", style: headline),
+                  SizedBox(
+                    height: theme.sizing.spacing1,
+                  ),
+                  for (final tip in recipe.tips)
+                    LegendText(tip.toString(), style: body),
+                ],
               ),
             ),
           );
