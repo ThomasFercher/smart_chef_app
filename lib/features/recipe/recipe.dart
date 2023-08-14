@@ -56,7 +56,7 @@ class _RecipePageState extends ConsumerState<RecipePage> {
       servingAmount: servingAmount,
       ingredients: [
         for (final ingredient in ingredients)
-          ApiIngredient(ingredient.name, "1"),
+          ApiIngredient(ingredient.ingredient.name, "${ingredient.quantity}"),
       ],
       slection: ingredientMode.name,
     );

@@ -111,7 +111,9 @@ class IngredientTile extends ConsumerWidget {
             ),
             disableShadow: true,
             onPressed: () {
-              ingredientNotifier.addIngredient(ingredient);
+              ingredientNotifier.addIngredient(
+                SelectedIngredient.init(ingredient: ingredient),
+              );
             },
           ),
         ],

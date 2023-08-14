@@ -30,3 +30,36 @@ class Ingredient {
       _$IngredientFromJson(json);
   Map<String, dynamic> toJson() => _$IngredientToJson(this);
 }
+
+class SelectedIngredient {
+  final Ingredient ingredient;
+  final int quantity;
+
+  const SelectedIngredient({required this.ingredient, required this.quantity});
+
+  const SelectedIngredient.init({required this.ingredient}) : quantity = 1;
+
+  // copy with
+  SelectedIngredient copyWith({Ingredient? ingredient, int? quantity}) {
+    return SelectedIngredient(
+      ingredient: ingredient ?? this.ingredient,
+      quantity: quantity ?? this.quantity,
+    );
+  }
+
+  // Increase quantity
+  SelectedIngredient increaseQuantity() {
+    return SelectedIngredient(
+      ingredient: ingredient,
+      quantity: quantity + 1,
+    );
+  }
+
+  // Decrease quantity
+  SelectedIngredient decreaseQuantity() {
+    return SelectedIngredient(
+      ingredient: ingredient,
+      quantity: quantity - 1,
+    );
+  }
+}

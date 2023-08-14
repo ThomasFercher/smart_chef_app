@@ -28,26 +28,3 @@ class RecipeCard extends StatelessWidget {
     );
   }
 }
-
-class IngredientCard extends LegendWidget {
-  final ApiIngredient ingredient;
-  final TextStyle? style;
-
-  const IngredientCard({super.key, required this.ingredient, this.style});
-
-  @override
-  Widget build(BuildContext context, theme) {
-    return ElevatedCard(
-      elevation: 3.0,
-      background: theme.colors.background3,
-      borderRadius: BorderRadius.circular(8.0),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: LegendText(
-          "${ingredient.name} - ${ingredient.amount}",
-          style: style,
-        ),
-      ),
-    );
-  }
-}

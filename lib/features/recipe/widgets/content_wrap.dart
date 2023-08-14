@@ -81,13 +81,17 @@ class ContentWrap extends ConsumerWidget {
       child: Stack(
         children: [
           child,
+          AnimatedOpacity(
+            opacity: index == 2 ? 1 : 0,
+            child: IngredientBasket(),
+            duration: Duration(milliseconds: 200),
+          ),
           Positioned(
             right: theme.sizing.spacing1,
             left: theme.sizing.spacing1,
             bottom: theme.sizing.spacing1,
             child: _getButtons(index, false),
           ),
-          IngredientBasket(),
         ],
       ),
     );

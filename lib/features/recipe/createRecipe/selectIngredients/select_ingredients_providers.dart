@@ -15,17 +15,38 @@ final selectedCategoriesProvider = StateProvider<List<String>>(
   (ref) => [],
 );
 
-class SelectedIngredientNotifier extends StateNotifier<List<Ingredient>> {
+class SelectedIngredientNotifier
+    extends StateNotifier<List<SelectedIngredient>> {
   SelectedIngredientNotifier() : super([]);
 
-  void removeIngredient(Ingredient ingredientRemove) => state = [
-        for (final ingredient in state)
-          if (ingredient != ingredientRemove) ingredient,
+  void removeIngredient(SelectedIngredient ingredient) {
+    if (ingredient.quantity > 1) {
+      state = [
+        for (final ingr in state)
+          if (ingr != ingredient) ingr else ingredient.decreaseQuantity()
       ];
+      return;
+    }
 
-  void addIngredient(Ingredient ingredient) => state = [...state, ingredient];
+    state = [
+      for (final ingr in state)
+        if (ingr != ingredient) ingr,
+    ];
+  }
+
+  void addIngredient(SelectedIngredient ingredient) {
+    if (state.contains(ingredient)) {
+      state = [
+        for (final ingr in state)
+          if (ingr != ingredient) ingr else ingredient.increaseQuantity()
+      ];
+      return;
+    }
+
+    state = [...state, ingredient];
+  }
 }
 
-final StateNotifierProvider<SelectedIngredientNotifier, List<Ingredient>>
-    selectedIngredientProvider =
+final StateNotifierProvider<SelectedIngredientNotifier,
+        List<SelectedIngredient>> selectedIngredientProvider =
     StateNotifierProvider((ref) => SelectedIngredientNotifier());

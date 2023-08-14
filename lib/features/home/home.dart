@@ -31,7 +31,6 @@ class HomePage extends ConsumerWidget {
     final theme = context.theme;
     final spacer3 = theme.rVal<double>(s: 96, m: 96, l: 48, xl: 144).vSpacing;
     final collapsed = theme.rVal(s: true, m: true, l: false, xl: false);
-
     final margin = theme.rVal<double>(s: 12, m: 24, l: 48, xl: 64);
 
     return LegendRouteBody(

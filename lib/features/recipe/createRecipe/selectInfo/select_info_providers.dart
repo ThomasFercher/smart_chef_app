@@ -40,7 +40,7 @@ final difficultyProvider = StateNotifierProvider<
       }
       return null;
     },
-    intialValue: null,
+    intialValue: Difficulty.Easy,
   ),
 );
 
@@ -81,7 +81,7 @@ final ingredientModeProvider = StateNotifierProvider<
       }
       return null;
     },
-    intialValue: null,
+    intialValue: IngredientMode.selection,
   ),
 );
 
@@ -106,7 +106,9 @@ final selectedToolsProvider = StateNotifierProvider<
         }
         return null;
       },
-      intialValue: [],
+      intialValue: [
+        "Stove",
+      ],
     );
   },
 );

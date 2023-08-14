@@ -36,25 +36,24 @@ class OutputSection extends HookConsumerWidget {
       color: theme.colors.foreground1,
     );
 
-    final headline = GoogleFonts.lato(
-      fontSize: 36,
-      fontWeight: FontWeight.w500,
+    final headline = GoogleFonts.indieFlower(
+      fontSize: 42,
+      fontWeight: FontWeight.w900,
       color: theme.colors.foreground1,
     );
 
     final s1 = theme.rVal(s: 24, m: 24, l: 32, xl: 32);
 
-    return Container(
-      width: SizeInfo.of(context).width,
-      height: context.viewportHeight,
-      child: recipeState.when(
-        data: (recipe) {
-          return SingleChildScrollView(
+    return recipeState.when(
+      data: (recipe) {
+        return ElevatedCard(
+          background: theme.colors.background2,
+          elevation: 1,
+          borderRadius: theme.sizing.radius1.asRadius(),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 24,
-                horizontal: 32,
-              ),
+              padding: const EdgeInsets.all(48),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,13 +66,14 @@ class OutputSection extends HookConsumerWidget {
                   LegendText("Ingredients", style: headline),
                   s1.vSpacing,
                   DynamicRow(
+                    hSpacing: 32,
                     children: [
                       for (final ingredient in recipe.ingredients)
-                        IngredientCard(
-                          ingredient: ingredient,
-                          style: GoogleFonts.kalam(
-                            color: theme.colors.foreground1,
-                            fontSize: 24,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: LegendText(
+                            "${ingredient.name} - ${ingredient.amount} ;",
+                            style: body,
                           ),
                         ),
                     ],
@@ -88,14 +88,10 @@ class OutputSection extends HookConsumerWidget {
                   DynamicRow(
                     children: [
                       for (final tool in recipe.tools)
-                        ElevatedCard(
-                          elevation: 1,
-                          background: theme.colors.background3,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          borderRadius: theme.sizing.radius1.asRadius(),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
                           child: LegendText(
-                            tool.toString(),
+                            "$tool ;",
                             style: body,
                           ),
                         ),
@@ -144,32 +140,35 @@ class OutputSection extends HookConsumerWidget {
                     height: theme.sizing.spacing1,
                   ),
                   for (final tip in recipe.tips)
-                    LegendText(tip.toString(), style: body),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: LegendText(tip.toString(), style: body),
+                    ),
                 ],
               ),
             ),
-          );
-        },
-        loading: () {
-          return SizedBox(
-            height: context.viewportHeight,
-            child: const Center(
-              child: CircularProgressIndicator(),
+          ),
+        );
+      },
+      loading: () {
+        return SizedBox(
+          height: context.viewportHeight,
+          child: const Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+      error: (error, stack) {
+        return SizedBox(
+          height: context.viewportHeight,
+          child: Center(
+            child: LegendText(
+              error.toString(),
+              style: theme.typography.h2,
             ),
-          );
-        },
-        error: (error, stack) {
-          return SizedBox(
-            height: context.viewportHeight,
-            child: Center(
-              child: LegendText(
-                error.toString(),
-                style: theme.typography.h2,
-              ),
-            ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
